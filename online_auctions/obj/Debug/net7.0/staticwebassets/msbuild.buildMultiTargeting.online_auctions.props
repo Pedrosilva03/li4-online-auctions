@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\online_auctions.props" />
+</Project>
