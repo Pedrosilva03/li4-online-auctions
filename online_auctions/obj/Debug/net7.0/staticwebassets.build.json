@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pCBwqwJjwTiq+ZjU0fdCORA/z2gycL7+djjgYPiB7rY=",
+  "Hash": "qGLQ2EKwi2RLuppd/ol7m4/iXOWmE0dXdZ5YzGBT6WU=",
   "Source": "online_auctions",
   "BasePath": "_content/online_auctions",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\li4-online-auctions\\online_auctions\\wwwroot\\imgs\\leiloes_favoritos.png",
+      "SourceId": "online_auctions",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\li4-online-auctions\\online_auctions\\wwwroot\\",
+      "BasePath": "_content/online_auctions",
+      "RelativePath": "imgs/leiloes_favoritos.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\leiloes_favoritos.png"
     },
     {
       "Identity": "C:\\Users\\Admin\\li4-online-auctions\\online_auctions\\wwwroot\\js\\site.js",

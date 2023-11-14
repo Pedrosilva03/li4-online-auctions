@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Admin\\li4-online-auctions\\online_auctions\\wwwroot\\imgs\\leiloes_favoritos.png",
+      "PackagePath": "staticwebassets\\imgs\\leiloes_favoritos.png"
+    },
+    {
       "Id": "C:\\Users\\Admin\\li4-online-auctions\\online_auctions\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

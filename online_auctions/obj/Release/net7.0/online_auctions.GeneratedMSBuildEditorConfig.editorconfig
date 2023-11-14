@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Admin\li4-online-auctions\online_auctions
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Admin/li4-online-auctions/online_auctions/Pages/criar_leilao.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcY3JpYXJfbGVpbGFvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Admin/li4-online-auctions/online_auctions/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Admin\li4-online-auctions\online_auctions
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Admin/li4-online-auctions/online_auctions/Pages/criar_leilao/criar_leilao.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcY3JpYXJfbGVpbGFvXGNyaWFyX2xlaWxhby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Admin/li4-online-auctions/online_auctions/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -24,8 +28,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/li4-online-auctions/online_auctions/Pages/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+[C:/Users/Admin/li4-online-auctions/online_auctions/Pages/leiloes_favoritos/leiloes_favoritos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbGVpbG9lc19mYXZvcml0b3NcbGVpbG9lc19mYXZvcml0b3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/li4-online-auctions/online_auctions/Pages/perfil/perfil.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNccGVyZmlsXHBlcmZpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Admin/li4-online-auctions/online_auctions/Pages/Shared/_ValidationScriptsPartial.cshtml]
