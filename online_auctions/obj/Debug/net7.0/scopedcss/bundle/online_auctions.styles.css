@@ -1,3 +1,83 @@
+/* _content/online_auctions/Pages/Index.cshtml.rz.scp.css */
+.recommended-auctions[b-4803o6f16l] {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+/* _content/online_auctions/Pages/perfil/Perfil.cshtml.rz.scp.css */
+.title-container[b-he2ch4jk88] {
+    display: flex;
+    flex-direction: space-between;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.delete-profile[b-he2ch4jk88] {
+    cursor: pointer;
+}
+
+.delete-profile:hover[b-he2ch4jk88] {
+    text-decoration: underline;
+}
+
+.profile-container[b-he2ch4jk88] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.profile-info-box[b-he2ch4jk88] {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #d9d9d9;
+    border-radius: 20px;
+    width: 70%;
+    height: auto;
+    padding: 20px;
+    position: relative;
+}
+
+.profile-info[b-he2ch4jk88] {
+    padding: 10px;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 20px;
+    width: 90%;
+    height: auto;
+}
+
+.edit-profile[b-he2ch4jk88] {
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.edit-profile:hover[b-he2ch4jk88] {
+    text-decoration: underline;
+}
+
+.transactions-history-button[b-he2ch4jk88] {
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    background-color: #c02b44;
+    padding: 10px 50px;
+    border-radius: 20px;
+    transition: all .2s ease-in-out;
+}
+
+.transactions-history-button:hover[b-he2ch4jk88] {
+    transform: scale(1.05);
+    color: inherit;
+}
 /* _content/online_auctions/Pages/Shared/_Layout.cshtml.rz.scp.css */
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
@@ -52,4 +132,13 @@ button.accept-policy[b-zxwx6jwxk4] {
   width: 100%;
   white-space: nowrap;
   line-height: 60px;
+}
+
+.nav-item[b-zxwx6jwxk4] {
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.nav-item:hover[b-zxwx6jwxk4] {
+  transform: scale(1.05);
 }

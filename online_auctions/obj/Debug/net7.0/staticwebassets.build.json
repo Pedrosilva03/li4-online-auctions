@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qGLQ2EKwi2RLuppd/ol7m4/iXOWmE0dXdZ5YzGBT6WU=",
+  "Hash": "2iSn/I3hDAPEutB9JrA8uHykQBGc2LC962GidVrQHMU=",
   "Source": "online_auctions",
   "BasePath": "_content/online_auctions",
   "Mode": "Default",
@@ -100,6 +100,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\imgs\\leiloes_favoritos.png"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\li4-online-auctions\\online_auctions\\wwwroot\\imgs\\logout.png",
+      "SourceId": "online_auctions",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\li4-online-auctions\\online_auctions\\wwwroot\\",
+      "BasePath": "_content/online_auctions",
+      "RelativePath": "imgs/logout.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\logout.png"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\li4-online-auctions\\online_auctions\\wwwroot\\imgs\\perfil.png",
+      "SourceId": "online_auctions",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\li4-online-auctions\\online_auctions\\wwwroot\\",
+      "BasePath": "_content/online_auctions",
+      "RelativePath": "imgs/perfil.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\perfil.png"
     },
     {
       "Identity": "C:\\Users\\Admin\\li4-online-auctions\\online_auctions\\wwwroot\\js\\site.js",

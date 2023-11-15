@@ -1,0 +1,32 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Perfil";
+}
+
+<div class="title-container">
+    <h1 class="profile-page-title">Perfil</h1>
+
+    <div class="delete-profile">
+        <a asp-area="" asp-page="">
+            <p>Eliminar perfil</p>
+        </a>
+    </div>
+</div>
+
+<div class="profile-container">
+    <div class="profile-info-box">
+        <p class="profile-info">Nickname</p>
+        <p class="profile-info">E-mail</p>
+        <p class="profile-info">Telemóvel</p>
+        <p class="profile-info">ID</p>
+
+        <div class="edit-profile">
+            <a asp-area="" asp-page="">Alterar dados da conta</a>
+        </div>
+    </div>
+
+    <div class="transactions-history-button">
+        <a asp-area="" asp-page="">Histórico de <br> transações</a>
+    </div>
+</div>

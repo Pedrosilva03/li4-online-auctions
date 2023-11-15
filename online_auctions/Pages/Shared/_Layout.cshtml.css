@@ -52,3 +52,12 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+.nav-item {
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.nav-item:hover {
+  transform: scale(1.05);
+}

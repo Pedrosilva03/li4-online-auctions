@@ -28,3 +28,5 @@ C:\Users\Admin\li4-online-auctions\online_auctions\obj\Debug\net7.0\refint\onlin
 C:\Users\Admin\li4-online-auctions\online_auctions\obj\Debug\net7.0\online_auctions.pdb
 C:\Users\Admin\li4-online-auctions\online_auctions\obj\Debug\net7.0\online_auctions.genruntimeconfig.cache
 C:\Users\Admin\li4-online-auctions\online_auctions\obj\Debug\net7.0\ref\online_auctions.dll
+C:\Users\Admin\li4-online-auctions\online_auctions\obj\Debug\net7.0\scopedcss\Pages\index.cshtml.rz.scp.css
+C:\Users\Admin\li4-online-auctions\online_auctions\obj\Debug\net7.0\scopedcss\Pages\perfil\perfil.cshtml.rz.scp.css

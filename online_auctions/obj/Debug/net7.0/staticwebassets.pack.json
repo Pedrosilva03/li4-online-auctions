@@ -17,6 +17,14 @@
       "PackagePath": "staticwebassets\\imgs\\leiloes_favoritos.png"
     },
     {
+      "Id": "C:\\Users\\Admin\\li4-online-auctions\\online_auctions\\wwwroot\\imgs\\logout.png",
+      "PackagePath": "staticwebassets\\imgs\\logout.png"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\li4-online-auctions\\online_auctions\\wwwroot\\imgs\\perfil.png",
+      "PackagePath": "staticwebassets\\imgs\\perfil.png"
+    },
+    {
       "Id": "C:\\Users\\Admin\\li4-online-auctions\\online_auctions\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

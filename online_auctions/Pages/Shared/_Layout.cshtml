@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,19 +22,29 @@
                 </button>
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark bg-light rounded" asp-area="" asp-page="/criar_leilao/criar_leilao">Criar Leilão</a>
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item me-2">
+                            <a class="nav-link text-dark bg-light rounded border border-secondary" asp-area="" asp-page="/criar_leilao/criar_leilao">Criar Leilão</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-page="/leiloes_favoritos/leiloes_favoritos">Leilões Favoritos
-                                <img src="online_auctions/wwwroot/imgs/leiloes_favoritos.png" class="mr-2">  
+                        <li class="nav-item me-2">
+                            <a class="nav-link d-flex align-items-center" asp-area="" asp-page="/leiloes_favoritos/leiloes_favoritos">
+                                <img src="~/imgs/leiloes_favoritos.png" class="mr-2" style="height: 40px;">  
+                            </a>
+                        </li>
+
+                        <li class="nav-item me-2">
+                            <a class="nav-link text-dark bg-light rounded border border-secondary" asp-area="" asp-page="">1000.00€</a>
+                        </li>
+
+                        <li class="nav-item me-2">
+                            <a class="nav-link text-white" asp-area="" asp-page="/perfil/perfil">
+                                <img src="~/imgs/perfil.png" class="mr-2" style="height: 40px;">
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-page="/perfil/perfil">Perfil</a>
+                            <img src="~/imgs/logout.png" class="mr-2" style="height: 40px;">
                         </li>
                     </ul>
                 </div>

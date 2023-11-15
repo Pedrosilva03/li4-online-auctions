@@ -1,0 +1,72 @@
+.title-container {
+    display: flex;
+    flex-direction: space-between;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.delete-profile {
+    cursor: pointer;
+}
+
+.delete-profile:hover {
+    text-decoration: underline;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.profile-info-box {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #d9d9d9;
+    border-radius: 20px;
+    width: 70%;
+    height: auto;
+    padding: 20px;
+    position: relative;
+}
+
+.profile-info {
+    padding: 10px;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 20px;
+    width: 90%;
+    height: auto;
+}
+
+.edit-profile {
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.edit-profile:hover {
+    text-decoration: underline;
+}
+
+.transactions-history-button {
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    background-color: #c02b44;
+    padding: 10px 50px;
+    border-radius: 20px;
+    transition: all .2s ease-in-out;
+}
+
+.transactions-history-button:hover {
+    transform: scale(1.05);
+    color: inherit;
+}
