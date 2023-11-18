@@ -1,0 +1,113 @@
+/* _content/app/Pages/Criar_leilao/Criar_leilao.razor.rz.scp.css */
+.templates-container[b-54tmngobm8] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* _content/app/Pages/Index.razor.rz.scp.css */
+.recommended-auctions[b-1jlyl90bcz] {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+/* _content/app/Pages/Leiloes_favoritos/Leiloes_favoritos.razor.rz.scp.css */
+/* _content/app/Pages/Perfil/Perfil.razor.rz.scp.css */
+.title-container[b-nahno1givc] {
+    display: flex;
+    flex-direction: space-between;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.delete-profile[b-nahno1givc] {
+    cursor: pointer;
+}
+
+.delete-profile:hover[b-nahno1givc] {
+    text-decoration: underline;
+}
+
+.profile-container[b-nahno1givc] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.profile-info-box[b-nahno1givc] {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #d9d9d9;
+    border-radius: 20px;
+    width: 70%;
+    height: auto;
+    padding: 20px;
+    position: relative;
+}
+
+.profile-info[b-nahno1givc] {
+    padding: 10px;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 20px;
+    width: 90%;
+    height: auto;
+}
+
+.edit-profile[b-nahno1givc] {
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.edit-profile:hover[b-nahno1givc] {
+    text-decoration: underline;
+}
+
+.transactions-history-button[b-nahno1givc] {
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    background-color: #c02b44;
+    padding: 10px 50px;
+    border-radius: 20px;
+    transition: all .2s ease-in-out;
+}
+
+.transactions-history-button:hover[b-nahno1givc] {
+    transform: scale(1.05);
+    color: inherit;
+}
+/* _content/app/Shared/NavMenu.razor.rz.scp.css */
+.navbar[b-vl3c23brav] {
+    color: #fff;
+    font-weight: bold;
+    background-color: #c02b44;
+}
+
+a.navbar-brand[b-vl3c23brav] {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a[b-vl3c23brav] {
+  color: #ffffff;
+}
+
+.nav-item[b-vl3c23brav] {
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.nav-item:hover[b-vl3c23brav] {
+  transform: scale(1.05);
+}
