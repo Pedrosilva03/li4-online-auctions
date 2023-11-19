@@ -4,12 +4,41 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+h1 {
+    font-weight: bold;
+}
+
 h1:focus {
     outline: none;
 }
 
 a, .btn-link {
     color: #0071c1;
+}
+
+input {
+    all: unset;
+}
+
+select {
+    border-style: none;
+    background: initial;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+textarea {
+    border-style: none;
+    white-space: normal;
+    overflow: auto;
 }
 
 .btn-primary {

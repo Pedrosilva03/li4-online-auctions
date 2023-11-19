@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dL1geG0qH5e9PBB9kieY/eejeqXnl36G7WVSiIxGpp4=",
+  "Hash": "G/qRVBbQkMPguMhMrcP71BPVGQ5/i9ebRrxXaIheJvc=",
   "Source": "app",
   "BasePath": "_content/app",
   "Mode": "Default",
@@ -321,6 +321,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\imgs\\perfil.png"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\imgs\\plus.png",
+      "SourceId": "app",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\",
+      "BasePath": "_content/app",
+      "RelativePath": "imgs/plus.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\plus.png"
     }
   ]
 }

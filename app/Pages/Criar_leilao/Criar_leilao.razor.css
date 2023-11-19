@@ -1,6 +1,46 @@
-.templates-container {
+.auction-templates-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cancel-auction-button {
+    background-color: #c02b44;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 20px;
+    width: fit-content;
+    padding: 5px 20px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    position: relative;
+    left: 80%;
+}
+
+.cancel-auction-button:hover {
+    transform: scale(1.05);
+}
+
+.templates-container, .add-template-button {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.add-template-button {
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.add-template-button:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .cancel-auction-button {
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }

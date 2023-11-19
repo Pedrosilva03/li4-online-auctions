@@ -1,7 +1,21 @@
-@page "/Criar_leilao/Criar_leilao"
+@page "/Criar_leilao"
+
+@code {
+
+}
 
 <PageTitle>Criar Leilão</PageTitle>
 
-<div templates-container>
+<h1>Criar Leilão</h1>
 
+<div class="auction-templates-container">
+    <div class="cancel-auction-button">Cancelar <br> Leilão</div>
+
+    <div class="templates-container" id="templatesContainer">
+        <Leilao_template />
+    </div>
+
+    <div class="add-template-button">
+        <img src="/imgs/plus.png" style="height: 40px;">
+    </div>
 </div>

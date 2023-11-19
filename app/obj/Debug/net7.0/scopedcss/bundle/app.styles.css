@@ -1,9 +1,137 @@
 /* _content/app/Pages/Criar_leilao/Criar_leilao.razor.rz.scp.css */
-.templates-container[b-54tmngobm8] {
+.auction-templates-container[b-54tmngobm8] {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cancel-auction-button[b-54tmngobm8] {
+    background-color: #c02b44;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 20px;
+    width: fit-content;
+    padding: 5px 20px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    position: relative;
+    left: 80%;
+}
+
+.cancel-auction-button:hover[b-54tmngobm8] {
+    transform: scale(1.05);
+}
+
+.templates-container[b-54tmngobm8], .add-template-button[b-54tmngobm8] {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.add-template-button[b-54tmngobm8] {
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.add-template-button:hover[b-54tmngobm8] {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .cancel-auction-button[b-54tmngobm8] {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+/* _content/app/Pages/Criar_leilao/Leilao_template.razor.rz.scp.css */
+.template-container[b-c2z04kg3th] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    gap: 20px;
+}
+
+.template-left[b-c2z04kg3th], .template-right[b-c2z04kg3th] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #d9d9d9;
+    border-radius: 20px;
+    padding: 30px;
+    row-gap: 20px;
+}
+
+.template-right[b-c2z04kg3th] {
+    width: 65%;
+}
+
+.skin-name[b-c2z04kg3th] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.image-upload[b-c2z04kg3th], .weapon-select[b-c2z04kg3th], .skin-name-input[b-c2z04kg3th], 
+.skin-condition-select[b-c2z04kg3th], .skin-description[b-c2z04kg3th],
+.rarity-select[b-c2z04kg3th], .initial-price-input[b-c2z04kg3th],
+.reserve-price-input[b-c2z04kg3th], .duration-input[b-c2z04kg3th],
+.start-date-input[b-c2z04kg3th], .start-time-input[b-c2z04kg3th] {
+    padding: 10px;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.weapon-select[b-c2z04kg3th], .skin-name-input[b-c2z04kg3th] {
+    width: 50%;
+}
+
+.skin-condition-select[b-c2z04kg3th],
+.rarity-select[b-c2z04kg3th], .duration-input[b-c2z04kg3th],
+.start-date-input[b-c2z04kg3th], .start-time-input[b-c2z04kg3th],
+.initial-price-input[b-c2z04kg3th], .reserve-price-input[b-c2z04kg3th],
+.publish-button[b-c2z04kg3th] {
+    width: 95%;
+}
+
+.skin-description[b-c2z04kg3th], .rarity-and-prices[b-c2z04kg3th], .date-time-publish[b-c2z04kg3th] {
+    width: 95%;
+}
+
+.rarity-and-prices[b-c2z04kg3th], .date-time-publish[b-c2z04kg3th] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.publish-button[b-c2z04kg3th] {
+    background-color: #c02b44;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 5px 30px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.publish-button:hover[b-c2z04kg3th] {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .template-container[b-c2z04kg3th], .skin-name[b-c2z04kg3th],
+    .rarity-and-prices[b-c2z04kg3th], .date-time-publish[b-c2z04kg3th] {
+        flex-direction: column;
+    }
 }
 /* _content/app/Pages/Index.razor.rz.scp.css */
 .recommended-auctions[b-1jlyl90bcz] {

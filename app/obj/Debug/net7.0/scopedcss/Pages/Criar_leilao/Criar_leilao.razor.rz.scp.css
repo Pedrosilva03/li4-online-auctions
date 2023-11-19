@@ -1,6 +1,46 @@
-.templates-container[b-54tmngobm8] {
+.auction-templates-container[b-54tmngobm8] {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cancel-auction-button[b-54tmngobm8] {
+    background-color: #c02b44;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 20px;
+    width: fit-content;
+    padding: 5px 20px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    position: relative;
+    left: 80%;
+}
+
+.cancel-auction-button:hover[b-54tmngobm8] {
+    transform: scale(1.05);
+}
+
+.templates-container[b-54tmngobm8], .add-template-button[b-54tmngobm8] {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.add-template-button[b-54tmngobm8] {
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.add-template-button:hover[b-54tmngobm8] {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .cancel-auction-button[b-54tmngobm8] {
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }

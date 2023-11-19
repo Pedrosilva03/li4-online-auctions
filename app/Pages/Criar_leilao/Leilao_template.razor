@@ -1,37 +1,105 @@
 @using System;
 
 @code {
-    [Parameter]
+    // Meter aqui alguma merda para a imagem
+
     public string tipo_item { get; set; }
     
-    [Parameter]
     public string nome_skin { get; set; }
 
-    [Parameter]
     public string condicao { get; set; }
 
-    [Parameter]
     public string descricao { get; set; }
 
-    [Parameter]
     public string raridade { get; set; }
 
-    [Parameter]
     public float preco_inicial { get; set; }
 
-    [Parameter]
     public float preco_reserva { get; set; }
 
-    [Parameter]
     public float duracao { get; set; }
 
-    [Parameter]
     public DateTime data_inicio { get; set; }
 
-    [Parameter]
-    public DateTime data_fim { get; set; }
+    public DateTime hora_inicio { get; set; }
 }
 
 <div class="template-container">
+    <div class="template-left">
+        <input class="image-upload" type="file" />
 
+        <div class="skin-name">
+            <select class="weapon-select" name="weapon" @bind="tipo_item">
+                <option value="" disabled selected hidden>Arma/Luva</option>
+                <option value="ak47">AK-47</option>
+                <option value="m4a1">M4A1</option>
+                <option value="awp">AWP</option>
+                <option value="deagle">Desert Eagle</option>
+                <option value="usp">USP-S</option>
+                <option value="glock">Glock-18</option>
+                <option value="p250">P250</option>
+                <option value="famas">FAMAS</option>
+                <option value="galilar">Galil AR</option>
+                <option value="aug">AUG</option>
+                <option value="sg553">SG 553</option>
+                <option value="m249">M249</option>
+                <option value="negev">Negev</option>
+                <option value="mp9">MP9</option>
+                <option value="mac10">MAC-10</option>
+                <option value="ump45">UMP-45</option>
+                <option value="p90">P90</option>
+                <option value="bizon">PP-Bizon</option>
+                <option value="xm1014">XM1014</option>
+                <option value="mag7">MAG-7</option>
+                <option value="sawedoff">Sawed-Off</option>
+                <option value="nova">Nova</option>
+                <option value="scar20">SCAR-20</option>
+                <option value="g3sg1">G3SG1</option>
+                <option value="luva">Luva</option>
+            </select>
+
+            <input class="skin-name-input" type="text" placeholder="Nome da Skin" @bind="nome_skin" />
+        </div>
+
+        <select class="skin-condition-select" name="condition" @bind="condicao">
+            <option value="" disabled selected hidden>Condição</option>
+            <option value="factory_new">FN</option>
+            <option value="minimal_wear">MW</option>
+            <option value="field_tested">FT</option>
+            <option value="well_worn">WW</option>
+            <option value="battle_scarred">BS</option>
+        </select>
+    </div>
+
+    <div class="template-right">
+        <textarea class="skin-description" rows="6" cols="50" placeholder="Descrição" maxlength="100" @bind="descricao" />
+
+        <div class="rarity-and-prices">
+            <select class="rarity-select" name="rarity" @bind="raridade">
+                <option value="" disabled selected hidden>Raridate</option>
+                <option value="cinzento">Cinzento</option>
+                <option value="azul_claro">Azul Claro</option>
+                <option value="azul">Azul</option>
+                <option value="roxo">Roxo</option>
+                <option value="rosa">Rosa</option>
+                <option value="vermelho">Vermelho</option>
+                <option value="dourado">Dourado</option>
+            </select>
+
+            <!-- Como o bind é float não dá para usar input de texto, Arranjar forma de mostrar o placeholder -->
+            <input class="initial-price-input" type="number" step="0.01" placeholder="Preço inicial" @bind="preco_inicial" />
+
+            <input class="reserve-price-input" type="number" step="0.01" placeholder="Preço de reserva" @bind="preco_reserva" />
+        </div>
+
+        <div class="date-time-publish">
+            <input class="duration-input" type="text" placeholder="Duração" @bind="duracao" />
+
+            <input class="start-date-input" type="date" @bind="data_inicio" />
+
+            <input class="start-time-input" type="time" @bind="hora_inicio" />
+
+            <div class="publish-button">Publicar</div>
+        </div>
+    </div>
 </div>

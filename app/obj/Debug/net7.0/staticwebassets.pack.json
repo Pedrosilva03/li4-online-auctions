@@ -69,6 +69,10 @@
       "PackagePath": "staticwebassets\\imgs\\perfil.png"
     },
     {
+      "Id": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\imgs\\plus.png",
+      "PackagePath": "staticwebassets\\imgs\\plus.png"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.app.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

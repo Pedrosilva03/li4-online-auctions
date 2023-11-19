@@ -3,4 +3,85 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    width: 80%;
+    gap: 20px;
+}
+
+.template-left, .template-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #d9d9d9;
+    border-radius: 20px;
+    padding: 30px;
+    row-gap: 20px;
+}
+
+.template-right {
+    width: 65%;
+}
+
+.skin-name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.image-upload, .weapon-select, .skin-name-input, 
+.skin-condition-select, .skin-description,
+.rarity-select, .initial-price-input,
+.reserve-price-input, .duration-input,
+.start-date-input, .start-time-input {
+    padding: 10px;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.weapon-select, .skin-name-input {
+    width: 50%;
+}
+
+.skin-condition-select,
+.rarity-select, .duration-input,
+.start-date-input, .start-time-input,
+.initial-price-input, .reserve-price-input,
+.publish-button {
+    width: 95%;
+}
+
+.skin-description, .rarity-and-prices, .date-time-publish {
+    width: 95%;
+}
+
+.rarity-and-prices, .date-time-publish {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.publish-button {
+    background-color: #c02b44;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 5px 30px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.publish-button:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .template-container, .skin-name,
+    .rarity-and-prices, .date-time-publish {
+        flex-direction: column;
+    }
 }
