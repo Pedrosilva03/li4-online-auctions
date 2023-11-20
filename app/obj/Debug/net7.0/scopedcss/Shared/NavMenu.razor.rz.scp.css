@@ -8,10 +8,15 @@ a.navbar-brand[b-vl3c23brav] {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  margin-left: 5%;
 }
 
 a[b-vl3c23brav] {
   color: #ffffff;
+}
+
+.navbar-nav[b-vl3c23brav] {
+  margin-right: 5%;
 }
 
 .nav-item[b-vl3c23brav] {

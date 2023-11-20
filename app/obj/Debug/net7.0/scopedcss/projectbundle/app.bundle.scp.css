@@ -51,7 +51,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 80%;
+    width: 90%;
     gap: 20px;
 }
 
@@ -67,49 +67,32 @@
 }
 
 .template-right[b-c2z04kg3th] {
-    width: 65%;
+    width: 80%;
 }
 
-.skin-name[b-c2z04kg3th] {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.image-upload[b-c2z04kg3th], .weapon-select[b-c2z04kg3th], .skin-name-input[b-c2z04kg3th], 
-.skin-condition-select[b-c2z04kg3th], .skin-description[b-c2z04kg3th],
-.rarity-select[b-c2z04kg3th], .initial-price-input[b-c2z04kg3th],
-.reserve-price-input[b-c2z04kg3th], .duration-input[b-c2z04kg3th],
-.start-date-input[b-c2z04kg3th], .start-time-input[b-c2z04kg3th] {
+.auction-input[b-c2z04kg3th] {
+    text-align: center;
     padding: 10px;
     border-radius: 20px;
     background-color: white;
+    width: 100%;
 }
 
-.weapon-select[b-c2z04kg3th], .skin-name-input[b-c2z04kg3th] {
+.input[b-c2z04kg3th] {
     width: 50%;
 }
 
-.skin-condition-select[b-c2z04kg3th],
-.rarity-select[b-c2z04kg3th], .duration-input[b-c2z04kg3th],
-.start-date-input[b-c2z04kg3th], .start-time-input[b-c2z04kg3th],
-.initial-price-input[b-c2z04kg3th], .reserve-price-input[b-c2z04kg3th],
-.publish-button[b-c2z04kg3th] {
-    width: 95%;
+.description[b-c2z04kg3th] {
+    width: 100%;
 }
 
-.skin-description[b-c2z04kg3th], .rarity-and-prices[b-c2z04kg3th], .date-time-publish[b-c2z04kg3th] {
-    width: 95%;
-}
-
-.rarity-and-prices[b-c2z04kg3th], .date-time-publish[b-c2z04kg3th] {
+.template-row-right[b-c2z04kg3th] {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+    width: 100%;
 }
 
 .publish-button[b-c2z04kg3th] {
@@ -118,7 +101,7 @@
     text-align: center;
     font-weight: bold;
     border-radius: 20px;
-    padding: 5px 30px;
+    padding: 10px 30px;
     cursor: pointer;
     transition: all .2s ease-in-out;
 }
@@ -128,12 +111,35 @@
 }
 
 @media (max-width: 768px) {
-    .template-container[b-c2z04kg3th], .skin-name[b-c2z04kg3th],
-    .rarity-and-prices[b-c2z04kg3th], .date-time-publish[b-c2z04kg3th] {
+    .template-row-right[b-c2z04kg3th] {
         flex-direction: column;
     }
 }
 /* _content/app/Pages/Index.razor.rz.scp.css */
+.index-container[b-1jlyl90bcz] {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.search-bar[b-1jlyl90bcz] {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d9d9d9;
+    width: 20%; 
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.search-bar:hover[b-1jlyl90bcz] {
+    transform: scale(1.05);
+}
+
 .recommended-auctions[b-1jlyl90bcz] {
     display: flex;
     flex-direction: row;
@@ -141,6 +147,58 @@
     align-items: center;
 }
 /* _content/app/Pages/Leiloes_favoritos/Leiloes_favoritos.razor.rz.scp.css */
+/* _content/app/Pages/Pagina_pesquisa/Pagina_pesquisa.razor.rz.scp.css */
+.search-container[b-mmu2nohosn] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.search-input-container[b-mmu2nohosn] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #d9d9d9;
+    border-radius: 20px;
+    width: 75%;
+    padding: 20px;
+    gap: 20px;
+}
+
+.search-input[b-mmu2nohosn] {
+    background: white;
+    padding: 10px;
+    border-radius: 20px;
+    width: 40%;
+    text-align: center;
+}
+
+.input-container-row[b-mmu2nohosn] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.search-button[b-mmu2nohosn] {
+    background-color: #c02d44;
+    color: white;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+}
+
+.search-button:hover[b-mmu2nohosn] {
+    transform: scale(1.05);
+}
+
 /* _content/app/Pages/Perfil/Perfil.razor.rz.scp.css */
 .title-container[b-nahno1givc] {
     display: flex;
@@ -225,10 +283,15 @@ a.navbar-brand[b-vl3c23brav] {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  margin-left: 5%;
 }
 
 a[b-vl3c23brav] {
   color: #ffffff;
+}
+
+.navbar-nav[b-vl3c23brav] {
+  margin-right: 5%;
 }
 
 .nav-item[b-vl3c23brav] {

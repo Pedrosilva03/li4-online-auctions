@@ -61,8 +61,16 @@
       "PackagePath": "staticwebassets\\imgs\\leiloes_favoritos.png"
     },
     {
+      "Id": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\imgs\\logo.png",
+      "PackagePath": "staticwebassets\\imgs\\logo.png"
+    },
+    {
       "Id": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\imgs\\logout.png",
       "PackagePath": "staticwebassets\\imgs\\logout.png"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\imgs\\magnifying-glass.png",
+      "PackagePath": "staticwebassets\\imgs\\magnifying-glass.png"
     },
     {
       "Id": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\imgs\\perfil.png",

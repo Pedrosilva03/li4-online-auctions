@@ -1,0 +1,91 @@
+@page "/Pagina_pesquisa"
+
+<PageTitle>Pesquisar leilão</PageTitle>
+
+<div class="search-container">
+    <h1>Pesquisar Leilões</h1>
+
+    <div class="search-input-container">
+        <input class="search-input" type="text" placeholder="ID" />
+
+        <div class="input-container-row">
+            <div class="search-input">
+                <select name="weapon">
+                    <option value="" disabled selected hidden>Arma/Luva</option>
+                    <option value="ak47">AK-47</option>
+                    <option value="m4a1">M4A1</option>
+                    <option value="awp">AWP</option>
+                    <option value="deagle">Desert Eagle</option>
+                    <option value="usp">USP-S</option>
+                    <option value="glock">Glock-18</option>
+                    <option value="p250">P250</option>
+                    <option value="famas">FAMAS</option>
+                    <option value="galilar">Galil AR</option>
+                    <option value="aug">AUG</option>
+                    <option value="sg553">SG 553</option>
+                    <option value="m249">M249</option>
+                    <option value="negev">Negev</option>
+                    <option value="mp9">MP9</option>
+                    <option value="mac10">MAC-10</option>
+                    <option value="ump45">UMP-45</option>
+                    <option value="p90">P90</option>
+                    <option value="bizon">PP-Bizon</option>
+                    <option value="xm1014">XM1014</option>
+                    <option value="mag7">MAG-7</option>
+                    <option value="sawedoff">Sawed-Off</option>
+                    <option value="nova">Nova</option>
+                    <option value="scar20">SCAR-20</option>
+                    <option value="g3sg1">G3SG1</option>
+                    <option value="luva">Luva</option>
+                    <option value="m9_bayonet">M9 Bayonet</option>
+                    <option value="karambit">Karambit</option>
+                    <option value="butterfly_knife">Butterfly Knife</option>
+                </select>
+            </div>
+
+            <div class="search-input">
+                <input type="text" placeholder="Skin" />
+            </div>
+        </div>
+
+        <div class="input-container-row">
+            <div class="search-input">
+                <select name="rarity">
+                    <option value="" disabled selected hidden>Raridate</option>
+                    <option value="cinzento">Cinzento</option>
+                    <option value="azul_claro">Azul Claro</option>
+                    <option value="azul">Azul</option>
+                    <option value="roxo">Roxo</option>
+                    <option value="rosa">Rosa</option>
+                    <option value="vermelho">Vermelho</option>
+                    <option value="dourado">Dourado</option>
+                </select>
+            </div>
+
+            <div class="search-input">
+                    <select name="condition">
+                    <option value="" disabled selected hidden>Condição</option>
+                    <option value="factory_new">FN</option>
+                    <option value="minimal_wear">MW</option>
+                    <option value="field_tested">FT</option>
+                    <option value="well_worn">WW</option>
+                    <option value="battle_scarred">BS</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="input-container-row">
+            <div class="search-input">
+                <label for="preco_maximo">Preço máximo: </label>
+                <input name="preco_maximo" type="number" step="0.01" placeholder="0" />
+            </div>
+
+            <div class="search-input">
+                <label for="tempo">Tempo para acabar: </label>
+                <input name="tempo" type="time" placeholder="Tempo para acabar" />
+            </div>
+        </div>
+
+        <div class="search-button">Pesquisar</div>
+    </div>
+</div>

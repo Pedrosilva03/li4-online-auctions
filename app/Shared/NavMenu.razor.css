@@ -8,10 +8,15 @@ a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+  margin-left: 5%;
 }
 
 a {
   color: #ffffff;
+}
+
+.navbar-nav {
+  margin-right: 5%;
 }
 
 .nav-item {

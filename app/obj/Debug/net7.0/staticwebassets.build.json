@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "G/qRVBbQkMPguMhMrcP71BPVGQ5/i9ebRrxXaIheJvc=",
+  "Hash": "l0Dm5fjzYDYAXyoQ6ki190+ZGiDcaVL3QV61o+fqMzI=",
   "Source": "app",
   "BasePath": "_content/app",
   "Mode": "Default",
@@ -289,6 +289,23 @@
       "OriginalItemSpec": "wwwroot\\imgs\\leiloes_favoritos.png"
     },
     {
+      "Identity": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\imgs\\logo.png",
+      "SourceId": "app",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\",
+      "BasePath": "_content/app",
+      "RelativePath": "imgs/logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\logo.png"
+    },
+    {
       "Identity": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\imgs\\logout.png",
       "SourceId": "app",
       "SourceType": "Discovered",
@@ -304,6 +321,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\imgs\\logout.png"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\imgs\\magnifying-glass.png",
+      "SourceId": "app",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\",
+      "BasePath": "_content/app",
+      "RelativePath": "imgs/magnifying-glass.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\magnifying-glass.png"
     },
     {
       "Identity": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\imgs\\perfil.png",

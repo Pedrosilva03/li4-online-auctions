@@ -3,7 +3,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 80%;
+    width: 90%;
     gap: 20px;
 }
 
@@ -19,49 +19,32 @@
 }
 
 .template-right {
-    width: 65%;
+    width: 80%;
 }
 
-.skin-name {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.image-upload, .weapon-select, .skin-name-input, 
-.skin-condition-select, .skin-description,
-.rarity-select, .initial-price-input,
-.reserve-price-input, .duration-input,
-.start-date-input, .start-time-input {
+.auction-input {
+    text-align: center;
     padding: 10px;
     border-radius: 20px;
     background-color: white;
+    width: 100%;
 }
 
-.weapon-select, .skin-name-input {
+.input {
     width: 50%;
 }
 
-.skin-condition-select,
-.rarity-select, .duration-input,
-.start-date-input, .start-time-input,
-.initial-price-input, .reserve-price-input,
-.publish-button {
-    width: 95%;
+.description {
+    width: 100%;
 }
 
-.skin-description, .rarity-and-prices, .date-time-publish {
-    width: 95%;
-}
-
-.rarity-and-prices, .date-time-publish {
+.template-row-right {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+    width: 100%;
 }
 
 .publish-button {
@@ -70,7 +53,7 @@
     text-align: center;
     font-weight: bold;
     border-radius: 20px;
-    padding: 5px 30px;
+    padding: 10px 30px;
     cursor: pointer;
     transition: all .2s ease-in-out;
 }
@@ -80,8 +63,7 @@
 }
 
 @media (max-width: 768px) {
-    .template-container, .skin-name,
-    .rarity-and-prices, .date-time-publish {
+    .template-row-right {
         flex-direction: column;
     }
 }

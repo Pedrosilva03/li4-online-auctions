@@ -33,3 +33,4 @@ C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.genruntimeconfig.cac
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\ref\app.dll
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Index.razor.rz.scp.css
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Criar_leilao\Leilao_template.razor.rz.scp.css
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Pagina_pesquisa\Pagina_pesquisa.razor.rz.scp.css

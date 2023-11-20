@@ -3,7 +3,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 80%;
+    width: 90%;
     gap: 20px;
 }
 
@@ -19,49 +19,32 @@
 }
 
 .template-right[b-c2z04kg3th] {
-    width: 65%;
+    width: 80%;
 }
 
-.skin-name[b-c2z04kg3th] {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.image-upload[b-c2z04kg3th], .weapon-select[b-c2z04kg3th], .skin-name-input[b-c2z04kg3th], 
-.skin-condition-select[b-c2z04kg3th], .skin-description[b-c2z04kg3th],
-.rarity-select[b-c2z04kg3th], .initial-price-input[b-c2z04kg3th],
-.reserve-price-input[b-c2z04kg3th], .duration-input[b-c2z04kg3th],
-.start-date-input[b-c2z04kg3th], .start-time-input[b-c2z04kg3th] {
+.auction-input[b-c2z04kg3th] {
+    text-align: center;
     padding: 10px;
     border-radius: 20px;
     background-color: white;
+    width: 100%;
 }
 
-.weapon-select[b-c2z04kg3th], .skin-name-input[b-c2z04kg3th] {
+.input[b-c2z04kg3th] {
     width: 50%;
 }
 
-.skin-condition-select[b-c2z04kg3th],
-.rarity-select[b-c2z04kg3th], .duration-input[b-c2z04kg3th],
-.start-date-input[b-c2z04kg3th], .start-time-input[b-c2z04kg3th],
-.initial-price-input[b-c2z04kg3th], .reserve-price-input[b-c2z04kg3th],
-.publish-button[b-c2z04kg3th] {
-    width: 95%;
+.description[b-c2z04kg3th] {
+    width: 100%;
 }
 
-.skin-description[b-c2z04kg3th], .rarity-and-prices[b-c2z04kg3th], .date-time-publish[b-c2z04kg3th] {
-    width: 95%;
-}
-
-.rarity-and-prices[b-c2z04kg3th], .date-time-publish[b-c2z04kg3th] {
+.template-row-right[b-c2z04kg3th] {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+    width: 100%;
 }
 
 .publish-button[b-c2z04kg3th] {
@@ -70,7 +53,7 @@
     text-align: center;
     font-weight: bold;
     border-radius: 20px;
-    padding: 5px 30px;
+    padding: 10px 30px;
     cursor: pointer;
     transition: all .2s ease-in-out;
 }
@@ -80,8 +63,7 @@
 }
 
 @media (max-width: 768px) {
-    .template-container[b-c2z04kg3th], .skin-name[b-c2z04kg3th],
-    .rarity-and-prices[b-c2z04kg3th], .date-time-publish[b-c2z04kg3th] {
+    .template-row-right[b-c2z04kg3th] {
         flex-direction: column;
     }
 }

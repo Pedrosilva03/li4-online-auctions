@@ -1,5 +1,15 @@
 @page "/Perfil"
 
+@code {
+    private string nickname;
+
+    private string email;
+
+    private int telemovel;
+
+    private int id;
+}
+
 <PageTitle>Perfil</PageTitle>
 
 <div class="title-container">
@@ -14,10 +24,10 @@
 
 <div class="profile-container">
     <div class="profile-info-box">
-        <p class="profile-info">Nickname</p>
-        <p class="profile-info">E-mail</p>
-        <p class="profile-info">Telemóvel</p>
-        <p class="profile-info">ID</p>
+        <p class="profile-info">Nickname: @nickname</p>
+        <p class="profile-info">E-mail: @email</p>
+        <p class="profile-info">Telemóvel: @telemovel</p>
+        <p class="profile-info">ID: @id</p>
 
         <div class="edit-profile">
             <a>Alterar dados da conta</a>
