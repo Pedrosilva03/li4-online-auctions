@@ -1,0 +1,8 @@
+.auctions-container[b-sqycdtmhw4] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}

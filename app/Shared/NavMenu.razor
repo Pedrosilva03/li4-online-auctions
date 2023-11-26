@@ -11,35 +11,45 @@
 
         <div class="collapse navbar-collapse @NavBarCssClass justify-content-end" id="navbarCollapse" @onclick="ToggleNavMenu">
             <ul class="navbar-nav mb-2 align-items-center">
+                <li class="nav-item me-2 login">
+                    <Navlink class="nav-link">
+                        <a href="/Login" class="nav-link text-dark bg-light rounded border border-secondary">Login</a>
+                    </Navlink>
+                </li>
+
+                <li class="nav-item me-2 signin">
+                    <Navlink class="nav-link">
+                        <a href="/Registo" class="nav-link text-dark bg-light rounded border border-secondary">Registar</a>
+                    </Navlink>
+                </li>
+
                 <li class="nav-item me-2">
                     <NavLink class="nav-link" href="/Criar_leilao">
-                        <a class="nav-link text-dark bg-light rounded border border-secondary">Criar Leilão</a>
+                        <span class="nav-link text-dark bg-light rounded border border-secondary">Criar Leilão</span>
                     </NavLink>
                 </li>
                 
                 <li class="nav-item me-2">
                     <NavLink class="nav-link" href="/Leiloes_favoritos">
-                        <a class="nav-link d-flex align-items-center" asp-area="" asp-page="">
-                            <img src="/imgs/leiloes_favoritos.png" style="height: 40px;">  
-                        </a>
+                        <img src="/imgs/leiloes_favoritos.png" style="height: 40px;" title="Leilões favoritos">  
                     </NavLink>
                 </li>
 
                 <li class="nav-item me-2">
-                    <NavLink class="nav-link">
-                        <span class="nav-link text-dark bg-light rounded border border-secondary">1000.00€</span>
+                    <NavLink class="nav-link" href="">
+                        <span class="nav-link text-dark bg-light rounded border border-secondary" title="Saldo">1000.00€</span>
                     </NavLink>
                 </li>
 
                 <li class="nav-item me-2">
                     <NavLink class="nav-link" href="/Perfil">
-                        <img src="/imgs/perfil.png" style="height: 40px;">
+                        <img src="/imgs/perfil.png" style="height: 40px;" title="Perfil">
                     </NavLink>
                 </li>
 
                 <li class="nav-item">
                     <NavLink class="nav-link">
-                        <img src="/imgs/logout.png" style="height: 40px;">
+                        <img src="/imgs/logout.png" style="height: 40px;" title="Logout">
                     </NavLink>
                 </li>
             </ul>

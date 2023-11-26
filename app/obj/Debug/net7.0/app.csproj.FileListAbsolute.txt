@@ -21,7 +21,10 @@ C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\staticwebassets.pack.jso
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\staticwebassets.build.json
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\staticwebassets.development.json
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Criar_leilao\Criar_leilao.razor.rz.scp.css
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Criar_leilao\Leilao_template.razor.rz.scp.css
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Index.razor.rz.scp.css
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Leiloes_favoritos\Leiloes_favoritos.razor.rz.scp.css
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Pagina_pesquisa\Pagina_pesquisa.razor.rz.scp.css
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Perfil\Perfil.razor.rz.scp.css
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\bundle\app.styles.css
@@ -31,6 +34,7 @@ C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\refint\app.dll
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.pdb
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.genruntimeconfig.cache
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\ref\app.dll
-C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Index.razor.rz.scp.css
-C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Criar_leilao\Leilao_template.razor.rz.scp.css
-C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Pagina_pesquisa\Pagina_pesquisa.razor.rz.scp.css
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Shared\Leilao_card.razor.rz.scp.css
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Login\Login.razor.rz.scp.css
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Registo\Registo.razor.rz.scp.css
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Pagina_leilao\Pagina_leilao.razor.rz.scp.css

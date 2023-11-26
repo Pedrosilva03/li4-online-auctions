@@ -147,13 +147,68 @@
     align-items: center;
 }
 /* _content/app/Pages/Leiloes_favoritos/Leiloes_favoritos.razor.rz.scp.css */
+.auctions-container[b-sqycdtmhw4] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+/* _content/app/Pages/Login/Login.razor.rz.scp.css */
+.login-container[b-j76pyj42g1], .login-input-container[b-j76pyj42g1] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.login-input-container[b-j76pyj42g1] {
+    background-color: #d9d9d9;
+    border-radius: 20px;
+    padding: 20px;
+    width: 50%;
+}
+
+.login-input[b-j76pyj42g1] {
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px;
+    width: 80%;
+}
+
+.submit-login-button[b-j76pyj42g1] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #c02b44;
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.submit-login-button:hover[b-j76pyj42g1] {
+    transform: scale(1.05);
+}
+
+.login-button-img[b-j76pyj42g1] {
+    width: 20px;
+}
+/* _content/app/Pages/Pagina_leilao/Pagina_leilao.razor.rz.scp.css */
 /* _content/app/Pages/Pagina_pesquisa/Pagina_pesquisa.razor.rz.scp.css */
-.search-container[b-mmu2nohosn] {
+.search-container[b-mmu2nohosn], .search-results-container[b-mmu2nohosn] {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 20px;
+    width: 100%;
 }
 
 .search-input-container[b-mmu2nohosn] {
@@ -199,6 +254,35 @@
     transform: scale(1.05);
 }
 
+.search-results[b-mmu2nohosn] {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+    gap: 20px;
+    width: 80%;
+}
+
+.show-search-input-container[b-mmu2nohosn] {
+    text-align: center;
+    background-color: #d9d9d9;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.show-search-input[b-mmu2nohosn] {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: white;
+    gap: 10px;
+}
+.input-type[b-mmu2nohosn] {
+    font-weight: bold;
+}
 /* _content/app/Pages/Perfil/Perfil.razor.rz.scp.css */
 .title-container[b-nahno1givc] {
     display: flex;
@@ -271,6 +355,80 @@
 .transactions-history-button:hover[b-nahno1givc] {
     transform: scale(1.05);
     color: inherit;
+}
+/* _content/app/Pages/Registo/Registo.razor.rz.scp.css */
+.signin-container[b-wkh4rz9se9], .signin-input-container[b-wkh4rz9se9] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.signin-input-container[b-wkh4rz9se9] {
+    background-color: #d9d9d9;
+    border-radius: 20px;
+    padding: 20px;
+    width: 50%;
+}
+
+.signin-input[b-wkh4rz9se9] {
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px;
+    width: 80%;
+}
+
+.submit-signin-button[b-wkh4rz9se9] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #c02b44;
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.submit-signin-button:hover[b-wkh4rz9se9] {
+    transform: scale(1.05);
+}
+
+.signin-button-img[b-wkh4rz9se9] {
+    width: 30px;
+}
+/* _content/app/Shared/Leilao_card.razor.rz.scp.css */
+.auction-card-container[b-zs4le6p17l] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #d9d9d9;
+    padding: 20px;
+    border-radius: 20px;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+}
+
+.auction-card-container:hover[b-zs4le6p17l] {
+    transform: scale(1.05);
+}
+
+.skin-picture[b-zs4le6p17l] {
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.weapon-skin[b-zs4le6p17l], .condition[b-zs4le6p17l] {
+    font-weight: bold;
 }
 /* _content/app/Shared/NavMenu.razor.rz.scp.css */
 .navbar[b-vl3c23brav] {

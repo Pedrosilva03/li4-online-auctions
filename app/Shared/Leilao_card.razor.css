@@ -1,0 +1,28 @@
+.auction-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #d9d9d9;
+    padding: 20px;
+    border-radius: 20px;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+}
+
+.auction-card-container:hover {
+    transform: scale(1.05);
+}
+
+.skin-picture {
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.weapon-skin, .condition {
+    font-weight: bold;
+}

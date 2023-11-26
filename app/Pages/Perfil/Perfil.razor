@@ -1,13 +1,17 @@
 @page "/Perfil"
 
 @code {
-    private string nickname;
+    [Parameter] 
+    public string nickname { get; set; }
 
-    private string email;
+    [Parameter]
+    public string email { get; set; }
 
-    private int telemovel;
+    [Parameter]
+    public int telemovel { get; set; }
 
-    private int id;
+    [Parameter]
+    public int id { get; set; }
 }
 
 <PageTitle>Perfil</PageTitle>

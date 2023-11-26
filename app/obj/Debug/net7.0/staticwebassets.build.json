@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "l0Dm5fjzYDYAXyoQ6ki190+ZGiDcaVL3QV61o+fqMzI=",
+  "Hash": "4K2rbDbZ5km2vFPBZybSNDXOxo98xp8zBH7KvIhu+hU=",
   "Source": "app",
   "BasePath": "_content/app",
   "Mode": "Default",
@@ -372,6 +372,57 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\imgs\\plus.png"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\imgs\\register.png",
+      "SourceId": "app",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\",
+      "BasePath": "_content/app",
+      "RelativePath": "imgs/register.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\register.png"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\imgs\\test_skin_img.jpeg",
+      "SourceId": "app",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\",
+      "BasePath": "_content/app",
+      "RelativePath": "imgs/test_skin_img.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\test_skin_img.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\imgs\\unlocked.png",
+      "SourceId": "app",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\",
+      "BasePath": "_content/app",
+      "RelativePath": "imgs/unlocked.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imgs\\unlocked.png"
     }
   ]
 }

@@ -1,0 +1,31 @@
+@page "/Registo"
+
+@code {
+    private string nickname { get; set; }
+    private string email { get; set; }
+    private string password { get; set; }
+    private string telemovel { get; set; }
+}
+
+<PageTitle>Registo</PageTitle>
+
+<div class="signin-container">
+    <h1>Registar</h1>
+
+    <div class="signin-input-container">
+        <input class="signin-input" type="text" placeholder="Nickname" bind="@nickname" required />
+
+        <input class="signin-input" type="text" placeholder="Email" bind="@email" required />
+
+        <input class="signin-input" type="password" placeholder="Password" bind="@password" required />
+
+        <input class="signin-input" type="password" placeholder="Confirmar Password" required />
+
+        <input class="signin-input" type="text" placeholder="Telemóvel" bind="@telemovel" required />
+
+        <div class="submit-signin-button" onclick="">
+            Confirmar registo 
+            <img class="signin-button-img" src="imgs/register.png">
+        </div>
+    </div>
+</div>
