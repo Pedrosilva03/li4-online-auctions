@@ -1,0 +1,40 @@
+@page "/Admin_dashboard"
+
+@code {
+
+}
+
+<PageTitle>Admin Dashboard</PageTitle>
+
+<div class="admin-container">
+    <h1>ADMIN</h1>
+
+    <div class="inputs-container">
+        <div class="input-row">
+            <div class="admin-input">
+                <label for="block">Bloquear conta: </label>
+                <input type="number" name="block" />
+            </div>
+
+            <img class="confirm-input" src="imgs/accept.png" onclick="">
+        </div>
+
+        <div class="input-row">
+            <div class="admin-input">
+                <label for="unblock">Desbloquear conta: </label>
+                <input type="number" name="unblock" />
+            </div>
+
+            <img class="confirm-input" src="imgs/accept.png" onclick="">
+        </div>
+
+        <div class="input-row">
+            <div class="admin-input">
+                <label for="delete">Apagar conta: </label>
+                <input type="number" name="delete" />
+            </div>
+
+            <img class="confirm-input" src="imgs/accept.png" onclick="">
+        </div>
+    </div>
+</div>

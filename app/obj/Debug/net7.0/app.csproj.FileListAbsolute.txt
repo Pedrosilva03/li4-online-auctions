@@ -38,3 +38,4 @@ C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Shared\Leilao_
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Login\Login.razor.rz.scp.css
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Registo\Registo.razor.rz.scp.css
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Pagina_leilao\Pagina_leilao.razor.rz.scp.css
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Admin_dashboard\Admin_dashboard.razor.rz.scp.css

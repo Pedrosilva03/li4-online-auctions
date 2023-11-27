@@ -57,6 +57,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\imgs\\accept.png",
+      "PackagePath": "staticwebassets\\imgs\\accept.png"
+    },
+    {
       "Id": "C:\\Users\\Admin\\li4-online-auctions\\app\\wwwroot\\imgs\\leiloes_favoritos.png",
       "PackagePath": "staticwebassets\\imgs\\leiloes_favoritos.png"
     },
