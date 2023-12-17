@@ -12,16 +12,16 @@ namespace app.Leiloeira.Leiloes
         private decimal precoMinimo;
         private DateTime dataHoraInicial;
         private DateTime dataHoraFinal;
-        private TimeOnly duracao;
-        private Lance lanceAtual;
-        private Lance lanceFinal;
+        private int duracao;
+        private int id_lanceAtual;
+        private int id_lanceFinal;
         private Dictionary<int, Pessoa> participantes;
         private Dictionary<int, Lance> lancesFeitos;
         private Dictionary<int, Artigo> artigos;
 
         //CONSTRUTORES//
 
-        public Leilao(int id, int id_Criador, decimal precoReserva, decimal precoMinimo, DateTime dataHoraInicial, DateTime dataHoraFinal, TimeOnly duracao, Lance lanceAtual, Lance lanceFinal, Dictionary<int, Pessoa> participantes, Dictionary<int, Lance> lancesFeitos, Dictionary<int, Artigo> artigos)
+        public Leilao(int id, int id_Criador, decimal precoReserva, decimal precoMinimo, DateTime dataHoraInicial, DateTime dataHoraFinal, int duracao, int id_lanceAtual, int id_lanceFinal, Dictionary<int, Pessoa> participantes, Dictionary<int, Lance> lancesFeitos, Dictionary<int, Artigo> artigos)
         {
             this.id = id;
             this.id_Criador = id_Criador;
@@ -30,8 +30,8 @@ namespace app.Leiloeira.Leiloes
             this.dataHoraInicial = dataHoraInicial;
             this.dataHoraFinal = dataHoraFinal;
             this.duracao = duracao;
-            this.lanceAtual = lanceAtual;
-            this.lanceFinal = lanceFinal;
+            this.id_lanceAtual = id_lanceAtual;
+            this.id_lanceFinal = id_lanceFinal;
             this.participantes = participantes;
             this.lancesFeitos = lancesFeitos;
             this.artigos = artigos;
@@ -99,34 +99,34 @@ namespace app.Leiloeira.Leiloes
             this.dataHoraFinal = d;
         }
 
-        public TimeOnly getDuracao()
+        public int getDuracao()
         {
             return this.duracao;
         }
 
-        public void setDuracao(TimeOnly t)
+        public void setDuracao(int t)
         {
             this.duracao = t;
         }
 
-        public Lance getLanceAtual()
+        public int getIdLanceAtual()
         {
-            return this.lanceAtual;
+            return this.id_lanceAtual;
         }
 
-        public void setLanceAtual(Lance l)
+        public void setIdLanceAtual(int id)
         {
-            this.lanceAtual = l;
+            this.id_lanceAtual = id;
         }
 
-        public Lance getLanceFinal()
+        public int getIdLanceFinal()
         {
-            return this.lanceFinal;
+            return this.id_lanceFinal;
         }
 
-        public void setLanceFinal(Lance l)
+        public void setIdLanceFinal(int id)
         {
-            this.lanceFinal = l;
+            this.id_lanceFinal = id;
         }
 
         public Dictionary<int, Pessoa> getParticipantes()
@@ -158,7 +158,5 @@ namespace app.Leiloeira.Leiloes
         {
             this.artigos = a;
         }
-
-        //OPERAÇÕES//
     }
 }

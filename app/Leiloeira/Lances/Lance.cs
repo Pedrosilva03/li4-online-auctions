@@ -57,7 +57,5 @@ namespace app.Leiloeira.Lances
         {
             this.valor = v;
         }
-
-        //OPERAÇÕES//
     }
 }

@@ -118,7 +118,5 @@ namespace app.Leiloeira.Artigos
         {
             this.tipo = t;
         }
-
-        //OPERAÇÕES//
     }
 }

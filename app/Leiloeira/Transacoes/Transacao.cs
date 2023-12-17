@@ -1,6 +1,4 @@
 using app.Leiloeira.Artigos;
-using app.Leiloeira.Lances;
-using app.Leiloeira.Pessoas;
 
 namespace app.Leiloeira.Transacoes
 {
@@ -8,21 +6,21 @@ namespace app.Leiloeira.Transacoes
     {
         private int id;
         private int id_leilão;
-        private Pessoa vendedor;
-        private Pessoa comprador;
+        private int id_vendedor;
+        private int id_comprador;
         private DateTime data;
-        private Lance valorTransacao;
+        private decimal valorTransacao;
         private decimal taxa;
         private Dictionary<int, Artigo> artigosVendidos;
 
 
         //CONSTRUTORES//
 
-        public Transacao (int id, int id_leilão, Pessoa vendedor, Pessoa comprador, DateTime data, Lance valorTransacao, decimal taxa, Dictionary<int, Artigo> artigosVendidos){
+        public Transacao (int id, int id_leilão, int id_vendedor, int id_comprador, DateTime data, decimal valorTransacao, decimal taxa, Dictionary<int, Artigo> artigosVendidos){
             this.id = id;
             this.id_leilão = id_leilão;
-            this.vendedor = vendedor;
-            this.comprador = comprador;
+            this.id_vendedor = id_vendedor;
+            this.id_comprador = id_comprador;
             this.data = data;
             this.valorTransacao = valorTransacao;
             this.taxa = taxa;
@@ -51,24 +49,24 @@ namespace app.Leiloeira.Transacoes
             this.id_leilão = id;
         }
 
-        public Pessoa getVendedor()
+        public int getVendedor()
         {
-            return this.vendedor;
+            return this.id_vendedor;
         }
 
-        public void setVendedor(Pessoa p)
+        public void setVendedor(int p)
         {
-            this.vendedor = p;
+            this.id_vendedor = p;
         }
 
-        public Pessoa getComprador()
+        public int getComprador()
         {
-            return this.comprador;
+            return this.id_comprador;
         }
 
-        public void setComprador(Pessoa p)
+        public void setComprador(int p)
         {
-            this.comprador = p;
+            this.id_comprador = p;
         }
 
         public DateTime getData()
@@ -81,12 +79,12 @@ namespace app.Leiloeira.Transacoes
             this.data = d;
         }
         
-        public Lance getValor()
+        public decimal getValor()
         {
             return this.valorTransacao;
         }
 
-        public void setValor(Lance l)
+        public void setValor(decimal l)
         {
             this.valorTransacao = l;
         }
@@ -110,7 +108,5 @@ namespace app.Leiloeira.Transacoes
         {
             this.artigosVendidos = vendidos;
         }
-
-        //OPERAÇÕES//
     }
 }

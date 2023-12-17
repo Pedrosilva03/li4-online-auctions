@@ -10,14 +10,14 @@ namespace app.Leiloeira.Pessoas
         private string email;
         private string password;
         private decimal saldo;
-        private string telemovel;
+        private int telemovel;
         private string nickname;
         private Dictionary<int, Leilao> leiloesFavoritos;
         private Dictionary<int, Transacao> transacoesFeitas;
 
         //CONSTRUTORES//
 
-        public Pessoa(int id, decimal saldo, string email, string password, string telemovel, string nickname, TipoDePessoa tipo, Dictionary<int, Leilao> leiloesFavoritos, Dictionary<int, Transacao> transacoesFeitas)
+        public Pessoa(int id, decimal saldo, string email, string password, int telemovel, string nickname, TipoDePessoa tipo, Dictionary<int, Leilao> leiloesFavoritos, Dictionary<int, Transacao> transacoesFeitas)
         {
             this.id = id;
             this.saldo = saldo;
@@ -72,12 +72,12 @@ namespace app.Leiloeira.Pessoas
             this.password = novaPassword;
         }
 
-        public string getTelemovel()
+        public int getTelemovel()
         {
             return this.telemovel;
         }
 
-        public void setTelemovel(string novoTelemovel)
+        public void setTelemovel(int novoTelemovel)
         {
             this.telemovel = novoTelemovel;
         }
@@ -121,7 +121,5 @@ namespace app.Leiloeira.Pessoas
         {
             this.transacoesFeitas = t;
         }
-
-        //OPERAÇÕES//
     }
 }
