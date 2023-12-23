@@ -42,32 +42,71 @@
 .auction-templates-container[b-54tmngobm8] {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 20px;
 }
 
-.cancel-auction-button[b-54tmngobm8] {
-    background-color: #c02b44;
-    color: white;
-    text-align: center;
-    font-weight: bold;
+.auction-info-container[b-54tmngobm8] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: #d9d9d9;
     border-radius: 20px;
-    width: fit-content;
-    padding: 5px 20px;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
-    position: relative;
-    left: 80%;
+    width: 80%;
+    padding: 30px;
 }
 
-.cancel-auction-button:hover[b-54tmngobm8] {
+.info-row[b-54tmngobm8] {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+}
+
+.auction-input[b-54tmngobm8] {
+    text-align: center;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: white;
+    width: 100%;
+}
+
+.input[b-54tmngobm8] {
+    width: 50%;
+}
+
+.description[b-54tmngobm8] {
+    width: 100%;
+}
+
+.submit-button[b-54tmngobm8] {
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #c02b44;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.submit-button:hover[b-54tmngobm8] {
     transform: scale(1.05);
 }
 
-.templates-container[b-54tmngobm8], .add-template-button[b-54tmngobm8] {
+.templates-container[b-54tmngobm8] {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: 20px 20px;
+    width: 80%;
 }
 
 .add-template-button[b-54tmngobm8] {
@@ -88,15 +127,6 @@
 /* _content/app/Pages/Criar_leilao/Leilao_template.razor.rz.scp.css */
 .template-container[b-c2z04kg3th] {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 90%;
-    gap: 20px;
-}
-
-.template-left[b-c2z04kg3th], .template-right[b-c2z04kg3th] {
-    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -104,10 +134,6 @@
     border-radius: 20px;
     padding: 30px;
     row-gap: 20px;
-}
-
-.template-right[b-c2z04kg3th] {
-    width: 80%;
 }
 
 .auction-input[b-c2z04kg3th] {
@@ -120,34 +146,6 @@
 
 .input[b-c2z04kg3th] {
     width: 50%;
-}
-
-.description[b-c2z04kg3th] {
-    width: 100%;
-}
-
-.template-row-right[b-c2z04kg3th] {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    width: 100%;
-}
-
-.publish-button[b-c2z04kg3th] {
-    background-color: #c02b44;
-    color: white;
-    text-align: center;
-    font-weight: bold;
-    border-radius: 20px;
-    padding: 10px 30px;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
-}
-
-.publish-button:hover[b-c2z04kg3th] {
-    transform: scale(1.05);
 }
 
 @media (max-width: 768px) {

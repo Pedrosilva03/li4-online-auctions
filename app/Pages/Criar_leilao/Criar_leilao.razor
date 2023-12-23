@@ -1,7 +1,20 @@
 @page "/Criar_leilao"
 
 @code {
-    
+    public string descricao { get; set; }
+    public float preco_inicial { get; set; }
+    public float preco_reserva { get; set; }
+    public DateTime duracao { get; set; }
+    public DateTime data_inicio { get; set; }
+    // public TimeSpan hora_inicio { get; set; }
+
+    List<object> templates = new List<object>(); 
+
+    void AddTemplate() {
+        templates.Add(new object());
+    }
+
+    // TODO: Criar o Leilão e submeter 
 }
 
 <PageTitle>Criar Leilão</PageTitle>
@@ -9,13 +22,57 @@
 <h1>Criar Leilão</h1>
 
 <div class="auction-templates-container">
-    <div class="cancel-auction-button">Cancelar <br> Leilão</div>
+    <div class="auction-info-container">
+        <div class="auction-input">
+            <textarea class="description" rows="6" cols="50" placeholder="Descrição" maxlength="100" @bind="@descricao" required />
+        </div>
 
-    <div class="templates-container" id="templatesContainer">
-        <Leilao_template /> 
+        <div class="info-row">
+            <div class="auction-input">
+                <label for="initial-price">Preço inicial:</label>
+                <input class="input" name="initial_price" type="number" step="0.01" @bind="@preco_inicial" required />
+            </div>
+
+            <div class="auction-input">
+                <label for="reserve-price">Preço de reserva:</label>
+                <input class="input" name="reserve_price" type="number" step="0.01" @bind="@preco_reserva" required />
+            </div>
+        </div>
+
+        <div class="info-row">
+            <div class="auction-input">
+                <label for="duration">Duração:</label>
+                <input class="input" name="duration" type="number" step="1" @bind="@duracao" required />
+            </div>
+
+            <div class="auction-input">
+                <label for="start-date">Data de início:</label>
+                <input class="input" name="start_date" type="date" @bind="@data_inicio" required />
+            </div>
+        </div>
+
+        <div class="info-row">
+            <div class="auction-input">
+                <label for="start-time">Hora de início:</label>
+                <input class="input" name="start_time" type="time" required />
+            </div>
+
+            <div class="submit-button auction-input">Submeter</div>
+        </div>
     </div>
 
-    <div class="add-template-button" onclick="addTemplate">
-        <img src="/imgs/plus.png" style="height: 40px;">
+    <div class="templates-container">
+        @if (templates.Count == 0) {
+            <Leilao_template />
+        }
+        else {
+            @foreach (var template in templates) {
+                <Leilao_template />
+            }
+        }
+
+        <div class="add-template-button" @onclick="AddTemplate">
+            <img src="/imgs/plus.png" style="height: 40px;">
+        </div>
     </div>
 </div>

@@ -5,17 +5,10 @@
     public string tipo_item { get; set; }
     public string nome_skin { get; set; }
     public string condicao { get; set; }
-    public string descricao { get; set; }
     public string raridade { get; set; }
-    public float preco_inicial { get; set; }
-    public float preco_reserva { get; set; }
-    public DateTime duracao { get; set; }
-    public DateTime data_inicio { get; set; }
-    // public TimeSpan hora_inicio { get; set; }
 }
 
 <div class="template-container">
-    <div class="template-left">
         <div class="auction-input">
             <input type="file" accept="image/*" required />
         </div>
@@ -61,64 +54,24 @@
         <div class="auction-input">
             <select class="input" name="condition" @bind="@condicao" required>
                 <option value="" disabled selected hidden>Condição</option>
-                    <option value="Factory-New">Factory-New</option>
-                    <option value="Minimal-Wear">Minimal-wear</option>
-                    <option value="Field-Tested">Field-Tested</option>
-                    <option value="Well-Worn">Well-Worn</option>
-                    <option value="Battle-Scarred">Battle-Scarred</option>
+                <option value="Factory-New">Factory-New</option>
+                <option value="Minimal-Wear">Minimal-wear</option>
+                <option value="Field-Tested">Field-Tested</option>
+                <option value="Well-Worn">Well-Worn</option>
+                <option value="Battle-Scarred">Battle-Scarred</option>
             </select>
         </div>
-    </div>
 
-    <div class="template-right">
         <div class="auction-input">
-            <textarea class="description" rows="6" cols="50" placeholder="Descrição" maxlength="100" @bind="@descricao" required />
+            <select class="input" name="rarity" @bind="@raridade" required>
+                <option value="" disabled selected hidden>Raridate</option>
+                <option value="Cinzento">Cinzento</option>
+                <option value="Azul-Claro">Azul-Claro</option>
+                <option value="Azul">Azul</option>
+                <option value="Roxo">Roxo</option>
+                <option value="Rosa">Rosa</option>
+                <option value="Vermelho">Vermelho</option>
+                <option value="Dourado">Dourado</option>
+            </select>
         </div>
-
-        <div class="template-row-right">
-            <div class="auction-input">
-                <select class="input" name="rarity" @bind="@raridade" required>
-                    <option value="" disabled selected hidden>Raridate</option>
-                    <option value="Cinzento">Cinzento</option>
-                    <option value="Azul-Claro">Azul-Claro</option>
-                    <option value="Azul">Azul</option>
-                    <option value="Roxo">Roxo</option>
-                    <option value="Rosa">Rosa</option>
-                    <option value="Vermelho">Vermelho</option>
-                    <option value="Dourado">Dourado</option>
-                </select>
-            </div>
-
-            <div class="auction-input">
-                <label for="initial-price">Preço inicial:</label>
-                <input class="input" name="initial_price" type="number" step="0.01" @bind="@preco_inicial" required />
-            </div>
-        </div>
-
-        <div class="template-row-right">
-            <div class="auction-input">
-                <label for="reserve_price">Preço de reserva:</label>
-                <input class="input" name="reserve_price" type="number" step="0.01" @bind="@preco_reserva" required />
-            </div>
-
-            <div class="auction-input">
-                <label for="duration">Duração:</label>
-                <input class="input" name="duration" type="time" @bind="@duracao" required />
-            </div>
-        </div>
-
-        <div class="template-row-right">
-            <div class="auction-input">
-                <label for="start_date">Data de início:</label>
-                <input class="input" name="start_date" type="date" @bind="@data_inicio" required />
-            </div>
-
-            <div class="auction-input">
-                <label for="start_time">Hora de início:</label>
-                <input class="input" name="start_time" type="time" required />
-            </div>
-        </div>
-
-        <div class="publish-button">Publicar</div>
-    </div>
 </div>
