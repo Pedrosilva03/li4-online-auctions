@@ -36,8 +36,8 @@
                 </li>
 
                 <li class="nav-item me-2">
-                    <NavLink class="nav-link" href="">
-                        <span class="nav-link text-dark bg-light rounded border border-secondary" title="Saldo">1000.00€</span>
+                    <NavLink class="nav-link" href="/saldo">
+                        <span class="nav-link text-dark bg-light rounded border border-secondary" title="Saldo">@saldo_user €</span>
                     </NavLink>
                 </li>
 
@@ -61,6 +61,9 @@
     private bool collapseNavMenu = true;
     private string? NavBarCssClass => collapseNavMenu ? null : "show";
     private string? NavButtonCssClass => collapseNavMenu ? "collapsed" : null;
+
+    [Parameter]
+    public float saldo_user { get; set;} = 0;
 
     private void ToggleNavMenu()
     {

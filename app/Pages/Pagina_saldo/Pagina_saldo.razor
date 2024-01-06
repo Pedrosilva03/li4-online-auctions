@@ -1,0 +1,40 @@
+@page "/saldo"
+
+@code {
+    [Parameter]
+    public float saldo_disponivel { get; set; } = 0;
+
+    private float saldo_a_adicionar { get; set; }
+    private float saldo_a_retirar { get; set; }
+}
+
+<PageTitle>Saldo</PageTitle>
+
+<div class="page-container">
+    <h1>Gerir Saldo</h1>
+
+    <div class="gerir-saldo-container">
+        <div class="saldo-row">
+            <div class="saldo-input">
+                <label>Saldo Atual</label>
+                <div>@saldo_disponivel €</div>
+            </div>
+        </div>
+
+        <div class="saldo-row">
+            <div class="saldo-input">
+                <label>Adicionar saldo</label>
+                <input type="number" @bind-value="saldo_a_adicionar" placeholder="valor" step="0.01" />
+            </div>
+            <img class="accept" src="imgs/accept.png"> <!-- criar @onclick para validar -->
+        </div>
+
+        <div class="saldo-row"> 
+            <div class="saldo-input">
+                <label>Retirar saldo</label>
+                <input type="number" @bind-value="saldo_a_retirar" placeholder="valor" step="0.01" />
+            </div>
+            <img class="accept" src="imgs/accept.png"> <!-- criar @onclick para validar -->
+        </div>
+    </div>
+</div>
