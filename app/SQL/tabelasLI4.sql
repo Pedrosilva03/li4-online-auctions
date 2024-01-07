@@ -1,80 +1,85 @@
+DROP DATABASE leiloes;
+
+CREATE DATABASE leiloes;
+
 USE leiloes;
-CREATE SCHEMA leiloes;
-DROP SCHEMA leiloes;
+
 
 CREATE TABLE Pessoa (
-    id INT PRIMARY KEY,
-    tipo VARCHAR(50),
-    email VARCHAR(100),
-    password VARCHAR(100),
-    saldo DECIMAL(9, 2),
-    telemovel INT,
-    nickname VARCHAR(50)
-);
-
-CREATE TABLE Artigo (
-    id INT PRIMARY KEY,
-    id_leilao INT,
-    id_transacao INT,
-    nome VARCHAR(100),
-    condicao DECIMAL(3, 2),
-    raridade VARCHAR(50),
-    descricao VARCHAR(250),
-    caminhoImagem VARCHAR(250),
-    tipo VARCHAR(50),
-    FOREIGN KEY (id_transacao) REFERENCES Transacao(id),
-	FOREIGN KEY (id_leilao) REFERENCES Leilao(id)
-);
-
-CREATE TABLE Leilao (
-    id INT PRIMARY KEY,
-    id_Criador INT,
-    precoReserva DECIMAL(9, 2),
-    precoMinimo DECIMAL(9, 2),
-    dataHoraInicial DATETIME,
-    dataHoraFinal DATETIME,
-    duracao INT,
-    id_lanceAtual INT,
-    id_lanceFinal INT,
-    FOREIGN KEY (id_lanceAtual) REFERENCES Lance(id),
-	FOREIGN KEY (id_lanceFinal) REFERENCES Lance(id)
+    id INT PRIMARY KEY NOT NULL,
+    tipo VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    saldo DECIMAL(9, 2) NOT NULL,
+    telemovel INT NOT NULL,
+    nickname VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Lance (
-    id INT PRIMARY KEY,
-    id_leilao INT,
-    id_licitador INT,
+    id INT PRIMARY KEY NOT NULL,
+    id_leilao INT NOT NULL,
+    id_licitador INT NOT NULL,
     valor DECIMAL(9, 2),
     FOREIGN KEY (id_licitador) REFERENCES Pessoa(id)
 );
 
+CREATE TABLE Leilao (
+    id INT PRIMARY KEY NOT NULL,
+    id_Criador INT NOT NULL,
+    precoReserva DECIMAL(9, 2) NOT NULL,
+    precoMinimo DECIMAL(9, 2) NOT NULL,
+    dataHoraInicial DATETIME,
+    dataHoraFinal DATETIME,
+    duracao INT NOT NULL,
+    id_lanceAtual INT NOT NULL,
+    id_lanceFinal INT NOT NULL,
+    FOREIGN KEY (id_lanceAtual) REFERENCES Lance(id),
+	FOREIGN KEY (id_lanceFinal) REFERENCES Lance(id)
+);
+
 CREATE TABLE Transacao (
-    id INT PRIMARY KEY,
-    id_leilao INT,
-    id_vendedor INT,
-    id_comprador INT,
+    id INT PRIMARY KEY NOT NULL,
+    id_leilao INT NOT NULL,
+    id_vendedor INT NOT NULL,
+    id_comprador INT NOT NULL,
     data DATETIME,
     valorTransacao DECIMAL(9, 2),
     taxa DECIMAL(9, 2)
 );
 
+CREATE TABLE Artigo (
+    id INT PRIMARY KEY NOT NULL,
+    id_leilao INT NOT NULL,
+    id_transacao INT NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    condicao DECIMAL(3, 2) NOT NULL,
+    raridade VARCHAR(50) NOT NULL,
+    descricao VARCHAR(250) NOT NULL,
+    caminhoImagem VARCHAR(250) NOT NULL,
+    tipo VARCHAR(50) NOT NULL,
+    FOREIGN KEY (id_transacao) REFERENCES Transacao(id),
+	FOREIGN KEY (id_leilao) REFERENCES Leilao(id)
+);
+
+
 CREATE TABLE LeilaoFavoritos (
-    id_leilao INT,
-    id_pessoa INT,
+    id_leilao INT NOT NULL,
+    id_pessoa INT NOT NULL,
     FOREIGN KEY (id_leilao) REFERENCES Leilao(id),
     FOREIGN KEY (id_pessoa) REFERENCES Pessoa(id)
 );
 
 CREATE TABLE ValorFinal (
-    id_lance INT,
-    id_transacao INT,
+    id_lance INT NOT NULL,
+    id_transacao INT NOT NULL,
     FOREIGN KEY (id_lance) REFERENCES Lance(id),
     FOREIGN KEY (id_transacao) REFERENCES Transacao(id)
 );
 
 CREATE TABLE HistoricoTransacoes (
-    id_transacao INT,
-    id_pessoa INT,
+    id_transacao INT NOT NULL,
+    id_pessoa INT NOT NULL,
     FOREIGN KEY (id_transacao) REFERENCES Transacao(id),
     FOREIGN KEY (id_pessoa) REFERENCES Pessoa(id)
 );
+

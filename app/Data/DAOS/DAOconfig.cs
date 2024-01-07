@@ -6,7 +6,7 @@ namespace app.Data
     {
         public const string USER = "root";
         public const string PASSWORD = "DiogoBarros7";
-        public const string MACHINE = "DESKTOP-O0OKI2I\\SQLEXPRESS";
+        public const string MACHINE = "DESKTOP-O0OKI2I\\MSSQLSERVER01";
         public const string DATABASE = "leiloes";
 
         public static string GetConnectionString()
