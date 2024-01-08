@@ -42,3 +42,8 @@
 .login-button-img {
     width: 20px;
 }
+
+.error-message {
+    font-weight: bold;
+    font-size: larger;
+}

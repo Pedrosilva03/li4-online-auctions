@@ -1,15 +1,27 @@
 ﻿@page "/"
 
-@inject NavigationManager NavigationManager 
+@inject NavigationManager NavigationManager
 
 @code {
-    private string email { get; set;}
-    private string password { get; set; }
+    private string email = "";
+    private string password = "";
 
-    private void HandleLogin() {
-        if (email == "admin@coga.com" && password == "admin123") {
-            NavigationManager.NavigateTo("/Admin_dashboard");
+    public bool show_error_message = false;
+
+    void handle_login() {
+        IDatabaseFacade db = new DatabaseFacade();
+
+        ICollection<Pessoa> pessoas = db.get_Pessoas();
+
+        foreach (Pessoa pessoa in pessoas) {
+            if (pessoa.getEmail() == email && pessoa.getPassword() == password) {
+                CurrentUser.setCurrentUser(pessoa);
+                NavigationManager.NavigateTo("/leiloes_recomendados", forceLoad: true);
+                return;
+            }
         }
+
+        show_error_message = true;
     }
 }
 
@@ -23,9 +35,15 @@
 
         <input class="login-input" type="password" placeholder="Password" @bind="@password" required />
 
-        <div class="submit-login-button" @onclick="HandleLogin">
+        <div class="submit-login-button" @onclick="@handle_login">
             Submeter
             <img class="login-button-img" src="imgs/unlocked.png">
         </div>
+
+        @if (show_error_message) {
+            <div class="error-message">
+                <p>Utilizador ou password incorretos</p>
+            </div>
+        }
     </div>
 </div>

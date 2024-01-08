@@ -145,7 +145,7 @@ namespace app.Data
                         command.Parameters.AddWithValue("@password", value.getPassword());
                         command.Parameters.AddWithValue("@telemovel", value.getTelemovel());
                         command.Parameters.AddWithValue("@nickname", value.getNickname());
-                        command.Parameters.AddWithValue("@tipo", value.getTipo());
+                        command.Parameters.AddWithValue("@tipo", value.getTipo().ToString());
                         con.Open();
                         command.ExecuteNonQuery();
                     }
@@ -193,14 +193,10 @@ namespace app.Data
             {
                 using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
                 {
-                    Console.WriteLine("Hello, this is a console log message.");
                     using (SqlCommand command = new SqlCommand(cmd, con))
                     {
-                        Console.WriteLine("Hello, this is a console log message.");
                         con.Open();
-                        Console.WriteLine("Hello, this is a console log message.");
                         count = (int)command.ExecuteScalar();
-                        Console.WriteLine("Hello, this is a console log message.");
                     }
                 }
             }
@@ -224,30 +220,29 @@ namespace app.Data
                     using (SqlCommand command = new SqlCommand(cmd, con))
                     {
                         con.Open();
-
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                Pessoa p = new Pessoa(
-                                    reader.GetInt32(0), 
-                                    reader.GetDecimal(1), 
-                                    reader.GetString(2),
-                                    reader.GetString(3), 
-                                    reader.GetInt32(4),
-                                    reader.GetString(5),
-                                    (TipoDePessoa)Enum.Parse(typeof(TipoDePessoa), reader.GetString(8)),
-                                    null,
-                                    null
-                                );
+                                int id = reader.GetInt32(reader.GetOrdinal("id"));
+                                decimal saldo = reader.GetDecimal(reader.GetOrdinal("saldo"));
+                                string email = reader.GetString(reader.GetOrdinal("email"));
+                                string password = reader.GetString(reader.GetOrdinal("password"));
+                                int telemovel = reader.GetInt32(reader.GetOrdinal("telemovel"));
+                                string nickname = reader.GetString(reader.GetOrdinal("nickname"));
+                                
+                                TipoDePessoa tipo = (TipoDePessoa)Enum.Parse(typeof(TipoDePessoa), reader.GetString(reader.GetOrdinal("tipo")));
+                                Pessoa p = new Pessoa(id, saldo, email, password, telemovel, nickname, tipo, null, null);
                                 pessoas.Add(p);
                             }
                         }
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine("Exception occurred: " + e.Message);
+                Console.WriteLine("Stack trace: " + e.StackTrace);
                 throw new DAOException("Erro no values do PessoaDAO");
             }
             return pessoas;

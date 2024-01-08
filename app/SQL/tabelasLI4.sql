@@ -83,3 +83,7 @@ CREATE TABLE HistoricoTransacoes (
     FOREIGN KEY (id_pessoa) REFERENCES Pessoa(id)
 );
 
+SELECT * FROM dbo.Pessoa;
+
+DELETE dbo.Pessoa;
+
