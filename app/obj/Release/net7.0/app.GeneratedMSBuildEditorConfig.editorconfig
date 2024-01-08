@@ -32,13 +32,17 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Admin/li4-online-auctions/app/Pages/Components/Leilao_template.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9uZW50c1xMZWlsYW9fdGVtcGxhdGUucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-i0f67pijar
+[C:/Users/Admin/li4-online-auctions/app/Pages/Admin_dashboard/Admin_dashboard.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5fZGFzaGJvYXJkXEFkbWluX2Rhc2hib2FyZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-2mapuv6k0p
 
 [C:/Users/Admin/li4-online-auctions/app/Pages/Criar_leilao/Criar_leilao.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3JpYXJfbGVpbGFvXENyaWFyX2xlaWxhby5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-54tmngobm8
+
+[C:/Users/Admin/li4-online-auctions/app/Pages/Criar_leilao/Leilao_template.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3JpYXJfbGVpbGFvXExlaWxhb190ZW1wbGF0ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-c2z04kg3th
 
 [C:/Users/Admin/li4-online-auctions/app/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
@@ -48,9 +52,37 @@ build_metadata.AdditionalFiles.CssScope = b-1jlyl90bcz
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGVpbG9lc19mYXZvcml0b3NcTGVpbG9lc19mYXZvcml0b3MucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-sqycdtmhw4
 
+[C:/Users/Admin/li4-online-auctions/app/Pages/Leiloes_recomendados/Leiloes_recomendados.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGVpbG9lc19yZWNvbWVuZGFkb3NcTGVpbG9lc19yZWNvbWVuZGFkb3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-5zz3vq4ghc
+
+[C:/Users/Admin/li4-online-auctions/app/Pages/Login/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5cTG9naW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-j76pyj42g1
+
+[C:/Users/Admin/li4-online-auctions/app/Pages/Pagina_leilao/Pagina_leilao.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnaW5hX2xlaWxhb1xQYWdpbmFfbGVpbGFvLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-o5cqflxz6u
+
+[C:/Users/Admin/li4-online-auctions/app/Pages/Pagina_pesquisa/Pagina_pesquisa.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnaW5hX3Blc3F1aXNhXFBhZ2luYV9wZXNxdWlzYS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-mmu2nohosn
+
+[C:/Users/Admin/li4-online-auctions/app/Pages/Pagina_saldo/Pagina_saldo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnaW5hX3NhbGRvXFBhZ2luYV9zYWxkby5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-jbcd7og63e
+
 [C:/Users/Admin/li4-online-auctions/app/Pages/Perfil/Perfil.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGVyZmlsXFBlcmZpbC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-nahno1givc
+
+[C:/Users/Admin/li4-online-auctions/app/Pages/Registo/Registo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0b1xSZWdpc3RvLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-wkh4rz9se9
+
+[C:/Users/Admin/li4-online-auctions/app/Shared/Leilao_card.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExlaWxhb19jYXJkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-zs4le6p17l
 
 [C:/Users/Admin/li4-online-auctions/app/Shared/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=

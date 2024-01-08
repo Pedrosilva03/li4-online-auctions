@@ -6,7 +6,7 @@ using app.Leiloeira.Transacoes;
 
 namespace app.Data
 {
-    public class DatabaseFacade
+    public class DatabaseFacade : IDatabaseFacade
     {
         private ArtigoDAO artigoDAO;
         private LanceDAO lanceDAO;
@@ -247,6 +247,11 @@ namespace app.Data
         public ICollection<Pessoa> get_Pessoas()
         {
             return this.pessoaDAO.values();
+        }
+
+        public int get_num_Pessoas()
+        {
+            return this.pessoaDAO.size();
         }
 
         public ICollection<int> get_IDsPessoas()

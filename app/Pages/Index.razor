@@ -1,17 +1,31 @@
 ﻿@page "/"
 
-<PageTitle>Inicio</PageTitle>
+@inject NavigationManager NavigationManager 
 
-<div class="index-container">
-    <a class="search-bar" href="/Pagina_pesquisa">
-        <div class="search-bar-input">Pesquisar leilões</div>
+@code {
+    private string email { get; set;}
+    private string password { get; set; }
 
-        <img class="search-icon" src="/imgs/magnifying-glass.png" style="height: 20px;">
-    </a>
+    private void HandleLogin() {
+        if (email == "admin@coga.com" && password == "admin123") {
+            NavigationManager.NavigateTo("/Admin_dashboard");
+        }
+    }
+}
 
-    <h1 class="home-page-title">Leilões recomendados</h1>
+<PageTitle>Login</PageTitle>
 
-    <div class="recommended-auctions">
-        <p>Leilões recomendados aparecem aqui</p>
+<div class="login-container">
+    <h1>Login</h1>
+
+    <div class="login-input-container">
+        <input class="login-input" type="text" placeholder="E-mail" @bind="@email" required />
+
+        <input class="login-input" type="password" placeholder="Password" @bind="@password" required />
+
+        <div class="submit-login-button" @onclick="HandleLogin">
+            Submeter
+            <img class="login-button-img" src="imgs/unlocked.png">
+        </div>
     </div>
 </div>

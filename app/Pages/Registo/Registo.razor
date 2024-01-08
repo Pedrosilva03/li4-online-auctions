@@ -1,10 +1,46 @@
 @page "/Registo"
 
+@inject NavigationManager NavigationManager
+
 @code {
-    private string nickname { get; set; }
-    private string email { get; set; }
-    private string password { get; set; }
-    private string telemovel { get; set; }
+    private string nickname = "";
+    private string email = "";
+    private string password = "";
+    private string confirmar_password = "";
+    private string telemovel = "";
+
+    public bool show_error_message = false;
+
+    bool is_password_valid() {
+        return password == confirmar_password;
+    }
+
+    bool Pessoa_existe(Pessoa p) {
+        IDatabaseFacade db = new DatabaseFacade();
+        return db.Pessoa_existe(p);
+    }
+
+    bool valida_campos() {
+        return nickname != "" && email != "" && password != "" && confirmar_password != "" && telemovel != "";
+    }
+
+    void create_account() {
+        IDatabaseFacade db = new DatabaseFacade();
+
+        int id = db.get_num_Pessoas();
+
+        Dictionary<int, Leilao> leiloesFavoritos = new Dictionary<int, Leilao>();
+        Dictionary<int, Transacao> transacoesFeitas = new Dictionary<int, Transacao>();
+
+        Pessoa p = new Pessoa(id, 0, email, password, int.Parse(telemovel), nickname, TipoDePessoa.Utilizador, leiloesFavoritos, transacoesFeitas);  
+
+        if (valida_campos() && !Pessoa_existe(p)) {
+            db.add_Pessoa(p); 
+            NavigationManager.NavigateTo("/Login");
+        }
+
+        else show_error_message = true;
+    }
 }
 
 <PageTitle>Registo</PageTitle>
@@ -13,19 +49,25 @@
     <h1>Registar</h1>
 
     <div class="signin-input-container">
-        <input class="signin-input" type="text" placeholder="Nickname" bind="@nickname" required />
+        <input class="signin-input" type="text" placeholder="Nickname" @bind="@nickname" required />
 
-        <input class="signin-input" type="text" placeholder="Email" bind="@email" required />
+        <input class="signin-input" type="text" placeholder="Email" @bind="@email" required />
 
-        <input class="signin-input" type="password" placeholder="Password" bind="@password" required />
+        <input class="signin-input" type="password" placeholder="Password" @bind="@password" required />
 
-        <input class="signin-input" type="password" placeholder="Confirmar Password" required />
+        <input class="signin-input" type="password" placeholder="Confirmar Password" @bind="@confirmar_password" required />
 
-        <input class="signin-input" type="text" placeholder="Telemóvel" bind="@telemovel" required />
+        <input class="signin-input" type="text" placeholder="Telemóvel" @bind="@telemovel" required />
 
-        <div class="submit-signin-button" onclick="">
+        <div class="submit-signin-button" @onclick="@create_account">
             Confirmar registo 
             <img class="signin-button-img" src="imgs/register.png">
+        </div>
+
+        <div class="signin-error-message">
+            @if (show_error_message) {
+                <p>Algo correu mal 🤔</p>
+            }
         </div>
     </div>
 </div>

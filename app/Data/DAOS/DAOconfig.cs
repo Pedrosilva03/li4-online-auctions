@@ -4,9 +4,9 @@ namespace app.Data
 {
     public class DAOconfig
     {
-        public const string USER = "root";
-        public const string PASSWORD = "DiogoBarros7";
-        public const string MACHINE = "DESKTOP-O0OKI2I\\MSSQLSERVER01";
+        public const string USER = "duarte";
+        public const string PASSWORD = "duarteml9";
+        public const string MACHINE = "VIVOBOOK\\MSSQLSERVER01";
         public const string DATABASE = "leiloes";
 
         public static string GetConnectionString()

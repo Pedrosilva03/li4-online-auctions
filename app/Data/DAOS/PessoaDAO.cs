@@ -193,15 +193,21 @@ namespace app.Data
             {
                 using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
                 {
+                    Console.WriteLine("Hello, this is a console log message.");
                     using (SqlCommand command = new SqlCommand(cmd, con))
                     {
+                        Console.WriteLine("Hello, this is a console log message.");
                         con.Open();
+                        Console.WriteLine("Hello, this is a console log message.");
                         count = (int)command.ExecuteScalar();
+                        Console.WriteLine("Hello, this is a console log message.");
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine("Exception occurred: " + e.Message);
+                Console.WriteLine("Stack trace: " + e.StackTrace);
                 throw new DAOException("Erro no size do PessoaDAO");
             }
             return count;

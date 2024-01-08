@@ -32,6 +32,7 @@ C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Criar_le
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Criar_leilao\Leilao_template.razor.rz.scp.css
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Index.razor.rz.scp.css
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Leiloes_favoritos\Leiloes_favoritos.razor.rz.scp.css
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Leiloes_recomendados\Leiloes_recomendados.razor.rz.scp.css
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Login\Login.razor.rz.scp.css
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Pagina_leilao\Pagina_leilao.razor.rz.scp.css
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Pagina_pesquisa\Pagina_pesquisa.razor.rz.scp.css

@@ -68,6 +68,7 @@ namespace app.Data
         public void add_Pessoa(Pessoa p);
         public void remove_Pessoa(int idPessoa);
         public ICollection<Pessoa> get_Pessoas();
+        public int get_num_Pessoas();
         public ICollection<int> get_IDsPessoas();
     
         //TRANSAÇÕES//

@@ -1,0 +1,30 @@
+.index-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.search-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d9d9d9;
+    width: 20%; 
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.search-bar:hover {
+    transform: scale(1.05);
+}
+
+.recommended-auctions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

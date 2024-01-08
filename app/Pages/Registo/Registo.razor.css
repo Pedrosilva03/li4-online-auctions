@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
+    width: 100%;
 }
 
 .signin-input-container {
@@ -41,4 +42,15 @@
 
 .signin-button-img {
     width: 30px;
+}
+
+.signin-error-message {
+    font-weight: bold;
+    font-size: larger;
+}
+
+@media  (max-width: 768px) {
+    .signin-container {
+        width: 90%;
+    }
 }
