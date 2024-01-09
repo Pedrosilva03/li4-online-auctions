@@ -37,6 +37,9 @@
 }
 
 .profile-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding: 10px;
     font-weight: bold;
     background-color: white;
@@ -52,6 +55,10 @@
 
 .edit-profile:hover {
     text-decoration: underline;
+}
+
+.edit-input {
+    border: none;
 }
 
 .transactions-history-button {

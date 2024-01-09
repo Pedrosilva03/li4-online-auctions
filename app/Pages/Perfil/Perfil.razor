@@ -8,6 +8,12 @@
     private string telemovel = "";
     private string id = "";
 
+    private string alterar_nickname = "";
+    private string alterar_email = "";
+    private string alterar_telemovel = "";
+
+    public bool alterar_dados = false;
+
     protected override void OnInitialized()
     {
         put_values();
@@ -17,10 +23,12 @@
     void put_values(){
         Pessoa utilizador = CurrentUser.user;
 
-        nickname = utilizador.getNickname();
-        email = utilizador.getEmail();
-        telemovel = (utilizador.getTelemovel()).ToString();
-        id = (utilizador.getID()).ToString();
+        if (utilizador != null) {
+            nickname = utilizador.getNickname();
+            email = utilizador.getEmail();
+            telemovel = (utilizador.getTelemovel()).ToString();
+            id = (utilizador.getID()).ToString();
+        }
     }
 
     void eliminar(){
@@ -33,14 +41,29 @@
 
         NavigationManager.NavigateTo("/", forceLoad:true);
     }
+
+    void alterar_dados_conta(){
+        alterar_dados = true;
+    }
+
+    void guardar_alteracoes(){
+        alterar_dados = false;
+
+        if(alterar_nickname != "") nickname = alterar_nickname;
+        if(alterar_email != "") email = alterar_email;
+        if(alterar_telemovel != "") telemovel = alterar_telemovel;
+
+        // Fazer update na base de dados
+
+        NavigationManager.NavigateTo("/Perfil", forceLoad:true);
+    }
 }
 
 <PageTitle>Perfil</PageTitle>
 
 <div class="title-container">
     <h1 class="profile-page-title">Perfil</h1>
-    @if(!CurrentUser.isAdmin)
-    {
+    @if(!CurrentUser.isAdmin && !alterar_dados) {
         <div class="delete-profile" @onclick="@eliminar">
             <a>
                 <p>Eliminar perfil</p>
@@ -51,17 +74,45 @@
 
 <div class="profile-container">
     <div class="profile-info-box">
-        <p class="profile-info">Nickname: @nickname</p>
-        <p class="profile-info">E-mail: @email</p>
-        <p class="profile-info">Telemóvel: @telemovel</p>
+        @if(!alterar_dados) {
+            <p class="profile-info">Nickname: @nickname</p>
+            <p class="profile-info">E-mail: @email</p>
+            <p class="profile-info">Telemóvel: @telemovel</p>
+        }
+
+        @if(alterar_dados) {
+            <p class="profile-info">
+                <label for="nickname">Nickname: </label>
+                <input class="edit-info" type="text" placeholder=" @nickname" @bind="@alterar_nickname" />
+            </p>
+
+            <p class="profile-info">
+                <label for="email">E-mail: </label>
+                <input class="edit-input" type="text" placeholder=" @email" @bind="@alterar_email" />
+            </p>
+
+            <p class="profile-info">
+                <label for="telemovel">Telemóvel: </label>
+                <input class="edit-input" type="text" placeholder=" @telemovel" @bind="@alterar_telemovel" />
+            </p>
+        }
+
         <p class="profile-info">ID: @id</p>
 
-        <div class="edit-profile">
-            <a>Alterar dados da conta</a>
-        </div>
+        @if(!alterar_dados) {
+            <div class="edit-profile" @onclick="@alterar_dados_conta">
+                <a>Alterar dados da conta</a>
+            </div>
+        }
+
+        @if(alterar_dados) {
+            <div class="edit-profile" @onclick="@guardar_alteracoes">
+                <a>Guardar alterações</a>
+            </div>
+        }
     </div>
-    @if(!CurrentUser.isAdmin)
-    {
+
+    @if(!CurrentUser.isAdmin) {
         <div class="transactions-history-button">
             <a>Histórico de <br> transações</a>
         </div>
