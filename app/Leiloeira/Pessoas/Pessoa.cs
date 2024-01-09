@@ -14,10 +14,11 @@ namespace app.Leiloeira.Pessoas
         private string nickname;
         private Dictionary<int, Leilao> leiloesFavoritos;
         private Dictionary<int, Transacao> transacoesFeitas;
+        private Estado estado;
 
         //CONSTRUTORES//
 
-        public Pessoa(int id, decimal saldo, string email, string password, int telemovel, string nickname, TipoDePessoa tipo, Dictionary<int, Leilao> leiloesFavoritos, Dictionary<int, Transacao> transacoesFeitas)
+        public Pessoa(int id, decimal saldo, string email, string password, int telemovel, string nickname, TipoDePessoa tipo, Dictionary<int, Leilao> leiloesFavoritos, Dictionary<int, Transacao> transacoesFeitas, Estado estado)
         {
             this.id = id;
             this.saldo = saldo;
@@ -28,6 +29,7 @@ namespace app.Leiloeira.Pessoas
             this.tipo = tipo;
             this.leiloesFavoritos = leiloesFavoritos;
             this.transacoesFeitas = transacoesFeitas;
+            this.estado = estado;
         }
 
         //MÉTODOS DE ACESSO AOS ATRIBUTOS//
@@ -121,5 +123,16 @@ namespace app.Leiloeira.Pessoas
         {
             this.transacoesFeitas = t;
         }
+
+        public Estado getEstado()
+        {
+            return this.estado;
+        }
+
+        public void setEstado(Estado e)
+        {
+            this.estado = e;
+        }
+
     }
 }

@@ -33,8 +33,9 @@
         Dictionary<int, Transacao> transacoesFeitas = new Dictionary<int, Transacao>();
 
         TipoDePessoa tipo = TipoDePessoa.Utilizador;
+        Estado estado = Estado.Desbloqueado;
 
-        Pessoa p = new Pessoa(id, 0, email, password, int.Parse(telemovel), nickname, tipo, leiloesFavoritos, transacoesFeitas);  
+        Pessoa p = new Pessoa(id, 0, email, password, int.Parse(telemovel), nickname, tipo, leiloesFavoritos, transacoesFeitas, estado);  
 
         if (valida_campos() && !Pessoa_existe(p)) {
             db.add_Pessoa(p); 

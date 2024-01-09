@@ -76,7 +76,8 @@ namespace app.Data
                                 string nickname = reader.GetString(reader.GetOrdinal("nickname"));
                                 
                                 TipoDePessoa tipo = (TipoDePessoa)Enum.Parse(typeof(TipoDePessoa), reader.GetString(reader.GetOrdinal("tipo")));
-                                p = new Pessoa(id, saldo, email, password, telemovel, nickname, tipo, null, null);
+                                Estado estado = (Estado)Enum.Parse(typeof(Estado), reader.GetString(reader.GetOrdinal("estado")));
+                                p = new Pessoa(id, saldo, email, password, telemovel, nickname, tipo, null, null, estado);
                             }
                         }
                     }
@@ -127,11 +128,11 @@ namespace app.Data
             string cmd;
             if (containsKey(key))
             {
-                cmd = "UPDATE dbo.Pessoa SET id = @key, saldo = @saldo, email = @email, password = @password, telemovel = @telemovel, nickname = @nickname, tipo = @tipo WHERE id = @Key";
+                cmd = "UPDATE dbo.Pessoa SET id = @key, saldo = @saldo, email = @email, password = @password, telemovel = @telemovel, nickname = @nickname, tipo = @tipo, estado = @estado WHERE id = @Key";
             }
             else
             {
-                cmd = "INSERT INTO dbo.Pessoa (id, saldo, email, password, telemovel, nickname, tipo) VALUES (@Key, @saldo, @email, @password, @telemovel, @nickname, @tipo)";
+                cmd = "INSERT INTO dbo.Pessoa (id, saldo, email, password, telemovel, nickname, tipo, estado) VALUES (@Key, @saldo, @email, @password, @telemovel, @nickname, @tipo, @estado)";
             }
             try
             {
@@ -146,6 +147,7 @@ namespace app.Data
                         command.Parameters.AddWithValue("@telemovel", value.getTelemovel());
                         command.Parameters.AddWithValue("@nickname", value.getNickname());
                         command.Parameters.AddWithValue("@tipo", value.getTipo().ToString());
+                        command.Parameters.AddWithValue("@estado", value.getEstado().ToString());
                         con.Open();
                         command.ExecuteNonQuery();
                     }
@@ -232,7 +234,8 @@ namespace app.Data
                                 string nickname = reader.GetString(reader.GetOrdinal("nickname"));
                                 
                                 TipoDePessoa tipo = (TipoDePessoa)Enum.Parse(typeof(TipoDePessoa), reader.GetString(reader.GetOrdinal("tipo")));
-                                Pessoa p = new Pessoa(id, saldo, email, password, telemovel, nickname, tipo, null, null);
+                                Estado estado = (Estado)Enum.Parse(typeof(Estado), reader.GetString(reader.GetOrdinal("estado")));
+                                Pessoa p = new Pessoa(id, saldo, email, password, telemovel, nickname, tipo, null, null, estado);
                                 pessoas.Add(p);
                             }
                         }

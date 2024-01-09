@@ -3,16 +3,22 @@
 @code {
 
     private int delete_conta;
+    private int desbloquea_conta;
+    private int bloquea_conta;
 
-    public bool showErrorMessage = false;
+    public bool showAdmin = false;
     public bool showDeleted = false;
     public bool showExists = false;
+    public bool showsDesbloqueado = false;
+    public bool showsBloqueado = false;
 
     void ResetErrorMessages()
     {
-        showErrorMessage = false;
+        showAdmin = false;
         showDeleted = false;
         showExists = false;
+        showsDesbloqueado = false;
+        showsBloqueado = false;
     }
 
     void apaga()
@@ -29,7 +35,7 @@
             Pessoa user = db.get_Pessoa(delete_conta);
             if(user.getTipo() == TipoDePessoa.Administrador)
             {
-                showErrorMessage = true;
+                showAdmin = true;
             }
             else
             {
@@ -39,6 +45,54 @@
         }
     }
 
+    void desbloquea()
+    {
+        ResetErrorMessages();
+
+        IDatabaseFacade db = new DatabaseFacade();
+        if(db.IDPessoa_existe(desbloquea_conta) == false)
+        {
+            showExists = true;
+        }
+        else
+        {
+            Pessoa user = db.get_Pessoa(desbloquea_conta);
+            if(user.getTipo() == TipoDePessoa.Administrador)
+            {
+                showAdmin = true;
+            }
+            else
+            {
+                user.setEstado(Estado.Desbloqueado);
+                db.add_Pessoa(user);
+                showsDesbloqueado = true;
+            }
+        }
+    }
+
+    void bloquea()
+    {
+        ResetErrorMessages();
+        IDatabaseFacade db = new DatabaseFacade();
+        if(db.IDPessoa_existe(bloquea_conta) == false)
+        {
+            showExists = true;
+        }
+        else
+        {
+            Pessoa user = db.get_Pessoa(bloquea_conta);
+            if(user.getTipo() == TipoDePessoa.Administrador)
+            {
+                showAdmin = true;
+            }
+            else
+            {
+                user.setEstado(Estado.Bloqueado);
+                db.add_Pessoa(user);
+                showsBloqueado = true;
+            }
+        }
+    }
 }
 
 <PageTitle>Admin Dashboard</PageTitle>
@@ -50,19 +104,19 @@
         <div class="input-row">
             <div class="admin-input">
                 <label for="block">Bloquear conta: </label>
-                <input type="number" name="block" />
+                <input type="number" @bind-value="bloquea_conta" name="block" />
             </div>
 
-            <img class="confirm-input" src="imgs/accept.png" onclick="">
+            <img class="confirm-input" src="imgs/accept.png" @onclick="bloquea">
         </div>
 
         <div class="input-row">
             <div class="admin-input">
                 <label for="unblock">Desbloquear conta: </label>
-                <input type="number" name="unblock" />
+                <input type="number" @bind-value="desbloquea_conta" name="unblock" />
             </div>
 
-            <img class="confirm-input" src="imgs/accept.png" onclick="">
+            <img class="confirm-input" src="imgs/accept.png" @onclick="@desbloquea">
         </div>
 
         <div class="input-row">
@@ -73,26 +127,30 @@
 
             <img class="confirm-input" src="imgs/accept.png" @onclick="@apaga">
         </div>
-        <div class="error-message">
-            @if(showErrorMessage){
-                <p> 
-                        Não podes apagar Administradores!
-                </p>
-            }
-        </div>
-        <div class="error-message">
-            @if(showDeleted){
-                <p> 
-                        Conta apagada!
-                </p>
-            }
-        </div>
-        <div class="error-message">
-            @if(showExists){
-                <p> 
-                        Conta não existe!
-                </p>
-            }
-        </div>
+        @if (showAdmin) {
+            <div class="error-message">
+                <p>Não podes alterar Administradores!</p>
+            </div>
+        }
+        @if (showDeleted) {
+            <div class="error-message">
+                <p>Conta apagada!</p>
+            </div>
+        }
+        @if (showExists) {
+            <div class="error-message">
+                <p>Conta não existe!</p>
+            </div>
+        }
+        @if (showsDesbloqueado) {
+            <div class="error-message">
+                <p>Conta Desbloqueada</p>
+            </div>
+        }
+        @if (showsBloqueado) {
+            <div class="error-message">
+                <p>Conta Bloqueada</p>
+            </div>
+        }
     </div>
 </div>

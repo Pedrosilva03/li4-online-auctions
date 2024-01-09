@@ -12,7 +12,8 @@ CREATE TABLE Pessoa (
     password VARCHAR(100) NOT NULL,
     saldo DECIMAL(9, 2) NOT NULL,
     telemovel INT NOT NULL,
-    nickname VARCHAR(50) NOT NULL
+    nickname VARCHAR(50) NOT NULL,
+	estado VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Lance (
@@ -86,4 +87,10 @@ CREATE TABLE HistoricoTransacoes (
 SELECT * FROM dbo.Pessoa;
 
 DELETE dbo.Pessoa;
+
+USE leiloes;
+
+INSERT INTO dbo.Pessoa (id, tipo, email, password, saldo, telemovel, nickname, estado) VALUES (0, 'Administrador', 'admin@gmail.com', 'admin123', 0, 911111111, 'Admin1', 'Desbloqueado');
+
+INSERT INTO dbo.Pessoa (id, tipo, email, password, saldo, telemovel, nickname, estado) VALUES (1, 'Utilizador', 'yeet@gmail.com', 'yeet', 0, 968780666, 'Yeet', 'Bloqueado');
 
