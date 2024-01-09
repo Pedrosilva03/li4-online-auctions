@@ -261,11 +261,6 @@ namespace app.Data
     
         //TRANSAÇÕES//
 
-        /*       
-        private DateTime data;
-        private decimal valorTransacao;
-        private decimal taxa;*/
-
         public bool IDTransação_existe(int idTransação){
             return this.transacaoDAO.containsKey(idTransação);
         }

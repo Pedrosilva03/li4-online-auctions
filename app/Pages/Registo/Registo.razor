@@ -38,7 +38,7 @@
 
         if (valida_campos() && !Pessoa_existe(p)) {
             db.add_Pessoa(p); 
-            NavigationManager.NavigateTo("/Login");
+            NavigationManager.NavigateTo("/");
         }
 
         else show_error_message = true;

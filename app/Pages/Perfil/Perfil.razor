@@ -1,17 +1,38 @@
 @page "/Perfil"
 
+@inject NavigationManager NavigationManager
+
 @code {
-    [Parameter] 
-    public string nickname { get; set; }
+    private string nickname = "";
+    private string email = "";
+    private string telemovel = "";
+    private string id = "";
 
-    [Parameter]
-    public string email { get; set; }
+    protected override void OnInitialized()
+    {
+        put_values();
+        base.OnInitialized();
+    }
 
-    [Parameter]
-    public int telemovel { get; set; }
+    void put_values(){
+        Pessoa utilizador = CurrentUser.user;
 
-    [Parameter]
-    public int id { get; set; }
+        nickname = utilizador.getNickname();
+        email = utilizador.getEmail();
+        telemovel = (utilizador.getTelemovel()).ToString();
+        id = (utilizador.getID()).ToString();
+    }
+
+    void eliminar(){
+        Pessoa utilizador = CurrentUser.user;
+        IDatabaseFacade db = new DatabaseFacade();
+
+        db.remove_Pessoa(utilizador.getID());
+
+        CurrentUser.logout();
+
+        NavigationManager.NavigateTo("/", forceLoad:true);
+    }
 }
 
 <PageTitle>Perfil</PageTitle>
@@ -19,7 +40,7 @@
 <div class="title-container">
     <h1 class="profile-page-title">Perfil</h1>
 
-    <div class="delete-profile">
+    <div class="delete-profile" @onclick="@eliminar">
         <a>
             <p>Eliminar perfil</p>
         </a>

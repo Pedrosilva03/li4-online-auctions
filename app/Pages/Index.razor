@@ -14,9 +14,14 @@
         ICollection<Pessoa> pessoas = db.get_Pessoas();
 
         foreach (Pessoa pessoa in pessoas) {
-            if (pessoa.getEmail() == email && pessoa.getPassword() == password) {
+            if (pessoa.getEmail() == email && pessoa.getPassword() == password && pessoa.getTipo() == TipoDePessoa.Utilizador) {
                 CurrentUser.setCurrentUser(pessoa);
                 NavigationManager.NavigateTo("/leiloes_recomendados", forceLoad: true);
+                return;
+            }
+            if (pessoa.getEmail() == email && pessoa.getPassword() == password && pessoa.getTipo() == TipoDePessoa.Administrador) {
+                CurrentUser.setCurrentUser(pessoa);
+                NavigationManager.NavigateTo("/Admin_dashboard", forceLoad: true);
                 return;
             }
         }
