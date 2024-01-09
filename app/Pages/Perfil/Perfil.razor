@@ -39,12 +39,14 @@
 
 <div class="title-container">
     <h1 class="profile-page-title">Perfil</h1>
-
-    <div class="delete-profile" @onclick="@eliminar">
-        <a>
-            <p>Eliminar perfil</p>
-        </a>
-    </div>
+    @if(!CurrentUser.isAdmin)
+    {
+        <div class="delete-profile" @onclick="@eliminar">
+            <a>
+                <p>Eliminar perfil</p>
+            </a>
+        </div>
+    }
 </div>
 
 <div class="profile-container">
@@ -58,8 +60,10 @@
             <a>Alterar dados da conta</a>
         </div>
     </div>
-
-    <div class="transactions-history-button">
-        <a>Histórico de <br> transações</a>
-    </div>
+    @if(!CurrentUser.isAdmin)
+    {
+        <div class="transactions-history-button">
+            <a>Histórico de <br> transações</a>
+        </div>
+    }
 </div>

@@ -25,8 +25,21 @@
                         </Navlink>
                     </li>
                 }
+                @if(admin){
+                    <li class="nav-item me-2">
+                        <NavLink class="nav-link" href="/Perfil">
+                            <img src="/imgs/perfil.png" style="height: 40px;" title="Perfil">
+                        </NavLink>
+                    </li>
 
-                @if (loged_in) {
+                    <li class="nav-item">
+                        <NavLink class="nav-link">
+                            <img src="/imgs/logout.png" style="height: 40px;" title="Logout" @onclick="@logout">
+                        </NavLink>
+                    </li>
+                }
+
+                @if (loged_in && !admin) {
                     <li class="nav-item me-2">
                         <NavLink class="nav-link" href="/Criar_leilao">
                             <span class="nav-link text-dark bg-light rounded border border-secondary">Criar Leilão</span>
@@ -71,7 +84,8 @@
 
     public static Pessoa pessoa = CurrentUser.user;
     public bool loged_in = CurrentUser.isLogged;
-    public decimal saldo;
+    public bool admin = CurrentUser.isAdmin;
+    public decimal saldo = CurrentUser.saldo;
 
     private void ToggleNavMenu()
     {
@@ -79,9 +93,13 @@
     }
 
     public void logo_route() {
-        if (loged_in) {
+        if (loged_in && !admin) {
             NavigationManager.NavigateTo("/Leiloes_recomendados", forceLoad: true);
-        } else {
+        } 
+        else if(loged_in && admin){
+            NavigationManager.NavigateTo("/Admin_dashboard", forceLoad: true);
+        }
+        else {
             NavigationManager.NavigateTo("/", forceLoad: true);
         }
     }

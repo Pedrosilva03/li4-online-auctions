@@ -127,7 +127,7 @@ namespace app.Data
             string cmd;
             if (containsKey(key))
             {
-                cmd = "UPDATE dbo.Pessoa SET id = @id, saldo = @saldo, email = @email, password = @password, telemovel = @telemovel, nickname = @nickname, tipo = @tipo WHERE id = @Key";
+                cmd = "UPDATE dbo.Pessoa SET id = @key, saldo = @saldo, email = @email, password = @password, telemovel = @telemovel, nickname = @nickname, tipo = @tipo WHERE id = @Key";
             }
             else
             {

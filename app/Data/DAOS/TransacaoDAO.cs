@@ -127,7 +127,7 @@ namespace app.Data
             string cmd;
             if (containsKey(key))
             {
-                cmd = "UPDATE dbo.Transacao SET id = @id, id_leilão = @id_leilão, id_vendedor = @id_vendedor, id_comprador = @id_comprador, data = @data, valorTransacao = @valorTransacao, taxa = @taxa WHERE id = @Key";
+                cmd = "UPDATE dbo.Transacao SET id = @key, id_leilão = @id_leilão, id_vendedor = @id_vendedor, id_comprador = @id_comprador, data = @data, valorTransacao = @valorTransacao, taxa = @taxa WHERE id = @Key";
             }
             else
             {
@@ -140,12 +140,12 @@ namespace app.Data
                     using (SqlCommand command = new SqlCommand(cmd, con))
                     {
                         command.Parameters.AddWithValue("@Key", key);
-                        command.Parameters.AddWithValue("@saldo", value.getId_leilao());
-                        command.Parameters.AddWithValue("@email", value.getVendedor());
-                        command.Parameters.AddWithValue("@password", value.getComprador());
-                        command.Parameters.AddWithValue("@telemovel", value.getData());
-                        command.Parameters.AddWithValue("@nickname", value.getValor());
-                        command.Parameters.AddWithValue("@nickname", value.getTaxa());
+                        command.Parameters.AddWithValue("@id_leilão", value.getId_leilao());
+                        command.Parameters.AddWithValue("@id_vendedor", value.getVendedor());
+                        command.Parameters.AddWithValue("@id_comprador", value.getComprador());
+                        command.Parameters.AddWithValue("@data", value.getData());
+                        command.Parameters.AddWithValue("@valorTransacao", value.getValor());
+                        command.Parameters.AddWithValue("@taxa", value.getTaxa());
                         con.Open();
                         command.ExecuteNonQuery();
                     }

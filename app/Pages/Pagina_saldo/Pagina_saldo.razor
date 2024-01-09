@@ -1,11 +1,53 @@
 @page "/saldo"
 
-@code {
-    [Parameter]
-    public float saldo_disponivel { get; set; } = 0;
+@inject NavigationManager NavigationManager
 
-    private float saldo_a_adicionar { get; set; }
-    private float saldo_a_retirar { get; set; }
+@code {
+    
+    public decimal saldo_disponivel;
+    public decimal saldo_a_adicionar;
+    private decimal saldo_a_retirar;
+
+    public bool showErrorMessage = false;
+
+    protected override void OnInitialized()
+    {
+        values();
+        base.OnInitialized();
+    }
+
+    void values()
+    {
+        Pessoa user = CurrentUser.user;
+        saldo_disponivel = user.getSaldo();
+    }
+
+    void adicionar_saldo()
+    {
+        IDatabaseFacade db = new DatabaseFacade();
+        Pessoa user = CurrentUser.user;
+        decimal saldo_atual = user.getSaldo();
+        decimal new_saldo = saldo_atual + saldo_a_adicionar;
+        CurrentUser.saldo = new_saldo;
+        user.setSaldo(new_saldo);
+        db.add_Pessoa(user);
+        NavigationManager.NavigateTo("/saldo", forceLoad: true);
+    }
+
+    void retirar_saldo()
+    {
+        IDatabaseFacade db = new DatabaseFacade();
+        Pessoa user = CurrentUser.user;
+        decimal saldo_atual = user.getSaldo();
+        if((saldo_atual - saldo_a_retirar) < 0) showErrorMessage = true;
+        else{
+            decimal new_saldo = saldo_atual - saldo_a_retirar;
+            CurrentUser.saldo = new_saldo;
+            user.setSaldo(new_saldo);
+            db.add_Pessoa(user);
+            NavigationManager.NavigateTo("/saldo", forceLoad: true);
+        }
+    }
 }
 
 <PageTitle>Saldo</PageTitle>
@@ -26,7 +68,7 @@
                 <label>Adicionar saldo</label>
                 <input type="number" @bind-value="saldo_a_adicionar" placeholder="valor" step="0.01" />
             </div>
-            <img class="accept" src="imgs/accept.png"> <!-- criar @onclick para validar -->
+            <img class="accept" src="imgs/accept.png" @onclick="@adicionar_saldo">
         </div>
 
         <div class="saldo-row"> 
@@ -34,7 +76,14 @@
                 <label>Retirar saldo</label>
                 <input type="number" @bind-value="saldo_a_retirar" placeholder="valor" step="0.01" />
             </div>
-            <img class="accept" src="imgs/accept.png"> <!-- criar @onclick para validar -->
+            <img class="accept" src="imgs/accept.png" @onclick="@retirar_saldo">
         </div>
+        <div class="error-message">
+            @if(showErrorMessage){
+                <p> 
+                        Quantia inválida!
+                </p>
+            }
+        </div> 
     </div>
 </div>

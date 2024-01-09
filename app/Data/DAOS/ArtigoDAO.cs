@@ -131,7 +131,7 @@ namespace app.Data
             string cmd;
             if (containsKey(key))
             {
-                cmd = "UPDATE dbo.Artigo SET id_leilao = @id_leilao, id_transacao = @id_transacao, nome = @nome, condicao = @condicao, raridade = @raridade, descricao = @descricao, caminhoImagem = @caminhoImagem, tipo = @tipo WHERE id = @Key";
+                cmd = "UPDATE dbo.Artigo SET id_leilao = @key, id_transacao = @id_transacao, nome = @nome, condicao = @condicao, raridade = @raridade, descricao = @descricao, caminhoImagem = @caminhoImagem, tipo = @tipo WHERE id = @Key";
             }
             else
             {

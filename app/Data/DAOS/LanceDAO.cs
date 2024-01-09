@@ -124,7 +124,7 @@ namespace app.Data
             string cmd;
             if (containsKey(key))
             {
-                cmd = "UPDATE dbo.Lance SET id_leilao = @id_leilao, id_licitador = @id_licitador, valor = @valor WHERE id = @Key";
+                cmd = "UPDATE dbo.Lance SET id = @key, id_leilao = @id_leilao, id_licitador = @id_licitador, valor = @valor WHERE id = @Key";
             }
             else
             {
@@ -138,7 +138,7 @@ namespace app.Data
                     {
                         command.Parameters.AddWithValue("@Key", key);
                         command.Parameters.AddWithValue("@id_leilao", value.getId_leilao());
-                        command.Parameters.AddWithValue("@id_transacao", value.getId_Licitador());
+                        command.Parameters.AddWithValue("@id_licitador", value.getId_Licitador());
                         command.Parameters.AddWithValue("@valor", value.getValor());
 
                         con.Open();

@@ -38,3 +38,8 @@
 .accept:hover {
     transform: scale(1.05);
 }
+
+.error-message {
+    font-weight: bold;
+    font-size: larger;
+}

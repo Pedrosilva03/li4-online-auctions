@@ -130,7 +130,7 @@ namespace app.Data
             string cmd;
             if (containsKey(key))
             {
-                cmd = "UPDATE dbo.Leilao SET id_Criador = @id_Criador, precoReserva = @precoReserva, precoMinimo = @precoMinimo, dataHoraInicial = @dataHoraInicial, dataHoraFinal = @dataHoraFinal, duracao = @duracao, id_lanceAtual = @id_lanceAtual, id_lanceFinal = @id_lanceFinal WHERE id = @Key";
+                cmd = "UPDATE dbo.Leilao SET id = @key, id_Criador = @id_Criador, precoReserva = @precoReserva, precoMinimo = @precoMinimo, dataHoraInicial = @dataHoraInicial, dataHoraFinal = @dataHoraFinal, duracao = @duracao, id_lanceAtual = @id_lanceAtual, id_lanceFinal = @id_lanceFinal WHERE id = @Key";
             }
             else
             {
@@ -143,14 +143,14 @@ namespace app.Data
                     using (SqlCommand command = new SqlCommand(cmd, con))
                     {
                         command.Parameters.AddWithValue("@Key", key);
-                        command.Parameters.AddWithValue("@id_leilao", value.getId_Criador());
-                        command.Parameters.AddWithValue("@id_transacao", value.getPrecoReserva());
-                        command.Parameters.AddWithValue("@nome", value.getPrecoMinimo());
-                        command.Parameters.AddWithValue("@condicao", value.getDataHoraInicial());
-                        command.Parameters.AddWithValue("@raridade", value.getDataHoraFinal());
-                        command.Parameters.AddWithValue("@descricao", value.getDuracao());
-                        command.Parameters.AddWithValue("@caminhoImagem", value.getIdLanceAtual());
-                        command.Parameters.AddWithValue("@tipo", value.getIdLanceFinal());
+                        command.Parameters.AddWithValue("@id_Criador", value.getId_Criador());
+                        command.Parameters.AddWithValue("@precoReserva", value.getPrecoReserva());
+                        command.Parameters.AddWithValue("@precoMinimo", value.getPrecoMinimo());
+                        command.Parameters.AddWithValue("@dataHoraInicial", value.getDataHoraInicial());
+                        command.Parameters.AddWithValue("@dataHoraFinal", value.getDataHoraFinal());
+                        command.Parameters.AddWithValue("@duracao", value.getDuracao());
+                        command.Parameters.AddWithValue("@id_lanceAtual", value.getIdLanceAtual());
+                        command.Parameters.AddWithValue("@id_lanceFinal", value.getIdLanceFinal());
 
                         con.Open();
                         command.ExecuteNonQuery();
