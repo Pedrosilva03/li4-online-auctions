@@ -2,6 +2,43 @@
 
 @code {
 
+    private int delete_conta;
+
+    public bool showErrorMessage = false;
+    public bool showDeleted = false;
+    public bool showExists = false;
+
+    void ResetErrorMessages()
+    {
+        showErrorMessage = false;
+        showDeleted = false;
+        showExists = false;
+    }
+
+    void apaga()
+    {
+        ResetErrorMessages();
+        
+        IDatabaseFacade db = new DatabaseFacade();
+        if(db.IDPessoa_existe(delete_conta) == false)
+        {
+            showExists = true;
+        }
+        else 
+        {
+            Pessoa user = db.get_Pessoa(delete_conta);
+            if(user.getTipo() == TipoDePessoa.Administrador)
+            {
+                showErrorMessage = true;
+            }
+            else
+            {
+                db.remove_Pessoa(delete_conta);
+                showDeleted = true;
+            }
+        }
+    }
+
 }
 
 <PageTitle>Admin Dashboard</PageTitle>
@@ -31,10 +68,31 @@
         <div class="input-row">
             <div class="admin-input">
                 <label for="delete">Apagar conta: </label>
-                <input type="number" name="delete" />
+                <input type="number" @bind-value="delete_conta" name="delete" />
             </div>
 
-            <img class="confirm-input" src="imgs/accept.png" onclick="">
+            <img class="confirm-input" src="imgs/accept.png" @onclick="@apaga">
+        </div>
+        <div class="error-message">
+            @if(showErrorMessage){
+                <p> 
+                        Não podes apagar Administradores!
+                </p>
+            }
+        </div>
+        <div class="error-message">
+            @if(showDeleted){
+                <p> 
+                        Conta apagada!
+                </p>
+            }
+        </div>
+        <div class="error-message">
+            @if(showExists){
+                <p> 
+                        Conta não existe!
+                </p>
+            }
         </div>
     </div>
 </div>
