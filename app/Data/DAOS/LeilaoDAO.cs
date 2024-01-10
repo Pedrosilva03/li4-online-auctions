@@ -229,20 +229,17 @@ namespace app.Data
                         {
                             while (reader.Read())
                             {
-                                Leilao l = new Leilao(
-                                    reader.GetInt32(0), 
-                                    reader.GetInt32(1), 
-                                    reader.GetDecimal(2),
-                                    reader.GetDecimal(3), 
-                                    reader.GetDateTime(4),
-                                    reader.GetDateTime(5),
-                                    reader.GetInt32(6),
-                                    reader.GetInt32(7),
-                                    reader.GetInt32(8),
-                                    null,
-                                    null,
-                                    null 
-                                );
+                                int id = reader.GetInt32(reader.GetOrdinal("id"));
+                                int id_Criador = reader.GetInt32(reader.GetOrdinal("id_Criador"));
+                                decimal precoReserva = reader.GetDecimal(reader.GetOrdinal("precoReserva"));
+                                decimal precoMinimo = reader.GetDecimal(reader.GetOrdinal("precoMinimo"));
+                                DateTime dataHoraInicial = reader.GetDateTime(reader.GetOrdinal("dataHoraInicial"));
+                                DateTime dataHoraFinal = reader.GetDateTime(reader.GetOrdinal("dataHoraFinal"));
+                                int duracao = reader.GetInt32(reader.GetOrdinal("duracao"));
+                                int id_lanceAtual = reader.GetInt32(reader.GetOrdinal("id_lanceAtual"));
+                                int id_lanceFinal = reader.GetInt32(reader.GetOrdinal("id_lanceFinal"));
+                                /* TODO: DICIONÁRIOS (???) dataRowDictionary = Enumerable.Range(0, reader.FieldCount).ToDictionary(i => reader.GetName(i), i=> reader.GetValue(i).ToString());*/
+                                Leilao l = new Leilao(id, id_Criador, precoReserva, precoMinimo, dataHoraFinal, dataHoraFinal, duracao, id_lanceAtual, id_lanceFinal, null, null, null);
                                 leiloes.Add(l);
                             }
                         }

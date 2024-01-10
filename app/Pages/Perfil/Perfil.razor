@@ -48,13 +48,25 @@
 
     void guardar_alteracoes(){
         alterar_dados = false;
+        IDatabaseFacade db = new DatabaseFacade();
+        Pessoa utilizador = CurrentUser.user;
 
-        if(alterar_nickname != "") nickname = alterar_nickname;
-        if(alterar_email != "") email = alterar_email;
-        if(alterar_telemovel != "") telemovel = alterar_telemovel;
-
-        // Fazer update na base de dados
-
+        if(alterar_nickname != "")
+        {
+            nickname = alterar_nickname;
+            utilizador.setNickname(nickname);
+        }
+        if(alterar_email != "")
+        {
+            email = alterar_email;
+            utilizador.setEmail(email);
+        }
+        if(alterar_telemovel != "")
+        {
+            telemovel = alterar_telemovel;
+            utilizador.setTelemovel(int.Parse(telemovel));
+        }
+        db.add_Pessoa(utilizador);
         NavigationManager.NavigateTo("/Perfil", forceLoad:true);
     }
 }

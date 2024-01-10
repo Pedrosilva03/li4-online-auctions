@@ -223,16 +223,15 @@ namespace app.Data
                         {
                             while (reader.Read())
                             {
-                                Transacao t = new Transacao(
-                                    reader.GetInt32(0), 
-                                    reader.GetInt32(1), 
-                                    reader.GetInt32(2),
-                                    reader.GetInt32(3), 
-                                    reader.GetDateTime(4),
-                                    reader.GetDecimal(5),
-                                    reader.GetDecimal(8),
-                                    null
-                                );
+                                int id = reader.GetInt32(reader.GetOrdinal("id"));
+                                int id_leilao = reader.GetInt32(reader.GetOrdinal("id_leilao"));
+                                int id_vendedor = reader.GetInt32(reader.GetOrdinal("id_vendedor"));
+                                int id_comprador = reader.GetInt32(reader.GetOrdinal("id_comprador"));
+                                DateTime data = reader.GetDateTime(reader.GetOrdinal("data"));
+                                decimal valorTransacao = reader.GetDecimal(reader.GetOrdinal("valorTransacao"));
+                                decimal taxa = reader.GetDecimal(reader.GetOrdinal("taxa"));
+                                /* TODO: DICIONÁRIOS (???) dataRowDictionary = Enumerable.Range(0, reader.FieldCount).ToDictionary(i => reader.GetName(i), i=> reader.GetValue(i).ToString());*/
+                                Transacao t = new Transacao(id, id_leilao, id_vendedor, id_comprador, data, valorTransacao, taxa, null);
                                 transacoes.Add(t);
                             }
                         }

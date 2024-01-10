@@ -218,12 +218,11 @@ namespace app.Data
                         {
                             while (reader.Read())
                             {
-                                Lance l = new Lance(
-                                    reader.GetInt32(0), 
-                                    reader.GetInt32(1), 
-                                    reader.GetInt32(2),
-                                    reader.GetDecimal(3)  
-                                );
+                                int id = reader.GetInt32(reader.GetOrdinal("id"));
+                                int id_leilao = reader.GetInt32(reader.GetOrdinal("id_leilao"));
+                                int id_licitador = reader.GetInt32(reader.GetOrdinal("id_licitador"));
+                                decimal valor = reader.GetDecimal(reader.GetOrdinal("valor"));
+                                Lance l = new Lance(id, id_leilao, id_licitador, valor);
                                 lances.Add(l);
                             }
                         }

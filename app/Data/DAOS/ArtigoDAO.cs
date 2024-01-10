@@ -131,7 +131,7 @@ namespace app.Data
             string cmd;
             if (containsKey(key))
             {
-                cmd = "UPDATE dbo.Artigo SET id_leilao = @key, id_transacao = @id_transacao, nome = @nome, condicao = @condicao, raridade = @raridade, descricao = @descricao, caminhoImagem = @caminhoImagem, tipo = @tipo WHERE id = @Key";
+                cmd = "UPDATE dbo.Artigo SET id = @key, id_leilao = @id_leilao, id_transacao = @id_transacao, nome = @nome, condicao = @condicao, raridade = @raridade, descricao = @descricao, caminhoImagem = @caminhoImagem, tipo = @tipo WHERE id = @Key";
             }
             else
             {
@@ -230,18 +230,17 @@ namespace app.Data
                         {
                             while (reader.Read())
                             {
-                                Artigo artigo = new Artigo(
-                                    reader.GetInt32(0), 
-                                    reader.GetInt32(1), 
-                                    reader.GetInt32(2),
-                                    reader.GetString(3), 
-                                    reader.GetDecimal(4),
-                                    reader.GetString(5),
-                                    reader.GetString(6),
-                                    reader.GetString(7),
-                                    (TipoArtigo)Enum.Parse(typeof(TipoArtigo), reader.GetString(8))
-                                );
-                                artigos.Add(artigo);
+                                int id = reader.GetInt32(reader.GetOrdinal("id"));
+                                int id_leilao = reader.GetInt32(reader.GetOrdinal("id_leilao"));
+                                int id_transacao = reader.GetInt32(reader.GetOrdinal("id_transacao"));
+                                string nome = reader.GetString(reader.GetOrdinal("nome"));
+                                decimal condicao = reader.GetDecimal(reader.GetOrdinal("condicao"));
+                                string raridade = reader.GetString(reader.GetOrdinal("raridade"));
+                                string descricao = reader.GetString(reader.GetOrdinal("descricao"));
+                                string caminhoImagem = reader.GetString(reader.GetOrdinal("caminhoImagem"));
+                                TipoArtigo tipo = (TipoArtigo)Enum.Parse(typeof(TipoArtigo), reader.GetString(reader.GetOrdinal("tipo")));
+                                Artigo a = new Artigo(id,id_leilao, id_transacao, nome, condicao, raridade, descricao, caminhoImagem, tipo);
+                                artigos.Add(a);
                             }
                         }
                     }
