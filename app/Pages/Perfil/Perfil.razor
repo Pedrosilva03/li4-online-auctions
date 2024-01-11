@@ -7,12 +7,17 @@
     private string email = "";
     private string telemovel = "";
     private string id = "";
+    private string password = "";
+    private string password_atual = "";
 
     private string alterar_nickname = "";
     private string alterar_email = "";
     private string alterar_telemovel = "";
+    private string alterar_password = "";
 
     public bool alterar_dados = false;
+    public bool dados_alterados = false;
+    public bool password_error = false;
 
     protected override void OnInitialized()
     {
@@ -44,30 +49,50 @@
 
     void alterar_dados_conta(){
         alterar_dados = true;
+        password_error = false;
+        dados_alterados = false;
+        alterar_nickname = "";
+        alterar_email = "";
+        alterar_telemovel = "";
+        alterar_password = "";
+        password_atual = "";
     }
 
     void guardar_alteracoes(){
-        alterar_dados = false;
         IDatabaseFacade db = new DatabaseFacade();
         Pessoa utilizador = CurrentUser.user;
-
-        if(alterar_nickname != "")
+        password = utilizador.getPassword();
+        password_error = false;
+        if(password != password_atual && (alterar_nickname != "" || alterar_email != "" || alterar_telemovel != "" || alterar_password != ""))
+        {
+            password_error = true;
+        }
+        if(alterar_nickname != "" && !password_error)
         {
             nickname = alterar_nickname;
             utilizador.setNickname(nickname);
         }
-        if(alterar_email != "")
+        if(alterar_email != "" && !password_error)
         {
             email = alterar_email;
             utilizador.setEmail(email);
         }
-        if(alterar_telemovel != "")
+        if(alterar_telemovel != "" && !password_error)
         {
             telemovel = alterar_telemovel;
             utilizador.setTelemovel(int.Parse(telemovel));
         }
-        db.add_Pessoa(utilizador);
-        NavigationManager.NavigateTo("/Perfil", forceLoad:true);
+        if(alterar_password != "" && !password_error)
+        {
+                password = alterar_password;
+                utilizador.setPassword(alterar_password);
+        }
+        if(!password_error)
+        {
+            alterar_dados = false;
+            if(alterar_nickname != "" || alterar_email != "" || alterar_telemovel != "" || alterar_password != "") dados_alterados = true;
+            db.add_Pessoa(utilizador);
+        }
     }
 }
 
@@ -107,9 +132,30 @@
                 <label for="telemovel">Telemóvel: </label>
                 <input class="edit-input" type="text" placeholder=" @telemovel" @bind="@alterar_telemovel" />
             </p>
+            <p class="profile-info">
+                <label for="password nova">Password Nova: </label>
+                <input class="edit-input" type="password"  @bind="@alterar_password" />
+            </p>
+            <p class="profile-info">
+                <label for="password atual">Password Atual para autorizar alterações: </label>
+                <input class="edit-input" type="password" @bind="@password_atual" />
+            </p>
+
         }
 
         <p class="profile-info">ID: @id</p>
+
+        @if (password_error){
+        <div class="error-message">
+                <p>Password Atual não foi verificada, logo dados não podem ser alterados! </p>
+            </div>
+        }
+
+        @if (dados_alterados){
+        <div class="error-message">
+                <p>Dados alterados com sucesso! </p>
+            </div>
+        }
 
         @if(!alterar_dados) {
             <div class="edit-profile" @onclick="@alterar_dados_conta">

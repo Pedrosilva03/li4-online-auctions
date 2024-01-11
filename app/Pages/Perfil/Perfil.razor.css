@@ -77,3 +77,8 @@
     transform: scale(1.05);
     color: inherit;
 }
+
+.error-message {
+    font-weight: bold;
+    font-size: larger;
+}
