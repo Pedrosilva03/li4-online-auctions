@@ -8,10 +8,10 @@ namespace app.Leiloeira.Leiloes
     {
         private int id;
         private int id_Criador;
+        private string descricao;
         private decimal precoReserva;
         private decimal precoMinimo;
         private DateTime dataHoraInicial;
-        private DateTime dataHoraFinal;
         private int duracao;
         private int id_lanceAtual;
         private int id_lanceFinal;
@@ -21,14 +21,14 @@ namespace app.Leiloeira.Leiloes
 
         //CONSTRUTORES//
 
-        public Leilao(int id, int id_Criador, decimal precoReserva, decimal precoMinimo, DateTime dataHoraInicial, DateTime dataHoraFinal, int duracao, int id_lanceAtual, int id_lanceFinal, Dictionary<int, Pessoa> participantes, Dictionary<int, Lance> lancesFeitos, Dictionary<int, Artigo> artigos)
+        public Leilao(int id, int id_Criador, string descricao, decimal precoReserva, decimal precoMinimo, DateTime dataHoraInicial, int duracao, int id_lanceAtual, int id_lanceFinal, Dictionary<int, Pessoa> participantes, Dictionary<int, Lance> lancesFeitos, Dictionary<int, Artigo> artigos)
         {
             this.id = id;
             this.id_Criador = id_Criador;
+            this.descricao = descricao;
             this.precoReserva = precoReserva;
             this.precoMinimo = precoMinimo;
             this.dataHoraInicial = dataHoraInicial;
-            this.dataHoraFinal = dataHoraFinal;
             this.duracao = duracao;
             this.id_lanceAtual = id_lanceAtual;
             this.id_lanceFinal = id_lanceFinal;
@@ -59,6 +59,16 @@ namespace app.Leiloeira.Leiloes
             this.id_Criador = id_Criador;
         }
 
+        public string getDescricao()
+        {
+            return this.descricao;
+        }
+
+        public void setDescricao(string descricao)
+        {
+            this.descricao = descricao;
+        }
+
         public decimal getPrecoReserva()
         {
             return this.precoReserva;
@@ -87,16 +97,6 @@ namespace app.Leiloeira.Leiloes
         public void setDataHoraInicial(DateTime d)
         {
             this.dataHoraInicial = d;
-        }
-
-        public DateTime getDataHoraFinal()
-        {
-            return this.dataHoraFinal;
-        }
-
-        public void setDataHoraFinal(DateTime d)
-        {
-            this.dataHoraFinal = d;
         }
 
         public int getDuracao()

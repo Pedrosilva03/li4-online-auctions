@@ -1,20 +1,19 @@
 @page "/Criar_leilao"
 
 @code {
-    public string descricao { get; set; }
-    public float preco_inicial { get; set; }
-    public float preco_reserva { get; set; }
-    public DateTime duracao { get; set; }
-    public DateTime data_inicio { get; set; }
-    // public TimeSpan hora_inicio { get; set; }
+    private int id;
+    private int id_criador;
+    private string descricao;
+    private decimal preco_inicial;
+    private decimal preco_reserva;
+    private DateTime data_inicio;
+    private int duracao;
 
     List<object> templates = new List<object>(); 
 
     void AddTemplate() {
         templates.Add(new object());
     }
-
-    // TODO: Criar o Leilão e submeter 
 }
 
 <PageTitle>Criar Leilão</PageTitle>
@@ -24,7 +23,7 @@
 <div class="auction-templates-container">
     <div class="auction-info-container">
         <div class="auction-input">
-            <textarea class="description" rows="6" cols="50" placeholder="Descrição" maxlength="100" @bind="@descricao" required />
+            <textarea class="description" rows="6" cols="50" placeholder="Descrição Máx: 280 carateres" maxlength="280" @bind="@descricao" required />
         </div>
 
         <div class="info-row">
@@ -42,7 +41,7 @@
         <div class="info-row">
             <div class="auction-input">
                 <label for="duration">Duração:</label>
-                <input class="input" name="duration" type="number" step="1" @bind="@duracao" required />
+                <input class="input" name="duration" type="number"  placeholder="Em Horas" step="1" @bind="@duracao" required />
             </div>
 
             <div class="auction-input">

@@ -73,14 +73,13 @@ namespace app.Data
                                 int id_leilao = reader.GetInt32(reader.GetOrdinal("id_leilao"));
                                 int id_transacao = reader.GetInt32(reader.GetOrdinal("id_transacao"));
                                 string nome = reader.GetString(reader.GetOrdinal("nome"));
-                                decimal condicao = reader.GetDecimal(reader.GetOrdinal("condicao"));
+                                string condicao = reader.GetString(reader.GetOrdinal("condicao"));
                                 string raridade = reader.GetString(reader.GetOrdinal("raridade"));
-                                string descricao = reader.GetString(reader.GetOrdinal("descricao"));
                                 string caminhoImagem = reader.GetString(reader.GetOrdinal("caminhoImagem"));
                                 TipoArtigo tipo = (TipoArtigo)Enum.Parse(typeof(TipoArtigo), reader.GetString(reader.GetOrdinal("tipo")));
 
 
-                                a = new Artigo(id, id_leilao, id_transacao, nome, condicao, raridade, descricao, caminhoImagem, tipo);
+                                a = new Artigo(id, id_leilao, id_transacao, nome, condicao, raridade, caminhoImagem, tipo);
                             }
                         }
                     }
@@ -131,11 +130,11 @@ namespace app.Data
             string cmd;
             if (containsKey(key))
             {
-                cmd = "UPDATE dbo.Artigo SET id = @key, id_leilao = @id_leilao, id_transacao = @id_transacao, nome = @nome, condicao = @condicao, raridade = @raridade, descricao = @descricao, caminhoImagem = @caminhoImagem, tipo = @tipo WHERE id = @Key";
+                cmd = "UPDATE dbo.Artigo SET id = @key, id_leilao = @id_leilao, id_transacao = @id_transacao, nome = @nome, condicao = @condicao, raridade = @raridade, caminhoImagem = @caminhoImagem, tipo = @tipo WHERE id = @Key";
             }
             else
             {
-                cmd = "INSERT INTO dbo.Artigo (id, id_leilao, id_transacao,  nome, condicao, raridade, descricao, caminhoImagem, tipo) VALUES (@Key, @nome, @id_leilao, @id_transacao, @condicao, @raridade, @descricao, @caminhoImagem, @tipo)";
+                cmd = "INSERT INTO dbo.Artigo (id, id_leilao, id_transacao, nome, condicao, raridade, caminhoImagem, tipo) VALUES (@Key, @nome, @id_leilao, @id_transacao, @condicao, @raridade, @caminhoImagem, @tipo)";
             }
             try
             {
@@ -149,7 +148,6 @@ namespace app.Data
                         command.Parameters.AddWithValue("@nome", value.getNome());
                         command.Parameters.AddWithValue("@condicao", value.getCondicao());
                         command.Parameters.AddWithValue("@raridade", value.getRaridade());
-                        command.Parameters.AddWithValue("@descricao", value.getDescricao());
                         command.Parameters.AddWithValue("@caminhoImagem", value.getCaminhoImagem());
                         command.Parameters.AddWithValue("@tipo", value.getTipo());
 
@@ -234,12 +232,11 @@ namespace app.Data
                                 int id_leilao = reader.GetInt32(reader.GetOrdinal("id_leilao"));
                                 int id_transacao = reader.GetInt32(reader.GetOrdinal("id_transacao"));
                                 string nome = reader.GetString(reader.GetOrdinal("nome"));
-                                decimal condicao = reader.GetDecimal(reader.GetOrdinal("condicao"));
+                                string condicao = reader.GetString(reader.GetOrdinal("condicao"));
                                 string raridade = reader.GetString(reader.GetOrdinal("raridade"));
-                                string descricao = reader.GetString(reader.GetOrdinal("descricao"));
                                 string caminhoImagem = reader.GetString(reader.GetOrdinal("caminhoImagem"));
                                 TipoArtigo tipo = (TipoArtigo)Enum.Parse(typeof(TipoArtigo), reader.GetString(reader.GetOrdinal("tipo")));
-                                Artigo a = new Artigo(id,id_leilao, id_transacao, nome, condicao, raridade, descricao, caminhoImagem, tipo);
+                                Artigo a = new Artigo(id,id_leilao, id_transacao, nome, condicao, raridade, caminhoImagem, tipo);
                                 artigos.Add(a);
                             }
                         }

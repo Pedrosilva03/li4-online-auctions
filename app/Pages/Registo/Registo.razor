@@ -21,13 +21,20 @@
     }
 
     bool valida_campos() {
-        return nickname != "" && email != "" && password != "" && confirmar_password != "" && telemovel != "";
+        return nickname != "" && email != "" && password != "" && confirmar_password != "" && telemovel != "" && password == confirmar_password;
     }
 
     void create_account() {
         IDatabaseFacade db = new DatabaseFacade();
 
-        int id = db.get_num_Pessoas();
+        int id;
+        bool id_existe;
+
+        do{
+            id = new Random().Next(1, 1000000);
+
+            id_existe = db.IDPessoa_existe(id);
+        }while(id_existe);
 
         Dictionary<int, Leilao> leiloesFavoritos = new Dictionary<int, Leilao>();
         Dictionary<int, Transacao> transacoesFeitas = new Dictionary<int, Transacao>();
@@ -37,7 +44,7 @@
 
         Pessoa p = new Pessoa(id, 0, email, password, int.Parse(telemovel), nickname, tipo, leiloesFavoritos, transacoesFeitas, estado);  
 
-        if (valida_campos() && !Pessoa_existe(p)) {
+        if (valida_campos()) {
             db.add_Pessoa(p); 
             NavigationManager.NavigateTo("/");
         }
@@ -69,7 +76,7 @@
 
         <div class="signin-error-message">
             @if (show_error_message) {
-                <p>Algo correu mal 🤔</p>
+                <p>Password não confirmada 🤔</p>
             }
         </div>
     </div>

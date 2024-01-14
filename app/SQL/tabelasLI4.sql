@@ -2,8 +2,21 @@ DROP DATABASE leiloes;
 
 CREATE DATABASE leiloes;
 
-USE leiloes;
+USE master;
+GO
 
+ALTER DATABASE leiloes
+SET SINGLE_USER
+WITH ROLLBACK IMMEDIATE;
+GO
+
+USE master;
+GO
+
+DROP DATABASE leiloes;
+GO
+
+USE leiloes;
 
 CREATE TABLE Pessoa (
     id INT PRIMARY KEY NOT NULL,
@@ -27,13 +40,13 @@ CREATE TABLE Lance (
 CREATE TABLE Leilao (
     id INT PRIMARY KEY NOT NULL,
     id_Criador INT NOT NULL,
+	descricao VARCHAR(280),
     precoReserva DECIMAL(9, 2) NOT NULL,
     precoMinimo DECIMAL(9, 2) NOT NULL,
-    dataHoraInicial DATETIME,
-    dataHoraFinal DATETIME,
+    dataHoraInicial DATETIME NOT NULL,
     duracao INT NOT NULL,
-    id_lanceAtual INT NOT NULL,
-    id_lanceFinal INT NOT NULL,
+    id_lanceAtual INT,
+    id_lanceFinal INT,
     FOREIGN KEY (id_lanceAtual) REFERENCES Lance(id),
 	FOREIGN KEY (id_lanceFinal) REFERENCES Lance(id)
 );
@@ -51,11 +64,10 @@ CREATE TABLE Transacao (
 CREATE TABLE Artigo (
     id INT PRIMARY KEY NOT NULL,
     id_leilao INT NOT NULL,
-    id_transacao INT NOT NULL,
+    id_transacao INT,
     nome VARCHAR(100) NOT NULL,
-    condicao DECIMAL(3, 2) NOT NULL,
+    condicao VARCHAR(50) NOT NULL,
     raridade VARCHAR(50) NOT NULL,
-    descricao VARCHAR(250) NOT NULL,
     caminhoImagem VARCHAR(250) NOT NULL,
     tipo VARCHAR(50) NOT NULL,
     FOREIGN KEY (id_transacao) REFERENCES Transacao(id),
@@ -92,5 +104,5 @@ USE leiloes;
 
 INSERT INTO dbo.Pessoa (id, tipo, email, password, saldo, telemovel, nickname, estado) VALUES (0, 'Administrador', 'admin@gmail.com', 'admin123', 0, 911111111, 'Admin1', 'Desbloqueado');
 
-INSERT INTO dbo.Pessoa (id, tipo, email, password, saldo, telemovel, nickname, estado) VALUES (1, 'Utilizador', 'yeet@gmail.com', 'yeet', 0, 968780666, 'Yeet', 'Bloqueado');
+INSERT INTO dbo.Pessoa (id, tipo, email, password, saldo, telemovel, nickname, estado) VALUES (1, 'Utilizador', 'yeet@gmail.com', 'yeet', 0, 968780666, 'Yeet', 'Desbloqueado');
 

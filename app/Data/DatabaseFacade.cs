@@ -33,16 +33,12 @@ namespace app.Data
             return this.artigoDAO.get(idArtigo).getNome() == nome;
         }
 
-        public bool Cond_existe(int idArtigo, decimal condicao){
+        public bool Cond_existe(int idArtigo, string condicao){
             return this.artigoDAO.get(idArtigo).getCondicao() == condicao;
         }
 
         public bool Rarid_existe(int idArtigo, string raro){
             return this.artigoDAO.get(idArtigo).getRaridade() == raro;
-        }
-
-        public bool Descr_existe(int idArtigo, string descricao){
-            return this.artigoDAO.get(idArtigo).getDescricao() == descricao;
         }
 
         public bool Path_existe(int idArtigo, string p){
@@ -137,20 +133,20 @@ namespace app.Data
             return this.leilaoDAO.get(idLeilao).getId_Criador() == idCriador;
         }
 
+        public bool Descricao_existe(int idLeilao, string descricao){
+            return this.leilaoDAO.get(idLeilao).getDescricao() == descricao;
+        }
+
         public bool PReserva_existe(int idLeilao, decimal reserva){
             return this.leilaoDAO.get(idLeilao).getPrecoReserva() == reserva;
         }
 
-        public bool PMinimo_existe(int idLeilao, int minimo){
+        public bool PMinimo_existe(int idLeilao, decimal minimo){
             return this.leilaoDAO.get(idLeilao).getPrecoMinimo() == minimo;
         }
 
         public bool DataInicial_existe(int idLeilao, DateTime dataHoraInicial){
             return this.leilaoDAO.get(idLeilao).getDataHoraInicial().Equals(dataHoraInicial);
-        }
-
-        public bool DataFinal_existe(int idLeilao, DateTime dataHoraFinal){
-            return this.leilaoDAO.get(idLeilao).getDataHoraFinal().Equals(dataHoraFinal);
         }
 
         public bool Duracao_existe(int idLeilao, int d){

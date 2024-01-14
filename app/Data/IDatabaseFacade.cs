@@ -12,9 +12,8 @@ namespace app.Data
 
         public bool ID_existe(int idArtigo);
         public bool Nome_existe(int idArtigo, string nome);
-        public bool Cond_existe(int idArtigo, decimal condicao);
+        public bool Cond_existe(int idArtigo, string condicao);
         public bool Rarid_existe(int idArtigo, string raro);
-        public bool Descr_existe(int idArtigo, string descricao);
         public bool Path_existe(int idArtigo, string p);
         public bool Art_existe(Artigo a);
         public Artigo get_Artigo(int idArtigo);
@@ -40,10 +39,10 @@ namespace app.Data
 
         public bool IDLeilao_existe(int idLeilao);
         public bool IdCriador_existe(int idLeilao, int idCriador);
+        public bool Descricao_existe(int idLeilao, string descricao);
         public bool PReserva_existe(int idLeilao, decimal reserva);
-        public bool PMinimo_existe(int idLeilao, int minimo);
+        public bool PMinimo_existe(int idLeilao, decimal minimo);
         public bool DataInicial_existe(int idLeilao, DateTime dataHoraInicial);
-        public bool DataFinal_existe(int idLeilao, DateTime dataHoraFinal);
         public bool Duracao_existe(int idLeilao, int d);
         public bool IDLAtual_existe(int idLeilao, int l);
         public bool IDLFinal_existe(int idLeilao, int l);

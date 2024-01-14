@@ -70,16 +70,16 @@ namespace app.Data
                             {
                                 int id = reader.GetInt32(reader.GetOrdinal("id"));
                                 int id_Criador = reader.GetInt32(reader.GetOrdinal("id_Criador"));
+                                string descricao = reader.GetString(reader.GetOrdinal("descricao"));
                                 decimal precoReserva = reader.GetDecimal(reader.GetOrdinal("precoReserva"));
                                 decimal precoMinimo = reader.GetDecimal(reader.GetOrdinal("precoMinimo"));
                                 DateTime dataHoraInicial = reader.GetDateTime(reader.GetOrdinal("dataHoraInicial"));
-                                DateTime dataHoraFinal = reader.GetDateTime(reader.GetOrdinal("dataHoraFinal"));
                                 int duracao = reader.GetInt32(reader.GetOrdinal("duracao"));
                                 int id_lanceAtual = reader.GetInt32(reader.GetOrdinal("id_lanceAtual"));
                                 int id_lanceFinal = reader.GetInt32(reader.GetOrdinal("id_lanceFinal"));
 
 
-                                l = new Leilao(id, id_Criador, precoReserva, precoMinimo, dataHoraInicial, dataHoraFinal, duracao, id_lanceAtual, id_lanceFinal, null, null, null);
+                                l = new Leilao(id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, id_lanceFinal, null, null, null);
                             }
                         }
                     }
@@ -130,11 +130,11 @@ namespace app.Data
             string cmd;
             if (containsKey(key))
             {
-                cmd = "UPDATE dbo.Leilao SET id = @key, id_Criador = @id_Criador, precoReserva = @precoReserva, precoMinimo = @precoMinimo, dataHoraInicial = @dataHoraInicial, dataHoraFinal = @dataHoraFinal, duracao = @duracao, id_lanceAtual = @id_lanceAtual, id_lanceFinal = @id_lanceFinal WHERE id = @Key";
+                cmd = "UPDATE dbo.Leilao SET id = @key, id_Criador = @id_Criador, descricao = @descricao, precoReserva = @precoReserva, precoMinimo = @precoMinimo, dataHoraInicial = @dataHoraInicial, duracao = @duracao, id_lanceAtual = @id_lanceAtual, id_lanceFinal = @id_lanceFinal WHERE id = @Key";
             }
             else
             {
-                cmd = "INSERT INTO dbo.Leilao (id, id_Criador, precoReserva, precoMinimo, dataHoraInicial, dataHoraFinal, duracao, id_lanceAtual, id_lanceFinal) VALUES (@Key, @id_Criador, @precoReserva, @precoMinimo, @dataHoraInicial, @dataHoraFinal, @duracao, @id_lanceAtual, @id_lanceFinal)";
+                cmd = "INSERT INTO dbo.Leilao (id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, id_lanceFinal) VALUES (@Key, @id_Criador, @precoReserva, @precoMinimo, @dataHoraInicial, @duracao, @id_lanceAtual, @id_lanceFinal)";
             }
             try
             {
@@ -144,10 +144,10 @@ namespace app.Data
                     {
                         command.Parameters.AddWithValue("@Key", key);
                         command.Parameters.AddWithValue("@id_Criador", value.getId_Criador());
+                        command.Parameters.AddWithValue("@descricao", value.getDescricao());
                         command.Parameters.AddWithValue("@precoReserva", value.getPrecoReserva());
                         command.Parameters.AddWithValue("@precoMinimo", value.getPrecoMinimo());
                         command.Parameters.AddWithValue("@dataHoraInicial", value.getDataHoraInicial());
-                        command.Parameters.AddWithValue("@dataHoraFinal", value.getDataHoraFinal());
                         command.Parameters.AddWithValue("@duracao", value.getDuracao());
                         command.Parameters.AddWithValue("@id_lanceAtual", value.getIdLanceAtual());
                         command.Parameters.AddWithValue("@id_lanceFinal", value.getIdLanceFinal());
@@ -231,15 +231,15 @@ namespace app.Data
                             {
                                 int id = reader.GetInt32(reader.GetOrdinal("id"));
                                 int id_Criador = reader.GetInt32(reader.GetOrdinal("id_Criador"));
+                                string descricao = reader.GetString(reader.GetOrdinal("descricao"));
                                 decimal precoReserva = reader.GetDecimal(reader.GetOrdinal("precoReserva"));
                                 decimal precoMinimo = reader.GetDecimal(reader.GetOrdinal("precoMinimo"));
                                 DateTime dataHoraInicial = reader.GetDateTime(reader.GetOrdinal("dataHoraInicial"));
-                                DateTime dataHoraFinal = reader.GetDateTime(reader.GetOrdinal("dataHoraFinal"));
                                 int duracao = reader.GetInt32(reader.GetOrdinal("duracao"));
                                 int id_lanceAtual = reader.GetInt32(reader.GetOrdinal("id_lanceAtual"));
                                 int id_lanceFinal = reader.GetInt32(reader.GetOrdinal("id_lanceFinal"));
                                 /* TODO: DICIONÁRIOS (???) dataRowDictionary = Enumerable.Range(0, reader.FieldCount).ToDictionary(i => reader.GetName(i), i=> reader.GetValue(i).ToString());*/
-                                Leilao l = new Leilao(id, id_Criador, precoReserva, precoMinimo, dataHoraFinal, dataHoraFinal, duracao, id_lanceAtual, id_lanceFinal, null, null, null);
+                                Leilao l = new Leilao(id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, id_lanceFinal, null, null, null);
                                 leiloes.Add(l);
                             }
                         }

@@ -170,7 +170,7 @@
         }
     </div>
 
-    @if(!CurrentUser.isAdmin) {
+    @if(!CurrentUser.isAdmin && !alterar_dados) {
         <div class="transactions-history-button">
             <a>Histórico de <br> transações</a>
         </div>
