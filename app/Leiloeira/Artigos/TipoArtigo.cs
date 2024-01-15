@@ -2,8 +2,32 @@ namespace app.Leiloeira.Artigos
 {
     public enum TipoArtigo
     {
-        Faca,
-        Luvas,
-        Arma
+        LUVA,
+        AK47,
+        M4A1,
+        AWP,
+        DEAGLE,
+        USP,
+        GLOCK,
+        P250,
+        FAMAS,
+        GALIL,
+        AUG,
+        SG,
+        M249,
+        NEGEV,
+        MP9,
+        MAC10,
+        UMP,
+        P90,
+        PPBIZON,
+        XM,
+        MAG7,
+        SAWEDOFF,
+        NOVA,
+        SCAR,
+        G3,
+        KARAMBIT,
+        BUTTERFLY
     }
 }

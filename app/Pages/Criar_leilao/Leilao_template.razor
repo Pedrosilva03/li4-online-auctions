@@ -1,13 +1,11 @@
 @using System;
 
 @code {
-    private int id;
-    private int id_leilão;
-    private string imagem;
-    private string tipo_item;
-    private string nome_skin;
-    private string condicao;
-    private string raridade;
+    [Parameter] public string imagem { get; set; }
+    [Parameter] public string tipo_item { get; set; }
+    [Parameter] public string nome_skin { get; set; }
+    [Parameter] public string condicao { get; set; }
+    [Parameter] public string raridade { get; set; }
 }
 
 <div class="template-container">
@@ -18,34 +16,34 @@
         <div class="auction-input">   
             <select class="input" name="weapon" @bind="@tipo_item" required>
                 <option value="" disabled selected hidden>Arma/Luva/Faca</option>
-                    <option value="AK-47">AK-47</option>
+                    <option value="AK47">AK-47</option>
                     <option value="M4A1">M4A1</option>
                     <option value="AWP">AWP</option>
-                    <option value="Desert Eagle">Desert Eagle</option>
-                    <option value="USP-S">USP-S</option>
-                    <option value="Glock-18">Glock-18</option>
+                    <option value="DEAGLE">Desert Eagle</option>
+                    <option value="USP">USP-S</option>
+                    <option value="GLOCK">Glock-18</option>
                     <option value="P250">P250</option>
                     <option value="FAMAS">FAMAS</option>
-                    <option value="Galil AR">Galil AR</option>
+                    <option value="GALIL">Galil AR</option>
                     <option value="AUG">AUG</option>
-                    <option value="SG 553">SG 553</option>
+                    <option value="SG">SG 553</option>
                     <option value="M249">M249</option>
-                    <option value="Negev">Negev</option>
+                    <option value="NEGEV">Negev</option>
                     <option value="MP9">MP9</option>
-                    <option value="MAC-10">MAC-10</option>
-                    <option value="UMP-45">UMP-45</option>
+                    <option value="MAC10">MAC-10</option>
+                    <option value="UMP">UMP-45</option>
                     <option value="P90">P90</option>
-                    <option value="PP-Bizon">PP-Bizon</option>
-                    <option value="XM1014">XM1014</option>
-                    <option value="MAG-7">MAG-7</option>
-                    <option value="Sawed-Off">Sawed-Off</option>
-                    <option value="Nova">Nova</option>
-                    <option value="SCAR-20">SCAR-20</option>
-                    <option value="G3SG1">G3SG1</option>
-                    <option value="Luva">Luva</option>
-                    <option value="M9 Bayonet">M9 Bayonet</option>
-                    <option value="Karambit">Karambit</option>
-                    <option value="Butterfly Knife">Butterfly Knife</option>
+                    <option value="PPBIZON">PP-Bizon</option>
+                    <option value="XM">XM1014</option>
+                    <option value="MAG7">MAG-7</option>
+                    <option value="SAWEDOFF">Sawed-Off</option>
+                    <option value="NOVA">Nova</option>
+                    <option value="SCAR">SCAR-20</option>
+                    <option value="G3">G3SG1</option>
+                    <option value="LUVA">Luva</option>
+                    <option value="M9">M9 Bayonet</option>
+                    <option value="KARAMBIT">Karambit</option>
+                    <option value="BUTTERFLY">Butterfly Knife</option>
             </select>
         </div>
 
