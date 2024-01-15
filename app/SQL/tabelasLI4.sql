@@ -63,12 +63,12 @@ CREATE TABLE Transacao (
 
 CREATE TABLE Artigo (
     id INT PRIMARY KEY NOT NULL,
-    id_leilao INT NOT NULL,
+    id_leilao INT,
     id_transacao INT,
     nome VARCHAR(100) NOT NULL,
     condicao VARCHAR(50) NOT NULL,
     raridade VARCHAR(50) NOT NULL,
-    caminhoImagem VARCHAR(250) NOT NULL,
+    caminhoImagem VARCHAR(250),
     tipo VARCHAR(50) NOT NULL,
     FOREIGN KEY (id_transacao) REFERENCES Transacao(id),
 	FOREIGN KEY (id_leilao) REFERENCES Leilao(id)
@@ -97,6 +97,8 @@ CREATE TABLE HistoricoTransacoes (
 );
 
 SELECT * FROM dbo.Pessoa;
+
+SELECT * FROM dbo.Artigo;
 
 DELETE dbo.Pessoa;
 

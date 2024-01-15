@@ -1,11 +1,25 @@
 @using System;
 
+@inherits ComponentBase
+
 @code {
-    [Parameter] public string imagem { get; set; }
-    [Parameter] public string tipo_item { get; set; }
-    [Parameter] public string nome_skin { get; set; }
-    [Parameter] public string condicao { get; set; }
-    [Parameter] public string raridade { get; set; }
+    [Parameter]
+    public Leilao_template template { get; set; }
+
+    [Parameter] 
+    public string imagem { get; set; }
+
+    [Parameter, EditorRequired] 
+    public string tipo_item { get; set; }
+
+    [Parameter, EditorRequired] 
+    public string nome_skin { get; set; }
+
+    [Parameter, EditorRequired] 
+    public string condicao { get; set; }
+
+    [Parameter, EditorRequired] 
+    public string raridade { get; set; }
 }
 
 <div class="template-container">
@@ -14,7 +28,7 @@
         </div>
 
         <div class="auction-input">   
-            <select class="input" name="weapon" @bind="@tipo_item" required>
+            <select class="input" name="weapon" @bind="@template.tipo_item" required>
                 <option value="" disabled selected hidden>Arma/Luva/Faca</option>
                     <option value="AK47">AK-47</option>
                     <option value="M4A1">M4A1</option>
@@ -48,11 +62,11 @@
         </div>
 
         <div class="auction-input">
-            <input class="input" name="nome" type="text" placeholder="Nome da skin" @bind="@nome_skin" required />
+            <input class="input" name="nome" type="text" placeholder="Nome da skin" @bind="@template.nome_skin" required />
         </div>
 
         <div class="auction-input">
-            <select class="input" name="condition" @bind="@condicao" required>
+            <select class="input" name="condition" @bind="@template.condicao" required>
                 <option value="" disabled selected hidden>Condição</option>
                 <option value="Factory-New">Factory-New</option>
                 <option value="Minimal-Wear">Minimal-wear</option>
@@ -63,7 +77,7 @@
         </div>
 
         <div class="auction-input">
-            <select class="input" name="rarity" @bind="@raridade" required>
+            <select class="input" name="rarity" @bind="@template.raridade" required>
                 <option value="" disabled selected hidden>Raridade</option>
                 <option value="Cinzento">Cinzento</option>
                 <option value="Azul-Claro">Azul-Claro</option>

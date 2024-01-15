@@ -3,8 +3,8 @@ namespace app.Leiloeira.Artigos
     public class Artigo
     {
         private int id;
-        private int id_leilão;
-        private int id_transacao;
+        private int? id_leilão;
+        private int? id_transacao;
         private string nome;
         private string condicao;
         private string raridade;

@@ -134,7 +134,7 @@ namespace app.Data
             }
             else
             {
-                cmd = "INSERT INTO dbo.Artigo (id, id_leilao, id_transacao, nome, condicao, raridade, caminhoImagem, tipo) VALUES (@Key, @nome, @id_leilao, @id_transacao, @condicao, @raridade, @caminhoImagem, @tipo)";
+                cmd = "INSERT INTO dbo.Artigo (id, id_leilao, id_transacao, nome, condicao, raridade, caminhoImagem, tipo) VALUES (@Key, @id_leilao, @id_transacao, @nome, @condicao, @raridade, @caminhoImagem, @tipo)";
             }
             try
             {
@@ -149,15 +149,17 @@ namespace app.Data
                         command.Parameters.AddWithValue("@condicao", value.getCondicao());
                         command.Parameters.AddWithValue("@raridade", value.getRaridade());
                         command.Parameters.AddWithValue("@caminhoImagem", value.getCaminhoImagem());
-                        command.Parameters.AddWithValue("@tipo", value.getTipo());
+                        command.Parameters.AddWithValue("@tipo", value.getTipo().ToString());
+
 
                         con.Open();
                         command.ExecuteNonQuery();
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine($"Error in put method: {ex.Message}");
                 throw new DAOException("Erro no put do ArtigoDAO");
             }
         }
