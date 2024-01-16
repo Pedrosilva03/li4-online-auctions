@@ -2,20 +2,54 @@
 @using System;
 
 @code {
-    public int id { get; set; }
-    public string arma { get; set; }
-    public string skin { get; set; }
-    public string raridade { get; set; }
-    public string condicao { get; set; }
-    public double preco_maximo { get; set; }
-    // Arranjar maneira de meter o tempo
+    public int id;
+    public string arma;
+    public string skin;
+    public string raridade;
+    public string condicao;
+    public decimal preco_maximo;
+    public bool pesquisado = false;
+    public bool showErrorMessage = false;
 
-    void UpdateUI() {
-        StateHasChanged();
+    public ICollection<Leilao> leiloes = new List<Leilao>();
+    public List<Artigo> artigos = new List<Artigo>();
+
+    IDatabaseFacade db = new DatabaseFacade();
+
+    protected override void OnInitialized()
+    {
+        leiloes = db.get_leiloes_nao_acabados();
     }
 
-    bool showSearchInput() {
-        return id!=0 || !string.IsNullOrEmpty(arma) || !string.IsNullOrEmpty(skin) || !string.IsNullOrEmpty(raridade) || !string.IsNullOrEmpty(condicao) || preco_maximo!=0;
+    
+
+    Dictionary<string, object> GetDisabledAttribute()
+    {
+        var attributes = new Dictionary<string, object>();
+        if (id != 0)
+        {
+            attributes["disabled"] = "disabled";
+            arma = "";
+            skin = "";
+            raridade = "";
+            condicao = "";
+            preco_maximo = 0;
+        }
+        return attributes;
+    }
+
+    void pesquisar(){
+        if(id!= 0 && db.IDLeilao_existe(id))
+        {
+            showErrorMessage = false;
+            pesquisado = true;
+            artigos = db.get_artigos_leilao(id);
+        }
+        else
+        {
+            showErrorMessage = true;
+            pesquisado = false;
+        }
     }
 }
 
@@ -32,7 +66,7 @@
 
         <div class="input-container-row">
             <div class="search-input">
-                <select name="weapon" @bind="@arma">
+                <select name="weapon" @bind="@arma" @attributes="GetDisabledAttribute()">
                     <option value="" disabled selected hidden>Arma/Luva/Faca</option>
                     <option value="AK-47">AK-47</option>
                     <option value="M4A1">M4A1</option>
@@ -66,14 +100,14 @@
             </div>
 
             <div class="search-input">
-                <input type="text" placeholder="Skin" @bind="@skin" />
+                <input type="text" placeholder="Skin" @bind="@skin" @attributes="GetDisabledAttribute()" />
             </div>
         </div>
 
         <div class="input-container-row">
             <div class="search-input">
-                <select name="rarity" @bind="@raridade">
-                    <option value="" disabled selected hidden>Raridate</option>
+                <select name="rarity" @bind="@raridade" @attributes="GetDisabledAttribute()">
+                    <option value="" disabled selected hidden>Raridade</option>
                     <option value="Cinzento">Cinzento</option>
                     <option value="Azul-Claro">Azul-Claro</option>
                     <option value="Azul">Azul</option>
@@ -85,7 +119,7 @@
             </div>
 
             <div class="search-input">
-                <select name="condition" @bind="@condicao">
+                <select name="condition" @bind="@condicao" @attributes="GetDisabledAttribute()">
                     <option value="" disabled selected hidden>Condição</option>
                     <option value="Factory-New">Factory-New</option>
                     <option value="Minimal-Wear">Minimal-wear</option>
@@ -99,20 +133,15 @@
         <div class="input-container-row">
             <div class="search-input">
                 <label for="preco_maximo">Preço máximo: </label>
-                <input name="preco_maximo" type="number" step="0.01" placeholder="0" @bind="@preco_maximo" />
-            </div>
-
-            <div class="search-input">
-                <label for="tempo">Tempo para acabar: </label>
-                <input name="tempo" type="time" placeholder="Tempo para acabar" />
+                <input name="preco_maximo" type="number" step="0.01" placeholder="0" @bind="@preco_maximo" @attributes="GetDisabledAttribute()" />
             </div>
         </div>
 
-        <div class="search-button" onclick="UpdateUI">Pesquisar</div>
+        <div class="search-button" @onclick= "pesquisar">Pesquisar</div>
     </div>
 
     <div class="search-results-container">
-        @if (showSearchInput()) {
+        @if (pesquisado) {
             <h1>Resultados de pesquisa</h1>
 
             <div class="show-search-input-container">
@@ -123,33 +152,25 @@
                     @if (!string.IsNullOrEmpty(raridade)) { <span class="input-type">Raridade: </span>@raridade }
                     @if (!string.IsNullOrEmpty(condicao)) { <span class="input-type">Condição: </span>@condicao }
                     @if (preco_maximo != 0) { <span class="input-type">Preço Máximo: </span>@preco_maximo }
-                    <!-- Meter aqui o tempo --> 
                 </div>
             </div>
 
             <div class="search-results">
-                <Leilao_card />
+                @foreach (var artigo in artigos) {
+                    string arma = artigo.getTipo().ToString();
+                    string skin = artigo.getNome();
+                    string condicao = artigo.getCondicao();
 
-                <Leilao_card />
-
-                <Leilao_card />
-
-                <Leilao_card />
-
-                <Leilao_card />
-
-                <Leilao_card />
-
-                <Leilao_card />
-
-                <Leilao_card />
-
-                <Leilao_card />
-
-                <Leilao_card />
-
-                <Leilao_card />
+                    <Leilao_card weapon="@arma" skin_name="@skin" condition="@condicao" />
+                }
             </div>
         }
+        <div class="error-message">
+            @if(showErrorMessage){
+                <p> 
+                        Leilão com esses argumentos não existe!
+                </p>
+            }
+        </div> 
     </div>
 </div>

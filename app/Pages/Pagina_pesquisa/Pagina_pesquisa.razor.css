@@ -79,3 +79,8 @@
 .input-type {
     font-weight: bold;
 }
+
+.error-message {
+    font-weight: bold;
+    font-size: larger;
+}
