@@ -15,13 +15,13 @@ namespace app.Leiloeira.Leiloes
         private int duracao;
         private int? id_lanceAtual;
         private int? id_lanceFinal;
-        private Dictionary<int, Pessoa> participantes;
-        private Dictionary<int, Lance> lancesFeitos;
-        private Dictionary<int, Artigo> artigos;
+        private Dictionary<int, Pessoa>? participantes;
+        private Dictionary<int, Lance>? lancesFeitos;
+        private Dictionary<int, Artigo>? artigos;
 
         //CONSTRUTORES//
 
-        public Leilao(int id, int id_Criador, string descricao, decimal precoReserva, decimal precoMinimo, DateTime dataHoraInicial, int duracao, int? id_lanceAtual, int? id_lanceFinal, Dictionary<int, Pessoa> participantes, Dictionary<int, Lance> lancesFeitos, Dictionary<int, Artigo> artigos)
+        public Leilao(int id, int id_Criador, string descricao, decimal precoReserva, decimal precoMinimo, DateTime dataHoraInicial, int duracao, int? id_lanceAtual, int? id_lanceFinal, Dictionary<int, Pessoa>? participantes, Dictionary<int, Lance>? lancesFeitos, Dictionary<int, Artigo>? artigos)
         {
             this.id = id;
             this.id_Criador = id_Criador;

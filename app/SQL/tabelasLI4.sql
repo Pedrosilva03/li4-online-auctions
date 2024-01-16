@@ -78,7 +78,19 @@ SELECT * FROM dbo.Pessoa;
 
 SELECT * FROM dbo.Artigo;
 
+SELECT * FROM dbo.Leilao;
+
+-- Leiloes que ainda nao acabaram 
+SELECT * FROM Leilao WHERE GETDATE() < dataHoraInicial OR GETDATE() > DATEADD(MINUTE, duracao, dataHoraInicial);
+
+-- Leiloes e as suas skins
+SELECT Leilao.*, Artigo.* FROM Leilao LEFT JOIN Artigo ON Leilao.id = Artigo.id_leilao;
+
 DELETE dbo.Pessoa;
+
+DELETE dbo.Leilao;
+
+DELETE dbo.Artigo;
 
 USE leiloes;
 

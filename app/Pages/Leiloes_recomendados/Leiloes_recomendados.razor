@@ -1,5 +1,20 @@
 @page "/leiloes_recomendados"
 
+@code {
+    public bool existem_leiloes = false;
+
+    public ICollection<Leilao> leiloes_recomendados = new List<Leilao>();
+
+    IDatabaseFacade db = new DatabaseFacade();
+
+    protected override void OnInitialized()
+    {
+        leiloes_recomendados = db.get_leiloes_nao_acabados();
+
+        if (leiloes_recomendados.Count > 0) existem_leiloes = true;
+    }
+}
+
 <PageTitle>Inicio</PageTitle>
 
 <div class="index-container">
@@ -10,8 +25,23 @@
     </a>
 
     <h1 class="home-page-title">Leilões recomendados</h1>
-
+    
     <div class="recommended-auctions">
-        <p>Leilões recomendados aparecem aqui</p>
+        @if(!existem_leiloes) {
+            <p>Não existem leilões</p>
+        } else {
+            @foreach (var leilao in leiloes_recomendados) {
+                int id_leilao = leilao.getID();
+                List<Artigo> artigos = db.get_artigos_leilao(id_leilao);
+                    
+                @foreach (var artigo in artigos) {
+                    string arma = artigo.getTipo().ToString();
+                    string skin = artigo.getNome();
+                    string condicao = artigo.getCondicao();
+
+                    <Leilao_card weapon="@arma" skin_name="@skin" condition="@condicao" />
+                }
+            }
+        }
     </div>
 </div>

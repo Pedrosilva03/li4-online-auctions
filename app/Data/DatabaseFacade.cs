@@ -190,6 +190,16 @@ namespace app.Data
             return this.leilaoDAO.keys();
         }
 
+        public ICollection<Leilao> get_leiloes_nao_acabados()
+        {
+            return this.leilaoDAO.leiloes_nao_acabados();
+        }
+
+        public List<Artigo> get_artigos_leilao(int idLeilao)
+        {
+            return this.leilaoDAO.artigos_leilao(idLeilao);
+        }
+
         //PESSOAS//
 
         public bool IDPessoa_existe(int idPessoa){

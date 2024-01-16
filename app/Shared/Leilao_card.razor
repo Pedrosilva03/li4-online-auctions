@@ -1,10 +1,15 @@
 @code {
-    private string weapon = "AK-47";
-    private string skin_name = "Redline";
-    private string condition = "Field-Tested";
+    [Parameter]
+    public string weapon { get; set; }
+
+    [Parameter]
+    public string skin_name { get; set; }
+
+    [Parameter]
+    public string condition { get; set; }
 }
 
-<a class="auction-card-container" href="" data-aos="fade-up">
+<a class="auction-card-container" data-aos="fade-up">
     <img class="skin-picture" src="imgs/test_skin_img.jpeg">
 
     <div class="weapon-skin">@weapon | @skin_name</div>

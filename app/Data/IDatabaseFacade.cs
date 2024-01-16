@@ -53,6 +53,10 @@ namespace app.Data
         public ICollection<Leilao> get_Leiloes();
         public ICollection<int> get_IDsLeiloes();
 
+        public ICollection<Leilao> get_leiloes_nao_acabados();
+
+        public List<Artigo> get_artigos_leilao(int idLeilao);
+
         //PESSOAS//
 
         public bool IDPessoa_existe(int idPessoa);

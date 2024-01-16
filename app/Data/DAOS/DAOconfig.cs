@@ -4,8 +4,8 @@ namespace app.Data
 {
     public class DAOconfig
     {
-        public const string MACHINE = "MSI";
-        //public const string MACHINE = "VIVOBOOK\\MSSQLSERVER01";
+        //public const string MACHINE = "MSI";
+        public const string MACHINE = "VIVOBOOK\\MSSQLSERVER01";
         public const string DATABASE = "leiloes";
 
         public static string GetConnectionString()

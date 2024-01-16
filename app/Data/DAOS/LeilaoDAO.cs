@@ -1,5 +1,6 @@
 using System.Data.SqlClient;
 using app.Leiloeira.Leiloes;
+using app.Leiloeira.Artigos;
 
 namespace app.Data
 {
@@ -252,6 +253,87 @@ namespace app.Data
                 throw new DAOException("Erro no values do LeilaoDAO");
             }
             return leiloes;
+        }
+
+        public ICollection<Leilao> leiloes_nao_acabados()
+        {
+            ICollection<Leilao> leiloesNaoAcabados = new List<Leilao>();
+            string cmd = "SELECT * FROM Leilao WHERE GETDATE() < dataHoraInicial OR GETDATE() > DATEADD(MINUTE, duracao, dataHoraInicial)";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand command = new SqlCommand(cmd, con))
+                    {
+                        con.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader()) 
+                        {
+                            while (reader.Read()) 
+                            {
+                                int id = reader.GetInt32(reader.GetOrdinal("id"));
+                                int id_Criador = reader.GetInt32(reader.GetOrdinal("id_Criador"));
+                                string descricao = reader.GetString(reader.GetOrdinal("descricao"));
+                                decimal precoReserva = reader.GetDecimal(reader.GetOrdinal("precoReserva"));
+                                decimal precoMinimo = reader.GetDecimal(reader.GetOrdinal("precoMinimo"));
+                                DateTime dataHoraInicial = reader.GetDateTime(reader.GetOrdinal("dataHoraInicial"));
+                                int duracao = reader.GetInt32(reader.GetOrdinal("duracao"));
+                                int? id_lanceAtual = reader.IsDBNull(reader.GetOrdinal("id_lanceAtual")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_lanceAtual"));
+                                int? id_lanceFinal = reader.IsDBNull(reader.GetOrdinal("id_lanceFinal")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_lanceFinal"));
+                                Leilao leilao = new Leilao(id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, id_lanceFinal, null, null, null);
+                                leiloesNaoAcabados.Add(leilao);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in leiloes_nao_acabados method: {ex.Message}");
+                throw new DAOException("Erro na função leiloes_nao_acabados do LeilaoDAO");
+            }
+            return leiloesNaoAcabados;
+        }
+
+        public List<Artigo> artigos_leilao(int key)
+        {
+            List<Artigo> artigos = new List<Artigo>();
+            string cmd = "SELECT * FROM dbo.Artigo WHERE id_leilao = @Key";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand command = new SqlCommand(cmd, con))
+                    {   
+                        command.Parameters.AddWithValue("@Key", key);
+                        con.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(reader.GetOrdinal("id"));
+                                int id_leilao = reader.GetInt32(reader.GetOrdinal("id_leilao"));
+                                int? id_transacao = reader.IsDBNull(reader.GetOrdinal("id_transacao")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_transacao"));
+                                string nome = reader.GetString(reader.GetOrdinal("nome"));
+                                string condicao = reader.GetString(reader.GetOrdinal("condicao"));
+                                string raridade = reader.GetString(reader.GetOrdinal("raridade"));
+                                string caminhoImagem = reader.GetString(reader.GetOrdinal("caminhoImagem"));
+                                TipoArtigo tipo = (TipoArtigo)Enum.Parse(typeof(TipoArtigo), reader.GetString(reader.GetOrdinal("tipo")));
+
+                                Artigo artigo = new Artigo(id, id_leilao, id_transacao, nome, condicao, raridade, caminhoImagem, tipo);
+                                artigos.Add(artigo);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in artigos_leilao method: {ex.Message}");
+                throw new DAOException("Erro na função artigos_leilao do LeilaoDAO");
+            }
+            return artigos;
         }
     }
 }
