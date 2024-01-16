@@ -13,15 +13,15 @@ namespace app.Leiloeira.Leiloes
         private decimal precoMinimo;
         private DateTime dataHoraInicial;
         private int duracao;
-        private int id_lanceAtual;
-        private int id_lanceFinal;
+        private int? id_lanceAtual;
+        private int? id_lanceFinal;
         private Dictionary<int, Pessoa> participantes;
         private Dictionary<int, Lance> lancesFeitos;
         private Dictionary<int, Artigo> artigos;
 
         //CONSTRUTORES//
 
-        public Leilao(int id, int id_Criador, string descricao, decimal precoReserva, decimal precoMinimo, DateTime dataHoraInicial, int duracao, int id_lanceAtual, int id_lanceFinal, Dictionary<int, Pessoa> participantes, Dictionary<int, Lance> lancesFeitos, Dictionary<int, Artigo> artigos)
+        public Leilao(int id, int id_Criador, string descricao, decimal precoReserva, decimal precoMinimo, DateTime dataHoraInicial, int duracao, int? id_lanceAtual, int? id_lanceFinal, Dictionary<int, Pessoa> participantes, Dictionary<int, Lance> lancesFeitos, Dictionary<int, Artigo> artigos)
         {
             this.id = id;
             this.id_Criador = id_Criador;
@@ -109,22 +109,22 @@ namespace app.Leiloeira.Leiloes
             this.duracao = t;
         }
 
-        public int getIdLanceAtual()
+        public int? getIdLanceAtual()
         {
             return this.id_lanceAtual;
         }
 
-        public void setIdLanceAtual(int id)
+        public void setIdLanceAtual(int? id)
         {
             this.id_lanceAtual = id;
         }
 
-        public int getIdLanceFinal()
+        public int? getIdLanceFinal()
         {
             return this.id_lanceFinal;
         }
 
-        public void setIdLanceFinal(int id)
+        public void setIdLanceFinal(int? id)
         {
             this.id_lanceFinal = id;
         }

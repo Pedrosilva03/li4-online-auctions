@@ -1,15 +1,17 @@
 @page "/Criar_leilao"
 
+@inject NavigationManager NavigationManager
+
 @code {
-    private int id_leilao;
-    private int id_criador;
-    private string descricao;
-    private decimal preco_inicial;
-    private decimal preco_reserva;
-    private DateTime data_inicio;
-    private DateTime hora_inicio;
-    private DateTime datetime_inicio;
-    private int duracao;  // minutos
+    public int id_leilao;
+    public int id_criador;
+    public string descricao;
+    public decimal preco_inicial;
+    public decimal preco_reserva;
+    public DateTime data_inicio;
+    public DateTime hora_inicio;
+    public DateTime datetime_inicio;
+    public int duracao;  // minutos
 
     IDatabaseFacade db = new DatabaseFacade();
 
@@ -36,7 +38,7 @@
         TipoArtigo tipo_item_enum;
 
         if (Enum.TryParse(tipo_item, out tipo_item_enum)) {
-            Artigo novo_artigo = new Artigo(id_artigo, null, null, nome_skin, condicao, raridade, "no caralho", tipo_item_enum);
+            Artigo novo_artigo = new Artigo(id_artigo, id_leilao, null, nome_skin, condicao, raridade, "no caralho", tipo_item_enum);
 
             artigos_leilao.Add(id_artigo, novo_artigo);
 
@@ -80,8 +82,10 @@
     void submeter_leilao() {
         CombineDateAndTime();
         id_criador = CurrentUser.user.getID();
-        Leilao leilao = new Leilao(id_leilao, id_criador, descricao, preco_reserva, preco_inicial, datetime_inicio, duracao, 0, 0, null, null, artigos_leilao);
+        Leilao leilao = new Leilao(id_leilao, id_criador, descricao, preco_reserva, preco_inicial, datetime_inicio, duracao, null, null, null, null, artigos_leilao);
         db.add_Leilao(leilao);
+        mete_artigos_na_db();
+        NavigationManager.NavigateTo("/Leiloes_recomendados");
     }
  }
 

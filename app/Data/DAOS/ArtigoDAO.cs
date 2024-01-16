@@ -130,7 +130,7 @@ namespace app.Data
             string cmd;
             if (containsKey(key))
             {
-                cmd = "UPDATE dbo.Artigo SET id = @key, id_leilao = @id_leilao, id_transacao = @id_transacao, nome = @nome, condicao = @condicao, raridade = @raridade, caminhoImagem = @caminhoImagem, tipo = @tipo WHERE id = @Key";
+                cmd = "UPDATE dbo.Artigo SET id_leilao = @id_leilao, id_transacao = @id_transacao, nome = @nome, condicao = @condicao, raridade = @raridade, caminhoImagem = @caminhoImagem, tipo = @tipo WHERE id = @Key";
             }
             else
             {
@@ -144,7 +144,7 @@ namespace app.Data
                     {
                         command.Parameters.AddWithValue("@Key", key);
                         command.Parameters.AddWithValue("@id_leilao", value.getId_leilao());
-                        command.Parameters.AddWithValue("@id_transacao", value.getId_Transacao());
+                        command.Parameters.AddWithValue("@id_transacao", (object)value.getId_Transacao() ?? DBNull.Value);
                         command.Parameters.AddWithValue("@nome", value.getNome());
                         command.Parameters.AddWithValue("@condicao", value.getCondicao());
                         command.Parameters.AddWithValue("@raridade", value.getRaridade());

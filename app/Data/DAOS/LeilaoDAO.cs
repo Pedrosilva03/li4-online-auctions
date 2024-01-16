@@ -130,11 +130,11 @@ namespace app.Data
             string cmd;
             if (containsKey(key))
             {
-                cmd = "UPDATE dbo.Leilao SET id = @key, id_Criador = @id_Criador, descricao = @descricao, precoReserva = @precoReserva, precoMinimo = @precoMinimo, dataHoraInicial = @dataHoraInicial, duracao = @duracao, id_lanceAtual = @id_lanceAtual, id_lanceFinal = @id_lanceFinal WHERE id = @Key";
+                cmd = "UPDATE dbo.Leilao SET id_Criador = @id_Criador, descricao = @descricao, precoReserva = @precoReserva, precoMinimo = @precoMinimo, dataHoraInicial = @dataHoraInicial, duracao = @duracao, id_lanceAtual = @id_lanceAtual, id_lanceFinal = @id_lanceFinal WHERE id = @Key";
             }
             else
             {
-                cmd = "INSERT INTO dbo.Leilao (id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, id_lanceFinal) VALUES (@Key, @id_Criador, @precoReserva, @precoMinimo, @dataHoraInicial, @duracao, @id_lanceAtual, @id_lanceFinal)";
+                cmd = "INSERT INTO dbo.Leilao (id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, id_lanceFinal) VALUES (@Key, @id_Criador, @descricao, @precoReserva, @precoMinimo, @dataHoraInicial, @duracao, @id_lanceAtual, @id_lanceFinal)";
             }
             try
             {
@@ -149,16 +149,17 @@ namespace app.Data
                         command.Parameters.AddWithValue("@precoMinimo", value.getPrecoMinimo());
                         command.Parameters.AddWithValue("@dataHoraInicial", value.getDataHoraInicial());
                         command.Parameters.AddWithValue("@duracao", value.getDuracao());
-                        command.Parameters.AddWithValue("@id_lanceAtual", value.getIdLanceAtual());
-                        command.Parameters.AddWithValue("@id_lanceFinal", value.getIdLanceFinal());
+                        command.Parameters.AddWithValue("@id_lanceAtual", (object)value.getIdLanceAtual() ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@id_lanceFinal", (object)value.getIdLanceFinal() ?? DBNull.Value);
 
                         con.Open();
                         command.ExecuteNonQuery();
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Console.WriteLine(e.ToString());
                 throw new DAOException("Erro no put do LeilaoDAO");
             }
         }
