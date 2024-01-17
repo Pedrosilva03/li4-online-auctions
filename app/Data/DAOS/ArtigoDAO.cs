@@ -232,7 +232,7 @@ namespace app.Data
                             {
                                 int id = reader.GetInt32(reader.GetOrdinal("id"));
                                 int id_leilao = reader.GetInt32(reader.GetOrdinal("id_leilao"));
-                                int id_transacao = reader.GetInt32(reader.GetOrdinal("id_transacao"));
+                                int? id_transacao = reader.IsDBNull(reader.GetOrdinal("id_transacao")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_transacao"));
                                 string nome = reader.GetString(reader.GetOrdinal("nome"));
                                 string condicao = reader.GetString(reader.GetOrdinal("condicao"));
                                 string raridade = reader.GetString(reader.GetOrdinal("raridade"));
@@ -245,8 +245,9 @@ namespace app.Data
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine($"Error in put method: {ex.Message}");
                 throw new DAOException("Erro no values do ArtigoDAO");
             }
             return artigos;

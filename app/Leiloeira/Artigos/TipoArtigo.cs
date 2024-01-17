@@ -2,7 +2,7 @@ namespace app.Leiloeira.Artigos
 {
     public enum TipoArtigo
     {
-        LUVA,
+        LUVAS,
         AK47,
         M4A1,
         AWP,
@@ -27,6 +27,7 @@ namespace app.Leiloeira.Artigos
         NOVA,
         SCAR,
         G3,
+        M9,
         KARAMBIT,
         BUTTERFLY
     }

@@ -12,7 +12,8 @@
     public bool showErrorMessage = false;
 
     public ICollection<Leilao> leiloes = new List<Leilao>();
-    public List<Artigo> artigos = new List<Artigo>();
+    public ICollection<Artigo> artigos = new List<Artigo>();
+    List<Artigo> artigosList;
 
     IDatabaseFacade db = new DatabaseFacade();
 
@@ -42,8 +43,42 @@
         if(id!= 0 && db.IDLeilao_existe(id))
         {
             showErrorMessage = false;
-            pesquisado = true;
             artigos = db.get_artigos_leilao(id);
+            artigosList = new List<Artigo>(artigos);
+            pesquisado = true;
+        }
+        else if(!string.IsNullOrEmpty(arma))
+        {
+            showErrorMessage = false;
+            if(artigosList != null) artigosList.Clear();
+            artigos = db.get_Artigos();
+            artigosList = new List<Artigo>(artigos);
+
+            List<Artigo> filteredArtigos = new List<Artigo>();
+            foreach(Artigo artigo in artigosList)
+            {
+                if (Enum.TryParse<TipoArtigo>(arma, out TipoArtigo parsedTipo))
+                {
+                    if (Enum.IsDefined(typeof(TipoArtigo), parsedTipo) && parsedTipo == artigo.getTipo())
+                    {
+                        filteredArtigos.Add(artigo);
+                    }
+                }
+            }
+
+            artigosList = filteredArtigos;
+            if(filteredArtigos.Count == 0)
+            {
+                showErrorMessage = true;
+                pesquisado = false;
+            }
+            else{
+                pesquisado = true;
+            }
+        }
+        else if(preco_maximo != 0)
+        {
+            
         }
         else
         {
@@ -67,35 +102,35 @@
         <div class="input-container-row">
             <div class="search-input">
                 <select name="weapon" @bind="@arma" @attributes="GetDisabledAttribute()">
-                    <option value="" disabled selected hidden>Arma/Luva/Faca</option>
-                    <option value="AK-47">AK-47</option>
+                    <option value="" selected >Arma/Luvas/Faca</option>
+                    <option value="AK47">AK-47</option>
                     <option value="M4A1">M4A1</option>
                     <option value="AWP">AWP</option>
-                    <option value="Desert Eagle">Desert Eagle</option>
-                    <option value="USP-S">USP-S</option>
-                    <option value="Glock-18">Glock-18</option>
+                    <option value="DEAGLE">Desert Eagle</option>
+                    <option value="USP">USP-S</option>
+                    <option value="GLOCK">Glock-18</option>
                     <option value="P250">P250</option>
                     <option value="FAMAS">FAMAS</option>
-                    <option value="Galil AR">Galil AR</option>
+                    <option value="GALIL">Galil AR</option>
                     <option value="AUG">AUG</option>
-                    <option value="SG 553">SG 553</option>
+                    <option value="SG">SG 553</option>
                     <option value="M249">M249</option>
-                    <option value="Negev">Negev</option>
+                    <option value="NEGEV">Negev</option>
                     <option value="MP9">MP9</option>
-                    <option value="MAC-10">MAC-10</option>
-                    <option value="UMP-45">UMP-45</option>
+                    <option value="MAC10">MAC-10</option>
+                    <option value="UMP">UMP-45</option>
                     <option value="P90">P90</option>
-                    <option value="PP-Bizon">PP-Bizon</option>
-                    <option value="XM1014">XM1014</option>
-                    <option value="MAG-7">MAG-7</option>
-                    <option value="Sawed-Off">Sawed-Off</option>
-                    <option value="Nova">Nova</option>
-                    <option value="SCAR-20">SCAR-20</option>
-                    <option value="G3SG1">G3SG1</option>
-                    <option value="Luva">Luva</option>
-                    <option value="M9 Bayonet">M9 Bayonet</option>
-                    <option value="Karambit">Karambit</option>
-                    <option value="Butterfly Knife">Butterfly Knife</option>
+                    <option value="PPBIZON">PP-Bizon</option>
+                    <option value="XM">XM1014</option>
+                    <option value="MAG7">MAG-7</option>
+                    <option value="SAWEDOFF">Sawed-Off</option>
+                    <option value="NOVA">Nova</option>
+                    <option value="SCAR">SCAR-20</option>
+                    <option value="G3">G3SG1</option>
+                    <option value="LUVAS">Luvas</option>
+                    <option value="M9">M9 Bayonet</option>
+                    <option value="KARAMBIT">Karambit</option>
+                    <option value="BUTTERFLY">Butterfly Knife</option>
                 </select>
             </div>
 
@@ -107,7 +142,7 @@
         <div class="input-container-row">
             <div class="search-input">
                 <select name="rarity" @bind="@raridade" @attributes="GetDisabledAttribute()">
-                    <option value="" disabled selected hidden>Raridade</option>
+                    <option value="" selected>Raridade</option>
                     <option value="Cinzento">Cinzento</option>
                     <option value="Azul-Claro">Azul-Claro</option>
                     <option value="Azul">Azul</option>
@@ -120,7 +155,7 @@
 
             <div class="search-input">
                 <select name="condition" @bind="@condicao" @attributes="GetDisabledAttribute()">
-                    <option value="" disabled selected hidden>Condição</option>
+                    <option value="" selected>Condição</option>
                     <option value="Factory-New">Factory-New</option>
                     <option value="Minimal-Wear">Minimal-wear</option>
                     <option value="Field-Tested">Field-Tested</option>
@@ -156,7 +191,7 @@
             </div>
 
             <div class="search-results">
-                @foreach (var artigo in artigos) {
+                @foreach (var artigo in artigosList) {
                     string arma = artigo.getTipo().ToString();
                     string skin = artigo.getNome();
                     string condicao = artigo.getCondicao();
