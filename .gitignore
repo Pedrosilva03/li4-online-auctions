@@ -1,6 +1,9 @@
 # Ignore Visual Studio cache directory
 .vs/
 
+# Ignore DAOConfig file
+app\Data\DAOS\DAOconfig.cs
+
 # User-specific files
 *.suo
 *.user

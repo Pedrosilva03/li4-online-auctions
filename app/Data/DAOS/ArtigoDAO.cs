@@ -68,7 +68,6 @@ namespace app.Data
                         {
                             if (reader.Read())
                             {
-                                // Construir um objeto Artigo com base nos dados lidos do banco de dados
                                 int id = reader.GetInt32(reader.GetOrdinal("id"));
                                 int id_leilao = reader.GetInt32(reader.GetOrdinal("id_leilao"));
                                 int id_transacao = reader.GetInt32(reader.GetOrdinal("id_transacao"));
@@ -85,8 +84,9 @@ namespace app.Data
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine($"Error in get method: {ex.Message}");
                 throw new DAOException("Erro no get do ArtigoDAO");
             }
             return a;

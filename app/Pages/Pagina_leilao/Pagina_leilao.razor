@@ -1,0 +1,151 @@
+@page "/Pagina_leilao"
+
+@inject NavigationManager NavigationManager
+
+@code {
+    [Parameter]
+    public int id_leilao { get; set; }
+
+    public Leilao leilao;
+
+    public List<Artigo> skins = new List<Artigo>();
+
+    public string descricao;
+
+    public decimal preco_minimo;
+
+    public string vendedor;
+
+    public int id_lance_final;
+
+    public int? licitacao_atual;  // id do lance mais alto
+
+    public decimal valor_licitacao_atual;
+
+    public string nome_highest_bidder;
+
+    public DateTime data_fim;
+
+    public TimeSpan tempo_restante;
+
+    public decimal input_licitacao;
+
+    public bool terminado = false;
+
+    public bool licitacao_valida = true;
+
+    IDatabaseFacade db = new DatabaseFacade();
+
+    protected override void OnInitialized()
+    {
+        var uri = new Uri(NavigationManager.Uri);
+        var queryString = uri.Query;
+
+        if (queryString.Contains("id_leilao")) {
+            var queryParams = System.Web.HttpUtility.ParseQueryString(queryString);
+            id_leilao = int.Parse(queryParams["id_leilao"]);
+
+            leilao = db.get_Leilao(id_leilao);
+
+            skins = db.get_artigos_leilao(id_leilao);
+            descricao = leilao.getDescricao();
+            preco_minimo = leilao.getPrecoMinimo();
+
+            DateTime data_inicio = leilao.getDataHoraInicial();
+            int duracao = leilao.getDuracao();
+            data_fim = data_inicio.AddMinutes(duracao);
+            tempo_restante = data_fim.Subtract(DateTime.Now);
+            if (tempo_restante.TotalSeconds < 0) terminado = true;
+
+            if (terminado) {
+                // Ver coisas do vencedor
+            }
+
+            licitacao_atual = leilao.getIdLanceAtual();
+            if (licitacao_atual != null) {
+                Lance lance = db.get_Lance((int)licitacao_atual);
+                valor_licitacao_atual = lance.getValor();
+                nome_highest_bidder = db.get_Pessoa(lance.getId_Licitador()).getNickname();
+            }
+
+        }
+    }
+
+    void licitar() {
+        // validar saldo do utilizador também
+        if (input_licitacao > valor_licitacao_atual) {
+            int id_lance;
+            bool id_existe;
+            do {
+                id_lance = new Random().Next(1, 1000000);
+                id_existe = db.IDLance_existe(id_lance);
+            } while(id_existe);
+
+            Lance lance = new Lance(id_lance, id_leilao, CurrentUser.user.getID(), input_licitacao);
+            db.add_Lance(lance);
+            // Fazer update do lance atual no leilao
+            // Atualizar saldo do utilizador
+            NavigationManager.NavigateTo("/Pagina_leilao?id_leilao=" + id_leilao);
+        } else {
+            licitacao_valida = false;
+        }
+    }
+}
+
+<PageTitle>Leilão</PageTitle>
+
+<div class="leilao-container">
+    @if(!terminado) {
+        <h1>Leilão nº @id_leilao</h1>
+    } else {
+        <h1>Leilão nº @id_leilao (terminado)</h1>
+    }
+
+    <div class="leilao-info-container">
+        <p class="leilao-descricao">@descricao</p>
+
+        <div style="width: 80%; text-align: left;">
+            <p><span style="font-weight: bold;">Preço mínimo: </span> @preco_minimo €</p>
+
+            @if(terminado) {
+                <p><span style="font-weight: bold;">vendedor :</span> @vendedor</p>
+                <p><span style="font-weight: bold;">valor final: </span></p>
+            }
+
+            @if(!terminado) {
+                <p><span style="font-weight: bold;">Licitação atual: </span> @licitacao_atual € feita por @nome_highest_bidder</p>
+            }
+        </div>
+
+        <div class="leilao-interacao">
+            <div class="leilao-interacao-field">
+                <span style="font-weight: bold;">Tempo restante: </span> 
+                @if(tempo_restante.Days > 0) {
+                    <span>@tempo_restante.Days dias</span>
+                } else if(tempo_restante.Hours > 0) {
+                    <span>@tempo_restante.Hours h:@tempo_restante.Minutes m</span>
+                } else {
+                    <span>@tempo_restante.Minutes m</span>
+                }
+            </div>
+
+            <input class="leilao-interacao-field" type="number" step="0.01" placeholder="valor" @bind="@input_licitacao" />
+
+            <div class="licitar-button leilao-interacao-field" @onclick="licitar">Licitar</div>
+        </div>
+
+        @if(!licitacao_valida) {
+            <p style="margin-top: 20px; font-weight: bold">Valor da licitação tem de ser superior ao valor atual</p>
+        }
+    </div>
+
+    <div class="leilao-skins-container">
+        @foreach (var skin in skins) {
+            string arma = skin.getTipo().ToString();
+            string nome_skin = skin.getNome();
+            string condicao = skin.getCondicao();
+
+            <Leilao_card id_leilao="@id_leilao" weapon="@arma" skin_name="@nome_skin" condition="@condicao" />
+        }
+    </div>
+</div>

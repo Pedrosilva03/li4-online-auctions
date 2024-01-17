@@ -1,0 +1,66 @@
+.leilao-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.leilao-info-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #d9d9d9;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.leilao-descricao {
+    background-color: white;
+    width: 90%;
+    padding: 10px;
+    border-radius: 20px;
+    min-height: 200px;
+}
+
+.leilao-interacao {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 90%;
+}
+
+.leilao-interacao-field {
+    background-color: white;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.licitar-button {
+    color: white;
+    font-weight: bold;
+    background-color: #c02b44;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.licitar-button:hover {
+    transform: scale(1.05);
+}
+
+.leilao-skins-container {
+    width: 90%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}

@@ -76,9 +76,8 @@ namespace app.Data
                                 decimal precoMinimo = reader.GetDecimal(reader.GetOrdinal("precoMinimo"));
                                 DateTime dataHoraInicial = reader.GetDateTime(reader.GetOrdinal("dataHoraInicial"));
                                 int duracao = reader.GetInt32(reader.GetOrdinal("duracao"));
-                                int id_lanceAtual = reader.GetInt32(reader.GetOrdinal("id_lanceAtual"));
-                                int id_lanceFinal = reader.GetInt32(reader.GetOrdinal("id_lanceFinal"));
-
+                                int? id_lanceAtual = reader.IsDBNull(reader.GetOrdinal("id_lanceAtual")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_lanceAtual"));
+                                int? id_lanceFinal = reader.IsDBNull(reader.GetOrdinal("id_lanceFinal")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_lanceFinal"));
 
                                 l = new Leilao(id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, id_lanceFinal, null, null, null);
                             }
@@ -86,9 +85,10 @@ namespace app.Data
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new DAOException("Erro no get do ArtigoDAO");
+                Console.WriteLine($"Error in get method: {ex.Message}");
+                throw new DAOException("Erro no get do LeilaoDAO");
             }
             return l;
         }
