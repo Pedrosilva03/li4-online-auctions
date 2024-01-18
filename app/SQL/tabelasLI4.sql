@@ -68,7 +68,7 @@ CREATE TABLE Artigo (
     nome VARCHAR(100) NOT NULL,
     condicao VARCHAR(50) NOT NULL,
     raridade VARCHAR(50) NOT NULL,
-    caminhoImagem VARBINARY(MAX),
+    caminhoImagem VARCHAR(MAX),
     tipo VARCHAR(50) NOT NULL,
     FOREIGN KEY (id_transacao) REFERENCES Transacao(id),
 	FOREIGN KEY (id_leilao) REFERENCES Leilao(id)
@@ -102,6 +102,8 @@ SELECT * FROM dbo.Artigo;
 SELECT * FROM dbo.Leilao;
 
 SELECT * FROM dbo.Lance;
+
+SELECT * FROM dbo.LeilaoFavoritos;
 
 -- Leiloes que ainda nao acabaram 
 SELECT * FROM Leilao WHERE GETDATE() < dataHoraInicial;
