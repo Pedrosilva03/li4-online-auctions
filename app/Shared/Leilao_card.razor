@@ -13,15 +13,25 @@
     [Parameter]
     public string condition { get; set; }
 
+    [Parameter]
+    public string raridade { get; set; }
+
+    [Parameter]
+    public decimal preco_maximo { get; set; }
+
     void NavigateToLeilao() {
         NavigationManager.NavigateTo($"/Pagina_leilao?id_leilao={id_leilao}");
     }
 }
 
 <a class="auction-card-container" data-aos="fade-up" @onclick="NavigateToLeilao">
+    <div class="condition"> Leilão: @id_leilao</div>
+
     <img class="skin-picture" src="imgs/test_skin_img.jpeg">
 
     <div class="weapon-skin">@weapon | @skin_name</div>
 
-    <div class="condition">@condition</div>
+    <div class="condition">@raridade | @condition</div>
+
+    <div class="condition">@preco_maximo</div>
 </a>
