@@ -17,12 +17,10 @@
 
     IDatabaseFacade db = new DatabaseFacade();
 
-    protected override void OnInitialized()
+    void OnInput(ChangeEventArgs e)
     {
-        leiloes = db.get_leiloes_nao_acabados();
+        pesquisado = false;
     }
-
-    
 
     Dictionary<string, object> GetDisabledAttribute()
     {
@@ -40,14 +38,21 @@
     }
 
     void pesquisar(){
+        leiloes = db.get_leiloes_nao_acabados();
         if(id!= 0 && db.IDLeilao_existe(id))
         {
             showErrorMessage = false;
+            if(artigosList != null) artigosList.Clear();
             artigos = db.get_artigos_leilao(id);
             artigosList = new List<Artigo>(artigos);
             pesquisado = true;
         }
-        else if(!string.IsNullOrEmpty(arma))
+        else if(id != 0)
+        {
+            showErrorMessage = true;
+            pesquisado = false;
+        }
+        else
         {
             showErrorMessage = false;
             if(artigosList != null) artigosList.Clear();
@@ -57,12 +62,14 @@
             List<Artigo> filteredArtigos = new List<Artigo>();
             foreach(Artigo artigo in artigosList)
             {
-                if (Enum.TryParse<TipoArtigo>(arma, out TipoArtigo parsedTipo))
+                Leilao leilao = db.get_Leilao(artigo.getId_leilao());
+                if ((string.IsNullOrEmpty(arma) || artigo.getTipo().ToString() == arma) &&
+                (string.IsNullOrEmpty(skin) || artigo.getNome() == skin) &&
+                (string.IsNullOrEmpty(raridade) || artigo.getRaridade() == raridade) &&
+                (string.IsNullOrEmpty(condicao) || artigo.getCondicao() == condicao) &&
+                (preco_maximo == 0 || leilao.getPrecoMinimo() <= preco_maximo))
                 {
-                    if (Enum.IsDefined(typeof(TipoArtigo), parsedTipo) && parsedTipo == artigo.getTipo())
-                    {
-                        filteredArtigos.Add(artigo);
-                    }
+                    filteredArtigos.Add(artigo);
                 }
             }
 
@@ -76,15 +83,6 @@
                 pesquisado = true;
             }
         }
-        else if(preco_maximo != 0)
-        {
-            
-        }
-        else
-        {
-            showErrorMessage = true;
-            pesquisado = false;
-        }
     }
 }
 
@@ -96,12 +94,12 @@
     <div class="search-input-container">
         <div class="search-input">
             <label for="id">ID: </label>
-            <input class="search-input" type="number" @bind="@id"  />
+            <input class="search-input" type="number" @bind="@id"  @oninput="OnInput"/>
         </div>
 
         <div class="input-container-row">
             <div class="search-input">
-                <select name="weapon" @bind="@arma" @attributes="GetDisabledAttribute()">
+                <select name="weapon" @bind="@arma" @attributes="GetDisabledAttribute()" @oninput="OnInput">
                     <option value="" selected >Arma/Luvas/Faca</option>
                     <option value="AK47">AK-47</option>
                     <option value="M4A1">M4A1</option>
@@ -135,13 +133,13 @@
             </div>
 
             <div class="search-input">
-                <input type="text" placeholder="Skin" @bind="@skin" @attributes="GetDisabledAttribute()" />
+                <input type="text" placeholder="Skin" @bind="@skin" @attributes="GetDisabledAttribute()" @oninput="OnInput" />
             </div>
         </div>
 
         <div class="input-container-row">
             <div class="search-input">
-                <select name="rarity" @bind="@raridade" @attributes="GetDisabledAttribute()">
+                <select name="rarity" @bind="@raridade" @attributes="GetDisabledAttribute()" @oninput="OnInput">
                     <option value="" selected>Raridade</option>
                     <option value="Cinzento">Cinzento</option>
                     <option value="Azul-Claro">Azul-Claro</option>
@@ -154,7 +152,7 @@
             </div>
 
             <div class="search-input">
-                <select name="condition" @bind="@condicao" @attributes="GetDisabledAttribute()">
+                <select name="condition" @bind="@condicao" @attributes="GetDisabledAttribute()" @oninput="OnInput">
                     <option value="" selected>Condição</option>
                     <option value="Factory-New">Factory-New</option>
                     <option value="Minimal-Wear">Minimal-wear</option>
@@ -168,7 +166,7 @@
         <div class="input-container-row">
             <div class="search-input">
                 <label for="preco_maximo">Preço máximo: </label>
-                <input name="preco_maximo" type="number" step="0.01" placeholder="0" @bind="@preco_maximo" @attributes="GetDisabledAttribute()" />
+                <input name="preco_maximo" type="number" step="0.01" placeholder="0" @bind="@preco_maximo" @attributes="GetDisabledAttribute()" @oninput="OnInput" />
             </div>
         </div>
 
@@ -181,6 +179,7 @@
 
             <div class="show-search-input-container">
                 <div class="show-search-input">
+                    @if(id == 0 && string.IsNullOrEmpty(arma) && string.IsNullOrEmpty(skin) && string.IsNullOrEmpty(raridade) && string.IsNullOrEmpty(condicao) && preco_maximo == 0) { <span class="input-type">Todos leilões disponíveis </span>}
                     @if (id != 0) { <span class="input-type">ID: </span>@id }
                     @if (!string.IsNullOrEmpty(arma)) { <span class="input-type">Arma: </span>@arma }
                     @if (!string.IsNullOrEmpty(skin)) { <span class="input-type">Skin: </span>@skin }
@@ -192,18 +191,22 @@
 
             <div class="search-results">
                 @foreach (var artigo in artigosList) {
+                    Leilao leilao = db.get_Leilao(artigo.getId_leilao());
+                    int id_leilao = artigo.getId_leilao();
                     string arma = artigo.getTipo().ToString();
                     string skin = artigo.getNome();
+                    string raridade = artigo.getRaridade();
                     string condicao = artigo.getCondicao();
+                    decimal preco_maximo = leilao.getPrecoMinimo();
 
-                    <Leilao_card weapon="@arma" skin_name="@skin" condition="@condicao" />
+                    <Leilao_card id_leilao = "@id_leilao" weapon="@arma" skin_name="@skin" condition="@condicao" raridade = "@raridade" preco_maximo = "@preco_maximo" />
                 }
             </div>
         }
         <div class="error-message">
             @if(showErrorMessage){
                 <p> 
-                        Leilão com esses argumentos não existe!
+                        Leilão com esses argumentos não existe ou leilão já terminou!
                 </p>
             }
         </div> 

@@ -74,6 +74,27 @@ CREATE TABLE Artigo (
 	FOREIGN KEY (id_leilao) REFERENCES Leilao(id)
 );
 
+CREATE TABLE LeilaoFavoritos (
+    id_leilao INT NOT NULL,
+    id_pessoa INT NOT NULL,
+    FOREIGN KEY (id_leilao) REFERENCES Leilao(id),
+    FOREIGN KEY (id_pessoa) REFERENCES Pessoa(id)
+);
+
+CREATE TABLE ValorFinal (
+    id_lance INT NOT NULL,
+    id_transacao INT NOT NULL,
+    FOREIGN KEY (id_lance) REFERENCES Lance(id),
+    FOREIGN KEY (id_transacao) REFERENCES Transacao(id)
+);
+
+CREATE TABLE HistoricoTransacoes (
+    id_transacao INT NOT NULL,
+    id_pessoa INT NOT NULL,
+    FOREIGN KEY (id_transacao) REFERENCES Transacao(id),
+    FOREIGN KEY (id_pessoa) REFERENCES Pessoa(id)
+);
+
 SELECT * FROM dbo.Pessoa;
 
 SELECT * FROM dbo.Artigo;
