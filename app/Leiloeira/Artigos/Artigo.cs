@@ -8,13 +8,13 @@ namespace app.Leiloeira.Artigos
         private string nome;
         private string condicao;
         private string raridade;
-        private byte[] imagem;
+        private string? imagem;
         private TipoArtigo tipo;
 
 
         //CONSTRUTORES//
 
-        public Artigo (int id, int id_leilão, int? id_transacao, string nome, string condicao, string raridade, byte[] imagem, TipoArtigo tipo){
+        public Artigo (int id, int id_leilão, int? id_transacao, string nome, string condicao, string raridade, string? imagem, TipoArtigo tipo){
             this.id = id;
             this.id_leilão = id_leilão;
             this.id_transacao = id_transacao;
@@ -87,12 +87,12 @@ namespace app.Leiloeira.Artigos
             this.raridade = r;
         }
 
-        public byte[] getImagem()
+        public string getImagem()
         {
             return this.imagem;
         }
 
-        public void setImagem(byte[] img)
+        public void setImagem(string img)
         {
             this.imagem = img;
         }

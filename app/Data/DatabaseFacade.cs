@@ -196,6 +196,36 @@ namespace app.Data
             return this.leilaoDAO.artigos_leilao(idLeilao);
         }
 
+        public void update_id_lanceAtual(int id_leilao, int id_lance)
+        {
+            this.leilaoDAO.update_id_lanceAtual(id_leilao, id_lance);
+        }
+
+        public void favoritar_leilao(int id_leilao, int id_utilizador)
+        {
+            this.leilaoDAO.favoritar_leilao(id_leilao, id_utilizador);
+        }
+
+        public void desfavoritar_leilao(int id_leilao, int id_utilizador)
+        {
+            this.leilaoDAO.desfavoritar_leilao(id_leilao, id_utilizador);
+        }
+
+        public bool e_favorito(int id_leilao, int id_utilizador) 
+        {
+            return this.leilaoDAO.e_favorito(id_leilao, id_utilizador);
+        }
+
+        public List<int> ids_favoritos(int id_utilizador)
+        {
+            return this.leilaoDAO.ids_favoritos(id_utilizador);
+        }
+
+        public List<Leilao> get_leiloes_favoritos(List<int> ids_favoritos)
+        {
+            return this.leilaoDAO.get_leiloes_favoritos(ids_favoritos);
+        }
+
         //PESSOAS//
 
         public bool IDPessoa_existe(int idPessoa){
@@ -259,6 +289,11 @@ namespace app.Data
         public ICollection<int> get_IDsPessoas()
         {
             return this.pessoaDAO.keys();
+        }
+
+        public void update_saldo(int idPessoa, decimal saldo)
+        {
+            this.pessoaDAO.update_saldo(idPessoa, saldo);
         }
     
         //TRANSAÇÕES//

@@ -38,7 +38,8 @@
                     string arma = artigo.getTipo().ToString();
                     string skin = artigo.getNome();
                     string condicao = artigo.getCondicao();
-                    byte[] img = artigo.getImagem();
+                    string img = artigo.getImagem();
+                    if (img == null) img = "/imgs/no_pic.png";
                     string raridade = artigo.getRaridade();
                     decimal preco_maximo = leilao.getPrecoMinimo();
 

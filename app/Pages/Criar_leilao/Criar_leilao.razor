@@ -12,6 +12,7 @@
     public DateTime hora_inicio;
     public DateTime datetime_inicio;
     public int duracao;  // minutos
+    public string img_src;
 
     IDatabaseFacade db = new DatabaseFacade();
 
@@ -35,12 +36,12 @@
         string nome_skin = artigo.nome_skin;
         string condicao = artigo.condicao;
         string raridade = artigo.raridade;
-        byte[] imagem = artigo.ImagemFile;
-        if (imagem == null) Console.WriteLine("Imagem nula");
         TipoArtigo tipo_item_enum;
 
+        // Arranjar maneira de meter a imagem na db
+
         if (Enum.TryParse(tipo_item, out tipo_item_enum)) {
-            Artigo novo_artigo = new Artigo(id_artigo, id_leilao, null, nome_skin, condicao, raridade, imagem, tipo_item_enum);
+            Artigo novo_artigo = new Artigo(id_artigo, id_leilao, null, nome_skin, condicao, raridade, null, tipo_item_enum);
 
             artigos_leilao.Add(id_artigo, novo_artigo);
 
@@ -137,7 +138,7 @@
 
     <div class="templates-container">
         @for (int i = 0; i < leilaoTemplates.Count; i++) {
-            <Leilao_template template="@leilaoTemplates[i]" />
+            <Leilao_template template="@leilaoTemplates[i]" img_src="@leilaoTemplates[i].img_src" ImagemFile="@leilaoTemplates[i].ImagemFile" />
         }
 
         <div class="add-template-button" @onclick="() => add_artigo(new Leilao_template())" >

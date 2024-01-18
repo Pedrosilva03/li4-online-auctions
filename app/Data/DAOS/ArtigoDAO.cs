@@ -73,15 +73,8 @@ namespace app.Data
                                 int id_transacao = reader.GetInt32(reader.GetOrdinal("id_transacao"));
                                 string nome = reader.GetString(reader.GetOrdinal("nome"));
                                 string condicao = reader.GetString(reader.GetOrdinal("condicao"));
-                                string raridade = reader.GetString(reader.GetOrdinal("raridade"));
-                                int caminhoImagemOrdinal = reader.GetOrdinal("caminhoImagem");
-                                byte[] caminhoImagem = null;
-
-                                if (!reader.IsDBNull(caminhoImagemOrdinal)) {
-                                    long bufferSize = reader.GetBytes(caminhoImagemOrdinal, 0, null, 0, 0);
-                                    caminhoImagem = new byte[bufferSize];
-                                    reader.GetBytes(caminhoImagemOrdinal, 0, caminhoImagem, 0, (int)bufferSize);
-                                }
+                                string raridade = reader.GetString(reader.GetOrdinal("raridade")); 
+                                string caminhoImagem = reader.GetString(reader.GetOrdinal("caminhoImagem"));
 
                                 TipoArtigo tipo = (TipoArtigo)Enum.Parse(typeof(TipoArtigo), reader.GetString(reader.GetOrdinal("tipo")));
 
@@ -244,15 +237,7 @@ namespace app.Data
                                 string nome = reader.GetString(reader.GetOrdinal("nome"));
                                 string condicao = reader.GetString(reader.GetOrdinal("condicao"));
                                 string raridade = reader.GetString(reader.GetOrdinal("raridade"));
-                                int caminhoImagemOrdinal = reader.GetOrdinal("caminhoImagem");
-                                byte[] caminhoImagem = null;
-
-                                if (!reader.IsDBNull(caminhoImagemOrdinal)) {
-                                    long bufferSize = reader.GetBytes(caminhoImagemOrdinal, 0, null, 0, 0);
-                                    caminhoImagem = new byte[bufferSize];
-                                    reader.GetBytes(caminhoImagemOrdinal, 0, caminhoImagem, 0, (int)bufferSize);
-                                }
-
+                                string caminhoImagem = reader.GetString(reader.GetOrdinal("caminhoImagem"));
                                 TipoArtigo tipo = (TipoArtigo)Enum.Parse(typeof(TipoArtigo), reader.GetString(reader.GetOrdinal("tipo")));
                                 Artigo a = new Artigo(id,id_leilao, id_transacao, nome, condicao, raridade, caminhoImagem, tipo);
                                 artigos.Add(a);

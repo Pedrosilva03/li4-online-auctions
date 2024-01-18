@@ -34,6 +34,8 @@
 
     public bool licitacao_valida = true;
 
+    public bool favorito;
+
     IDatabaseFacade db = new DatabaseFacade();
 
     protected override void OnInitialized()
@@ -68,12 +70,14 @@
                 nome_highest_bidder = db.get_Pessoa(lance.getId_Licitador()).getNickname();
             }
 
+            favorito = db.e_favorito(id_leilao, CurrentUser.user.getID());
         }
     }
 
     void licitar() {
-        // validar saldo do utilizador também
-        if (input_licitacao > valor_licitacao_atual) {
+        decimal saldo = CurrentUser.saldo;
+
+        if (saldo >= input_licitacao && input_licitacao > valor_licitacao_atual) {
             int id_lance;
             bool id_existe;
             do {
@@ -83,11 +87,28 @@
 
             Lance lance = new Lance(id_lance, id_leilao, CurrentUser.user.getID(), input_licitacao);
             db.add_Lance(lance);
-            // Fazer update do lance atual no leilao
-            // Atualizar saldo do utilizador
-            NavigationManager.NavigateTo("/Pagina_leilao?id_leilao=" + id_leilao);
+            db.update_id_lanceAtual(id_leilao, id_lance);
+
+            CurrentUser.saldo -= input_licitacao;
+            db.update_saldo(CurrentUser.user.getID(), CurrentUser.saldo); 
+
+            OnInitialized();
         } else {
             licitacao_valida = false;
+        }
+    }
+
+    void favoritar_leilao() {
+        if (!favorito) {
+            favorito = true;
+            db.favoritar_leilao(id_leilao, CurrentUser.user.getID());
+        }
+    }
+
+    void desfavoritar_leilao() {
+        if (favorito) {
+            favorito = false;
+            db.desfavoritar_leilao(id_leilao, CurrentUser.user.getID());
         }
     }
 }
@@ -112,8 +133,10 @@
                 <p><span style="font-weight: bold;">valor final: </span></p>
             }
 
-            @if(!terminado) {
-                <p><span style="font-weight: bold;">Licitação atual: </span> @licitacao_atual € feita por @nome_highest_bidder</p>
+            @if(!terminado && licitacao_atual != null) {
+                <p><span style="font-weight: bold;">Licitação atual: </span> @valor_licitacao_atual € feita por @nome_highest_bidder</p>
+            } else {
+                <p><span style="font-weight: bold;">Sem licitações</span></p>
             }
         </div>
 
@@ -132,6 +155,14 @@
             <input class="leilao-interacao-field" type="number" step="0.01" placeholder="valor" @bind="@input_licitacao" />
 
             <div class="licitar-button leilao-interacao-field" @onclick="licitar">Licitar</div>
+
+            <div>
+                @if (favorito) {
+                    <img class="fav-button" src="/imgs/heart.png" @onclick="desfavoritar_leilao" >
+                } else {
+                    <img class="fav-button" src="/imgs/heart_white.png" @onclick="favoritar_leilao" >
+                }
+            </div>
         </div>
 
         @if(!licitacao_valida) {
@@ -144,8 +175,11 @@
             string arma = skin.getTipo().ToString();
             string nome_skin = skin.getNome();
             string condicao = skin.getCondicao();
+            string raridade = skin.getRaridade().ToString();
+            string img = skin.getImagem();
+            if (img == null) img = "/imgs/no_pic.png";
 
-            <Leilao_card id_leilao="@id_leilao" weapon="@arma" skin_name="@nome_skin" condition="@condicao" />
+            <Leilao_card skin_img="@img" id_leilao="@id_leilao" weapon="@arma" skin_name="@nome_skin" condition="@condicao" raridade = "@raridade" />
         }
     </div>
 </div>

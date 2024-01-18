@@ -5,7 +5,7 @@
     public int id_leilao { get; set; }
 
     [Parameter]
-    public byte[] skin_img { get; set; }
+    public string skin_img { get; set; }
 
     [Parameter]
     public string weapon { get; set; }
@@ -22,14 +22,6 @@
     [Parameter]
     public decimal preco_maximo { get; set; }
 
-    string img_src;
-
-    protected override void OnInitialized() {
-        if (skin_img != null) {
-            img_src = $"data:image/png;base64,{Convert.ToBase64String(skin_img)}";
-        }
-    }
-
     void NavigateToLeilao() {
         NavigationManager.NavigateTo($"/Pagina_leilao?id_leilao={id_leilao}");
     }
@@ -38,7 +30,7 @@
 <a class="auction-card-container" data-aos="fade-up" @onclick="NavigateToLeilao">
     <div class="condition"> Leilão: @id_leilao</div>
 
-    <img class="skin-picture" src="@img_src">
+    <img class="skin-picture" src="@skin_img">
 
     <div class="weapon-skin">@weapon | @skin_name</div>
 

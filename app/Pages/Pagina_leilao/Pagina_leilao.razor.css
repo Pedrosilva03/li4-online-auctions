@@ -64,3 +64,14 @@
     align-items: center;
     gap: 20px;
 }
+
+.fav-button {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.fav-button:hover {
+    transform: scale(1.05);
+}

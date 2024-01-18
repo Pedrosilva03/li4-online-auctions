@@ -250,5 +250,28 @@ namespace app.Data
             }
             return pessoas;
         }
+
+
+        public void update_saldo(int idPessoa, decimal saldo)
+        {
+            string cmd = "UPDATE dbo.Pessoa SET saldo = @saldo WHERE id = @Key";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand command = new SqlCommand(cmd, con))
+                    {
+                        command.Parameters.AddWithValue("@Key", idPessoa);
+                        command.Parameters.AddWithValue("@saldo", saldo);
+                        con.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no update_saldo do PessoaDAO");
+            }
+        }
     }
 }

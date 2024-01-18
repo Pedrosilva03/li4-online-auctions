@@ -56,6 +56,18 @@ namespace app.Data
 
         public List<Artigo> get_artigos_leilao(int idLeilao);
 
+        public void update_id_lanceAtual(int id_leilao, int id_lance);
+
+        public void favoritar_leilao(int id_leilao, int id_utilizador);
+
+        public void desfavoritar_leilao(int id_leilao, int id_utilizador);
+
+        public bool e_favorito(int id_leilao, int id_utilizador);
+
+        public List<int> ids_favoritos(int id_utilizador);
+
+        public List<Leilao> get_leiloes_favoritos(List<int> ids_favoritos);
+
         //PESSOAS//
 
         public bool IDPessoa_existe(int idPessoa);
@@ -72,6 +84,8 @@ namespace app.Data
         public ICollection<Pessoa> get_Pessoas();
         public int get_num_Pessoas();
         public ICollection<int> get_IDsPessoas();
+
+        public void update_saldo(int idPessoa, decimal saldo);
     
         //TRANSAÇÕES//
 
