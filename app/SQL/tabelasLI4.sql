@@ -80,6 +80,8 @@ SELECT * FROM dbo.Artigo;
 
 SELECT * FROM dbo.Leilao;
 
+SELECT * FROM dbo.Lance;
+
 -- Leiloes que ainda nao acabaram 
 SELECT * FROM Leilao WHERE GETDATE() < dataHoraInicial;
 

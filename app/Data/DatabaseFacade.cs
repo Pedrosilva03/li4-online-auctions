@@ -41,10 +41,6 @@ namespace app.Data
             return this.artigoDAO.get(idArtigo).getRaridade() == raro;
         }
 
-        public bool Path_existe(int idArtigo, string p){
-            return this.artigoDAO.get(idArtigo).getCaminhoImagem() == p;
-        }
-
         public bool Art_existe(Artigo a)
         {
             return this.artigoDAO.containsValue(a);

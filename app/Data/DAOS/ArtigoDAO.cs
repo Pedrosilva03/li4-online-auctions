@@ -74,7 +74,15 @@ namespace app.Data
                                 string nome = reader.GetString(reader.GetOrdinal("nome"));
                                 string condicao = reader.GetString(reader.GetOrdinal("condicao"));
                                 string raridade = reader.GetString(reader.GetOrdinal("raridade"));
-                                string caminhoImagem = reader.GetString(reader.GetOrdinal("caminhoImagem"));
+                                int caminhoImagemOrdinal = reader.GetOrdinal("caminhoImagem");
+                                byte[] caminhoImagem = null;
+
+                                if (!reader.IsDBNull(caminhoImagemOrdinal)) {
+                                    long bufferSize = reader.GetBytes(caminhoImagemOrdinal, 0, null, 0, 0);
+                                    caminhoImagem = new byte[bufferSize];
+                                    reader.GetBytes(caminhoImagemOrdinal, 0, caminhoImagem, 0, (int)bufferSize);
+                                }
+
                                 TipoArtigo tipo = (TipoArtigo)Enum.Parse(typeof(TipoArtigo), reader.GetString(reader.GetOrdinal("tipo")));
 
 
@@ -130,11 +138,11 @@ namespace app.Data
             string cmd;
             if (containsKey(key))
             {
-                cmd = "UPDATE dbo.Artigo SET id_leilao = @id_leilao, id_transacao = @id_transacao, nome = @nome, condicao = @condicao, raridade = @raridade, caminhoImagem = @caminhoImagem, tipo = @tipo WHERE id = @Key";
+                cmd = "UPDATE dbo.Artigo SET id_leilao = @id_leilao, id_transacao = @id_transacao, nome = @nome, condicao = @condicao, raridade = @raridade, caminhoImagem = CONVERT(VARBINARY(MAX), @caminhoImagem), tipo = @tipo WHERE id = @Key";
             }
             else
             {
-                cmd = "INSERT INTO dbo.Artigo (id, id_leilao, id_transacao, nome, condicao, raridade, caminhoImagem, tipo) VALUES (@Key, @id_leilao, @id_transacao, @nome, @condicao, @raridade, @caminhoImagem, @tipo)";
+                cmd = "INSERT INTO dbo.Artigo (id, id_leilao, id_transacao, nome, condicao, raridade, caminhoImagem, tipo) VALUES (@Key, @id_leilao, @id_transacao, @nome, @condicao, @raridade, CONVERT(VARBINARY(MAX), @caminhoImagem), @tipo)";
             }
             try
             {
@@ -148,7 +156,7 @@ namespace app.Data
                         command.Parameters.AddWithValue("@nome", value.getNome());
                         command.Parameters.AddWithValue("@condicao", value.getCondicao());
                         command.Parameters.AddWithValue("@raridade", value.getRaridade());
-                        command.Parameters.AddWithValue("@caminhoImagem", value.getCaminhoImagem());
+                        command.Parameters.AddWithValue("@caminhoImagem", (object)value.getImagem() ?? DBNull.Value);
                         command.Parameters.AddWithValue("@tipo", value.getTipo().ToString());
 
 
@@ -236,7 +244,15 @@ namespace app.Data
                                 string nome = reader.GetString(reader.GetOrdinal("nome"));
                                 string condicao = reader.GetString(reader.GetOrdinal("condicao"));
                                 string raridade = reader.GetString(reader.GetOrdinal("raridade"));
-                                string caminhoImagem = reader.GetString(reader.GetOrdinal("caminhoImagem"));
+                                int caminhoImagemOrdinal = reader.GetOrdinal("caminhoImagem");
+                                byte[] caminhoImagem = null;
+
+                                if (!reader.IsDBNull(caminhoImagemOrdinal)) {
+                                    long bufferSize = reader.GetBytes(caminhoImagemOrdinal, 0, null, 0, 0);
+                                    caminhoImagem = new byte[bufferSize];
+                                    reader.GetBytes(caminhoImagemOrdinal, 0, caminhoImagem, 0, (int)bufferSize);
+                                }
+
                                 TipoArtigo tipo = (TipoArtigo)Enum.Parse(typeof(TipoArtigo), reader.GetString(reader.GetOrdinal("tipo")));
                                 Artigo a = new Artigo(id,id_leilao, id_transacao, nome, condicao, raridade, caminhoImagem, tipo);
                                 artigos.Add(a);

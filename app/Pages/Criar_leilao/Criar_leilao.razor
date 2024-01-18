@@ -35,10 +35,12 @@
         string nome_skin = artigo.nome_skin;
         string condicao = artigo.condicao;
         string raridade = artigo.raridade;
+        byte[] imagem = artigo.ImagemFile;
+        if (imagem == null) Console.WriteLine("Imagem nula");
         TipoArtigo tipo_item_enum;
 
         if (Enum.TryParse(tipo_item, out tipo_item_enum)) {
-            Artigo novo_artigo = new Artigo(id_artigo, id_leilao, null, nome_skin, condicao, raridade, "no caralho", tipo_item_enum);
+            Artigo novo_artigo = new Artigo(id_artigo, id_leilao, null, nome_skin, condicao, raridade, imagem, tipo_item_enum);
 
             artigos_leilao.Add(id_artigo, novo_artigo);
 

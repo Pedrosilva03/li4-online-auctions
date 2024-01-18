@@ -14,7 +14,6 @@ namespace app.Data
         public bool Nome_existe(int idArtigo, string nome);
         public bool Cond_existe(int idArtigo, string condicao);
         public bool Rarid_existe(int idArtigo, string raro);
-        public bool Path_existe(int idArtigo, string p);
         public bool Art_existe(Artigo a);
         public Artigo get_Artigo(int idArtigo);
         public void add_Artigo(Artigo a);

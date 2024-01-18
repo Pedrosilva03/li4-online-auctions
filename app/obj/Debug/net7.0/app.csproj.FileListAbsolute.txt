@@ -48,14 +48,6 @@ C:\Users\anton\Desktop\TUDO\UNI\3 ANO\LI4\online-auctions\app\obj\Debug\net7.0\r
 C:\Users\anton\Desktop\TUDO\UNI\3 ANO\LI4\online-auctions\app\obj\Debug\net7.0\app.pdb
 C:\Users\anton\Desktop\TUDO\UNI\3 ANO\LI4\online-auctions\app\obj\Debug\net7.0\app.genruntimeconfig.cache
 C:\Users\anton\Desktop\TUDO\UNI\3 ANO\LI4\online-auctions\app\obj\Debug\net7.0\ref\app.dll
-C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.csproj.AssemblyReference.cache
-C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.AssemblyInfoInputs.cache
-C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.AssemblyInfo.cs
-C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.csproj.CoreCompileInputs.cache
-C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.RazorAssemblyInfo.cache
-C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.RazorAssemblyInfo.cs
 C:\Users\Admin\li4-online-auctions\app\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\Admin\li4-online-auctions\app\bin\Debug\net7.0\appsettings.json
 C:\Users\Admin\li4-online-auctions\app\bin\Debug\net7.0\app.staticwebassets.runtime.json
@@ -70,6 +62,14 @@ C:\Users\Admin\li4-online-auctions\app\bin\Debug\net7.0\runtimes\win-x64\native\
 C:\Users\Admin\li4-online-auctions\app\bin\Debug\net7.0\runtimes\win-x86\native\sni.dll
 C:\Users\Admin\li4-online-auctions\app\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Admin\li4-online-auctions\app\bin\Debug\net7.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.csproj.AssemblyReference.cache
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.AssemblyInfoInputs.cache
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.AssemblyInfo.cs
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.csproj.CoreCompileInputs.cache
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.RazorAssemblyInfo.cache
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\app.RazorAssemblyInfo.cs
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\staticwebassets\msbuild.app.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\staticwebassets\msbuild.build.app.props
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.app.props

@@ -38,8 +38,9 @@
                     string arma = artigo.getTipo().ToString();
                     string skin = artigo.getNome();
                     string condicao = artigo.getCondicao();
+                    byte[] img = artigo.getImagem();
 
-                    <Leilao_card id_leilao="@id_leilao" weapon="@arma" skin_name="@skin" condition="@condicao" />
+                    <Leilao_card skin_img="@img" id_leilao="@id_leilao" weapon="@arma" skin_name="@skin" condition="@condicao" />
                 }
             }
         }

@@ -5,6 +5,9 @@
     public int id_leilao { get; set; }
 
     [Parameter]
+    public byte[] skin_img { get; set; }
+
+    [Parameter]
     public string weapon { get; set; }
 
     [Parameter]
@@ -13,13 +16,21 @@
     [Parameter]
     public string condition { get; set; }
 
+    string img_src;
+
+    protected override void OnInitialized() {
+        if (skin_img != null) {
+            img_src = $"data:image/png;base64,{Convert.ToBase64String(skin_img)}";
+        }
+    }
+
     void NavigateToLeilao() {
         NavigationManager.NavigateTo($"/Pagina_leilao?id_leilao={id_leilao}");
     }
 }
 
 <a class="auction-card-container" data-aos="fade-up" @onclick="NavigateToLeilao">
-    <img class="skin-picture" src="imgs/test_skin_img.jpeg">
+    <img class="skin-picture" src="@img_src">
 
     <div class="weapon-skin">@weapon | @skin_name</div>
 
