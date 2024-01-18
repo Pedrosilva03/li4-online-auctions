@@ -68,7 +68,7 @@ CREATE TABLE Artigo (
     nome VARCHAR(100) NOT NULL,
     condicao VARCHAR(50) NOT NULL,
     raridade VARCHAR(50) NOT NULL,
-    caminhoImagem VARCHAR(250),
+    caminhoImagem VARBINARY(MAX),
     tipo VARCHAR(50) NOT NULL,
     FOREIGN KEY (id_transacao) REFERENCES Transacao(id),
 	FOREIGN KEY (id_leilao) REFERENCES Leilao(id)
