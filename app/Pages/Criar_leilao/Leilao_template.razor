@@ -52,7 +52,15 @@
 
 <div class="template-container">
         <div class="auction-input">
-            <InputFile accept="image/*" OnChange="HandleFileUpload" />
+            @if (ImagemFile != null) {
+                <div class="uploaded-img-container">
+                    <img src="@img_src" class="img-input" />
+                    <InputFile accept="image/*" OnChange="HandleFileUpload" /> 
+                </div>
+            }
+            else {
+                <InputFile accept="image/*" OnChange="HandleFileUpload" />   
+            }
         </div>
 
         <div class="auction-input">   

@@ -106,7 +106,7 @@ SELECT * FROM dbo.Lance;
 SELECT * FROM dbo.LeilaoFavoritos;
 
 -- Leiloes que ainda nao acabaram 
-SELECT * FROM Leilao WHERE GETDATE() < dataHoraInicial;
+SELECT * FROM Leilao WHERE (DATEADD(MINUTE, duracao, dataHoraInicial) >= GETDATE()) OR (dataHoraInicial > GETDATE());
 
 -- Leiloes e as suas skins
 SELECT Leilao.*, Artigo.* FROM Leilao LEFT JOIN Artigo ON Leilao.id = Artigo.id_leilao;

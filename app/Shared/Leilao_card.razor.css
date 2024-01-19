@@ -21,6 +21,8 @@
     border-radius: 20px;
     object-fit: cover;
     object-position: center;
+    background-color: white;
+    border-radius: 20px;
 }
 
 .weapon-skin, .condition {

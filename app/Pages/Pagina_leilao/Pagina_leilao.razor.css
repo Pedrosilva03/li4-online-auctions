@@ -36,7 +36,7 @@
 
 .leilao-interacao-field {
     background-color: white;
-    padding: 10px;
+    padding: 11px;
     border-radius: 20px;
 }
 
@@ -44,7 +44,7 @@
     color: white;
     font-weight: bold;
     background-color: #c02b44;
-    padding: 10px 20px;
+    padding: 11px 20px;
     border-radius: 20px;
     cursor: pointer;
     transition: all .2s ease-in-out;
@@ -66,7 +66,7 @@
 }
 
 .fav-button {
-    width: 40px;
+    width: 45px;
     height: auto;
     cursor: pointer;
     transition: all .2s ease-in-out;

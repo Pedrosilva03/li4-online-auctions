@@ -258,7 +258,7 @@ namespace app.Data
         public ICollection<Leilao> leiloes_nao_acabados()
         {
             ICollection<Leilao> leiloesNaoAcabados = new List<Leilao>();
-            string cmd = "SELECT * FROM Leilao WHERE GETDATE() < dataHoraInicial";
+            string cmd = "SELECT * FROM Leilao WHERE (DATEADD(MINUTE, duracao, dataHoraInicial) >= GETDATE()) OR (dataHoraInicial > GETDATE())";
             try
             {
                 using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
