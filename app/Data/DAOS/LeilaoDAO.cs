@@ -468,13 +468,23 @@ namespace app.Data
         public List<Leilao> get_leiloes_favoritos(List<int> ids)
         {
             List<Leilao> leiloes = new List<Leilao>();
+
+            if (ids.Count == 0)
+            {
+                return leiloes;
+            }
+
             string cmd = "SELECT * FROM dbo.Leilao WHERE id IN (";
             for (int i = 0; i < ids.Count; i++)
             {
-                cmd += "@id" + i + ",";
+                cmd += "@id" + i;
+                if (i < ids.Count - 1)
+                {
+                    cmd += ",";
+                }
             }
-            cmd = cmd.Remove(cmd.Length - 1);
             cmd += ")";
+
             try
             {
                 using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
@@ -512,6 +522,7 @@ namespace app.Data
                 Console.WriteLine($"Error in get_leiloes_favoritos method: {ex.Message}");
                 throw new DAOException("Erro na função get_leiloes_favoritos do LeilaoDAO");
             }
+
             return leiloes;
         }
     }

@@ -1,14 +1,22 @@
 @page "/Leiloes_favoritos"
 
 @code {
-    public List<int> favoritos = new List<int>();
-    public List<Leilao> leiloes = new List<Leilao>();
+    public List<int> favoritos;
+    public List<Leilao> leiloes;
+    public bool existem_leiloes = false;
 
     IDatabaseFacade db = new DatabaseFacade();
 
     protected override void OnInitialized() {
-        favoritos = db.ids_favoritos(CurrentUser.user.getID());
-        leiloes = db.get_leiloes_favoritos(favoritos);
+        if (CurrentUser.user!= null) {
+            favoritos = db.ids_favoritos(CurrentUser.user.getID());
+
+            if (favoritos != null) {
+                leiloes = db.get_leiloes_favoritos(favoritos);
+
+                if (leiloes.Count > 0) existem_leiloes = true;
+            }
+        }
     }
 }
 
@@ -17,7 +25,7 @@
 <h1>Leilões Favoritos</h1>
 
 <div class="auctions-container">
-    @if (leiloes.Count == 0) {
+    @if (!existem_leiloes) {
         <p>Não tem leilões favoritos</p>
     }
     else {
