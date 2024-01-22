@@ -68,6 +68,8 @@ namespace app.Data
 
         public List<Leilao> get_leiloes_favoritos(List<int> ids_favoritos);
 
+        public List<Leilao> get_leiloes_vencidos(int id_utilizador);
+
         //PESSOAS//
 
         public bool IDPessoa_existe(int idPessoa);

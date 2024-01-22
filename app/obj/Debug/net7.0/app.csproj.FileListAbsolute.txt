@@ -86,6 +86,7 @@ C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Leiloes_
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Pagina_leilao\Pagina_leilao.razor.rz.scp.css
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Pagina_pesquisa\Pagina_pesquisa.razor.rz.scp.css
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Pagina_saldo\Pagina_saldo.razor.rz.scp.css
+C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Pagina_transacoes\Pagina_transacoes.razor.rz.scp.css
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Perfil\Perfil.razor.rz.scp.css
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Pages\Registo\Registo.razor.rz.scp.css
 C:\Users\Admin\li4-online-auctions\app\obj\Debug\net7.0\scopedcss\Shared\Leilao_card.razor.rz.scp.css

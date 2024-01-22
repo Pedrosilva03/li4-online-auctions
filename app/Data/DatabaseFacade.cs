@@ -226,6 +226,12 @@ namespace app.Data
             return this.leilaoDAO.get_leiloes_favoritos(ids_favoritos);
         }
 
+        public List<Leilao> get_leiloes_vencidos(int id_utilizador) 
+        {
+            return this.leilaoDAO.get_leiloes_vencidos(id_utilizador);
+        }
+
+
         //PESSOAS//
 
         public bool IDPessoa_existe(int idPessoa){

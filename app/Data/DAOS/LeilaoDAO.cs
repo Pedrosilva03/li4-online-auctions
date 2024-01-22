@@ -525,5 +525,46 @@ namespace app.Data
 
             return leiloes;
         }
+
+
+        public List<Leilao> get_leiloes_vencidos(int id_utilizador) 
+        {
+            List<Leilao> leiloes = new List<Leilao>();
+            string cmd = "SELECT * FROM dbo.Leilao WHERE (DATEADD(MINUTE, duracao, dataHoraInicial) < GETDATE()) AND id_lanceAtual IS NOT NULL AND id_lanceAtual IN (SELECT id FROM dbo.Lance WHERE id_Criador = @id_utilizador)";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {   	        
+                    using (SqlCommand command = new SqlCommand(cmd, con))
+                    {   
+                        command.Parameters.AddWithValue("@id_utilizador", id_utilizador);
+                        con.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(reader.GetOrdinal("id"));
+                                int id_Criador = reader.GetInt32(reader.GetOrdinal("id_Criador"));
+                                string descricao = reader.GetString(reader.GetOrdinal("descricao"));
+                                decimal precoReserva = reader.GetDecimal(reader.GetOrdinal("precoReserva"));
+                                decimal precoMinimo = reader.GetDecimal(reader.GetOrdinal("precoMinimo"));
+                                DateTime dataHoraInicial = reader.GetDateTime(reader.GetOrdinal("dataHoraInicial"));
+                                int duracao = reader.GetInt32(reader.GetOrdinal("duracao"));
+                                int? id_lanceAtual = reader.IsDBNull(reader.GetOrdinal("id_lanceAtual")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_lanceAtual"));
+                                int? id_lanceFinal = reader.IsDBNull(reader.GetOrdinal("id_lanceFinal")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_lanceFinal"));
+                                Leilao leilao = new Leilao(id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, id_lanceFinal, null, null, null);
+                                leiloes.Add(leilao);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in get_leiloes_vencidos method: {ex.Message}");
+                throw new DAOException("Erro na função get_leiloes_vencidos do LeilaoDAO");
+            }
+            return leiloes; 
+        } 
     }
 }

@@ -81,20 +81,6 @@ CREATE TABLE LeilaoFavoritos (
     FOREIGN KEY (id_pessoa) REFERENCES Pessoa(id)
 );
 
-CREATE TABLE ValorFinal (
-    id_lance INT NOT NULL,
-    id_transacao INT NOT NULL,
-    FOREIGN KEY (id_lance) REFERENCES Lance(id),
-    FOREIGN KEY (id_transacao) REFERENCES Transacao(id)
-);
-
-CREATE TABLE HistoricoTransacoes (
-    id_transacao INT NOT NULL,
-    id_pessoa INT NOT NULL,
-    FOREIGN KEY (id_transacao) REFERENCES Transacao(id),
-    FOREIGN KEY (id_pessoa) REFERENCES Pessoa(id)
-);
-
 SELECT * FROM dbo.Pessoa;
 
 SELECT * FROM dbo.Artigo;
@@ -113,6 +99,9 @@ SELECT Leilao.*, Artigo.* FROM Leilao LEFT JOIN Artigo ON Leilao.id = Artigo.id_
 
 -- Artigos de leiloes que nao acabaram
 SELECT * FROM Artigo A JOIN Leilao L ON A.id_leilao = L.id WHERE GETDATE() < L.dataHoraInicial;
+
+-- Transacoes de um utilizador (yeet)
+SELECT * FROM dbo.Leilao WHERE (DATEADD(MINUTE, duracao, dataHoraInicial) < GETDATE()) AND id_lanceAtual IS NOT NULL AND id_lanceAtual IN (SELECT id FROM dbo.Lance WHERE id_Criador = 1);
 
 DELETE dbo.Pessoa;
 

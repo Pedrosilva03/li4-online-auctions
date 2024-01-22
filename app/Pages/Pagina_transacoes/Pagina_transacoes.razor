@@ -1,0 +1,46 @@
+@page "/transacoes"
+
+@code {
+    public bool existem_leiloes = false;
+    public List<Leilao> leiloes;
+
+    IDatabaseFacade db = new DatabaseFacade();
+
+    protected override void OnInitialized() {
+        try {
+            leiloes = db.get_leiloes_vencidos(CurrentUser.user.getID());
+            if (leiloes.Count > 0) existem_leiloes = true;
+        } catch (Exception e) {
+            Console.WriteLine("Erro ao obter leilões");
+            Console.WriteLine(e);
+        }
+    }
+}
+
+<PageTitle>Transações</PageTitle>
+
+<h1>Transações</h1>
+
+<div class="transacoes-container">
+    @if (!existem_leiloes) {
+        <p>Não existem leilões</p>
+    } else {
+        @foreach (var leilao in leiloes) {
+            int id_leilao = leilao.getID();
+            List<Artigo> artigos = db.get_artigos_leilao(id_leilao);
+
+            @foreach (var artigo in artigos) {
+                string arma = artigo.getTipo().ToString();
+                string skin = artigo.getNome();
+                string condicao = artigo.getCondicao();
+                string raridade = artigo.getRaridade();
+                decimal preco_maximo = leilao.getPrecoMinimo();
+
+                string img = artigo.getImagem();
+                if (img == null) img = $"/imgs/default_items/{arma}.png";
+
+                <Leilao_card skin_img="@img" id_leilao="@id_leilao" weapon="@arma" skin_name="@skin" condition="@condicao" raridade = "@raridade" preco_maximo = "@preco_maximo" />
+            }
+        }
+    }
+</div>
