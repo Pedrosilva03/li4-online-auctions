@@ -8,6 +8,8 @@
 
     public Leilao leilao;
 
+    public int id_criador;
+
     public List<Artigo> skins = new List<Artigo>();
 
     public string descricao;
@@ -32,6 +34,8 @@
 
     public bool licitacao_valida = true;
 
+    public bool licitar_no_proprio_leilao = false;
+
     public bool favorito;
 
     IDatabaseFacade db = new DatabaseFacade();
@@ -46,6 +50,8 @@
             id_leilao = int.Parse(queryParams["id_leilao"]);
 
             leilao = db.get_Leilao(id_leilao);
+
+            id_criador = leilao.getId_Criador();
 
             skins = db.get_artigos_leilao(id_leilao);
             descricao = leilao.getDescricao();
@@ -77,25 +83,37 @@
 
     void licitar() {
         decimal saldo = CurrentUser.saldo;
+        int id_licitador = CurrentUser.user.getID();
 
-        if (iniciado && saldo >= input_licitacao && input_licitacao > valor_licitacao_atual) {
-            int id_lance;
-            bool id_existe;
-            do {
-                id_lance = new Random().Next(1, 1000000);
-                id_existe = db.IDLance_existe(id_lance);
-            } while(id_existe);
+        if (id_licitador != id_criador) {
+            if (iniciado && saldo >= input_licitacao && input_licitacao > valor_licitacao_atual) {
+                int id_lance;
+                bool id_existe;
+                do {
+                    id_lance = new Random().Next(1, 1000000);
+                    id_existe = db.IDLance_existe(id_lance);
+                } while(id_existe);
 
-            Lance lance = new Lance(id_lance, id_leilao, CurrentUser.user.getID(), input_licitacao);
-            db.add_Lance(lance);
-            db.update_id_lanceAtual(id_leilao, id_lance);
+                if (licitacao_atual != null) {
+                    Lance lance_anterior = db.get_Lance((int)licitacao_atual);
+                    int id_licitador_anterior = lance_anterior.getId_Licitador();
+                    decimal valor_anterior = lance_anterior.getValor();
+                    db.devolve_dinheiro_utilizador(id_licitador_anterior, valor_anterior);
+                }
 
-            CurrentUser.saldo -= input_licitacao;
-            db.update_saldo(CurrentUser.user.getID(), CurrentUser.saldo); 
+                Lance lance = new Lance(id_lance, id_leilao, id_licitador, input_licitacao);
+                db.add_Lance(lance);
+                db.update_id_lanceAtual(id_leilao, id_lance);
 
-            OnInitialized();
+                CurrentUser.saldo -= input_licitacao;
+                db.update_saldo(id_licitador, CurrentUser.saldo); 
+
+                OnInitialized();
+            } else {
+                licitacao_valida = false;
+            }
         } else {
-            licitacao_valida = false;
+            licitar_no_proprio_leilao = true;
         }
     }
 
@@ -145,7 +163,7 @@
 
         <div class="leilao-interacao">
             <div class="leilao-interacao-field">
-                @if (iniciado) {
+                @if (iniciado || terminado) {
                     <span style="font-weight: bold;">Tempo restante: </span> 
                 } else {
                     <span style="font-weight: bold;">Tempo até início: </span> 
@@ -183,6 +201,10 @@
 
         @if (!licitacao_valida) {
             <p style="margin-top: 20px; font-weight: bold">Valor da licitação tem de ser superior ao valor atual</p>
+        }
+
+        @if (licitar_no_proprio_leilao) {
+            <p style="margin-top: 20px; font-weight: bold">Não pode licitar no seu próprio leilão</p>
         }
     </div>
 

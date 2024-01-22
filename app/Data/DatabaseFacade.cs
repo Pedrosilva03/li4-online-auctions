@@ -301,6 +301,11 @@ namespace app.Data
         {
             this.pessoaDAO.update_saldo(idPessoa, saldo);
         }
+
+        public void devolve_dinheiro_utilizador(int id_utilizador, decimal valor)
+        {
+            this.pessoaDAO.devolve_dinheiro_utilizador(id_utilizador, valor);
+        }
     
         //TRANSAÇÕES//
 

@@ -88,6 +88,8 @@ namespace app.Data
         public ICollection<int> get_IDsPessoas();
 
         public void update_saldo(int idPessoa, decimal saldo);
+
+        public void devolve_dinheiro_utilizador(int id_utilizador, decimal valor);
     
         //TRANSAÇÕES//
 

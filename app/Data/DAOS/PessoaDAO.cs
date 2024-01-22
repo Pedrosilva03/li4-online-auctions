@@ -273,5 +273,27 @@ namespace app.Data
                 throw new DAOException("Erro no update_saldo do PessoaDAO");
             }
         }
+
+        public void devolve_dinheiro_utilizador(int id_utilizador, decimal valor) 
+        {
+            string cmd = "UPDATE dbo.Pessoa SET saldo = saldo + @valor WHERE id = @Key";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand command = new SqlCommand(cmd, con))
+                    {
+                        command.Parameters.AddWithValue("@Key", id_utilizador);
+                        command.Parameters.AddWithValue("@valor", valor);
+                        con.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no devolve_dinheiro_utilizador do PessoaDAO");
+            }
+        }
     }
 }
