@@ -315,5 +315,28 @@ namespace app.Data
                 throw new DAOException("Erro no devolve_dinheiro_utilizador do PessoaDAO");
             }
         }
+
+        public decimal get_saldo(int id_utilizador)
+        {
+            decimal saldo = 0;
+            string cmd = "SELECT saldo FROM dbo.Pessoa WHERE id = @Key";
+            try
+            {
+                using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
+                {
+                    using (SqlCommand command = new SqlCommand(cmd, con))
+                    {
+                        command.Parameters.AddWithValue("@Key", id_utilizador);
+                        con.Open();
+                        saldo = (decimal)command.ExecuteScalar();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw new DAOException("Erro no get_saldo do PessoaDAO");
+            }
+            return saldo;
+        }
     }
 }

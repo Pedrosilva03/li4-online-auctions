@@ -300,6 +300,11 @@ namespace app.Data
         {
             this.pessoaDAO.devolve_dinheiro_utilizador(id_utilizador, valor);
         }
+
+        public decimal get_saldo(int id_utilizador)
+        {
+            return this.pessoaDAO.get_saldo(id_utilizador);
+        }
     
     }
 }

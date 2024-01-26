@@ -32,6 +32,8 @@
 
     public TimeSpan tempo_restante;
 
+    public TimeSpan tempo_ate_inicio;
+
     public decimal input_licitacao;
 
     public bool terminado = false;
@@ -73,7 +75,8 @@
             tempo_restante = data_fim.Subtract(DateTime.Now);
             if (tempo_restante.TotalSeconds < 0) terminado = true;
             if (data_inicio > DateTime.Now) iniciado = false;
-            else iniciado = true;
+            else iniciado = true;   
+            tempo_ate_inicio = data_inicio.Subtract(DateTime.Now);
 
             licitacao_atual = leilao.getIdLanceAtual();
             if (licitacao_atual != null) {
@@ -105,11 +108,17 @@
                     id_existe = db.IDLance_existe(id_lance);
                 } while(id_existe);
 
+                decimal saldo_vendedor = db.get_saldo(id_criador);
+
                 if (licitacao_atual != null) {
                     Lance lance_anterior = db.get_Lance((int)licitacao_atual);
                     int id_licitador_anterior = lance_anterior.getId_Licitador();
                     decimal valor_anterior = lance_anterior.getValor();
                     db.devolve_dinheiro_utilizador(id_licitador_anterior, valor_anterior);
+                    CurrentUser.saldo += valor_anterior;
+
+                    db.update_saldo(id_criador, saldo_vendedor - valor_anterior);
+                    saldo_vendedor -= valor_anterior;
                 }
 
                 Lance lance = new Lance(id_lance, id_leilao, id_licitador, input_licitacao);
@@ -117,7 +126,8 @@
                 db.update_id_lanceAtual(id_leilao, id_lance);
 
                 CurrentUser.saldo -= input_licitacao;
-                db.update_saldo(id_licitador, CurrentUser.saldo); 
+                db.update_saldo(id_licitador, CurrentUser.saldo);
+                db.update_saldo(id_criador, saldo_vendedor + input_licitacao);
 
                 OnInitialized();
             } else {
@@ -183,12 +193,22 @@
                     <span style="font-weight: bold;">Tempo até início: </span> 
                 }
 
-                @if(tempo_restante.Days > 0) {
+                @if (tempo_restante.Days > 0) {
                     <span>@tempo_restante.Days dias</span>
-                } else if(tempo_restante.Hours > 0) {
+                } else if (tempo_restante.Hours > 0) {
                     <span>@tempo_restante.Hours h:@tempo_restante.Minutes m</span>
-                } else {
+                } else if (tempo_restante.Minutes > 0){
                     <span>@tempo_restante.Minutes m</span>
+                }
+
+                else {
+                    if (tempo_ate_inicio.Days > 0) {
+                        <span>@tempo_ate_inicio.Days dias</span>
+                    } else if (tempo_ate_inicio.Hours > 0) {
+                        <span>@tempo_ate_inicio.Hours h:@tempo_ate_inicio.Minutes m</span>
+                    } else {
+                        <span>@tempo_ate_inicio.Minutes m</span>
+                    }
                 }
             </div>
             }

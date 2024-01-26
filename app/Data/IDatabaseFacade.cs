@@ -88,5 +88,7 @@ namespace app.Data
         public void update_saldo(int idPessoa, decimal? saldo);
 
         public void devolve_dinheiro_utilizador(int id_utilizador, decimal valor);
+
+        public decimal get_saldo(int id_utilizador);
     }
 }

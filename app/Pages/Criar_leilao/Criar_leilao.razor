@@ -29,24 +29,7 @@
     // Penso que e necessario criar um artigo para meter outro template desta forma
     // Pensar em criar uma funcao que mete mais templates e outra que cria os artigos todos de uma vez e mete no diciotnario
     void add_artigo(Leilao_template template) {  
-        int id_artigo = cria_id_artigo();
-        Leilao_template artigo = leilaoTemplates.Last();
-
-        string tipo_item = artigo.tipo_item;
-        string nome_skin = artigo.nome_skin;
-        string condicao = artigo.condicao;
-        string raridade = artigo.raridade;
-        TipoArtigo tipo_item_enum;
-
-        // Arranjar maneira de meter a imagem na db
-
-        if (Enum.TryParse(tipo_item, out tipo_item_enum)) {
-            Artigo novo_artigo = new Artigo(id_artigo, id_leilao, nome_skin, condicao, raridade, null, tipo_item_enum);
-
-            artigos_leilao.Add(id_artigo, novo_artigo);
-
-            leilaoTemplates.Add(new Leilao_template());
-        }
+        leilaoTemplates.Add(new Leilao_template());
     }
 
     void CombineDateAndTime() {
@@ -75,7 +58,6 @@
         return id_artigo;
     }
 
-    // Para debugging
     void mete_artigos_na_db() { 
         foreach (var artigo in artigos_leilao.Values) {
             db.add_Artigo(artigo);
@@ -83,9 +65,35 @@
     }
 
     void submeter_leilao() {
+        List<Artigo> novosArtigos = new List<Artigo>();
+
+        foreach (var artigo in leilaoTemplates) {
+            int id_artigo = cria_id_artigo();
+
+            string tipo_item = artigo.tipo_item;
+            string nome_skin = artigo.nome_skin;
+            string condicao = artigo.condicao;
+            string raridade = artigo.raridade;
+            TipoArtigo tipo_item_enum;
+
+            // Arranjar maneira de meter a imagem na db
+
+            if (Enum.TryParse(tipo_item, out tipo_item_enum)) {
+                Artigo novo_artigo = new Artigo(id_artigo, id_leilao, nome_skin, condicao, raridade, null, tipo_item_enum);
+
+                novosArtigos.Add(novo_artigo);
+            }
+        }
+
+        foreach (var artigo in novosArtigos) {
+            artigos_leilao.Add(artigo.getID(), artigo);
+            leilaoTemplates.Add(new Leilao_template());
+        }
+
         CombineDateAndTime();
         id_criador = CurrentUser.user.getID();
         Leilao leilao = new Leilao(id_leilao, id_criador, descricao, preco_reserva, preco_inicial, datetime_inicio, duracao, null, null, null, artigos_leilao);
+        Console.WriteLine("Hello");
         db.add_Leilao(leilao);
         mete_artigos_na_db();
         NavigationManager.NavigateTo("/Leiloes_recomendados");
