@@ -77,9 +77,8 @@ namespace app.Data
                                 DateTime dataHoraInicial = reader.GetDateTime(reader.GetOrdinal("dataHoraInicial"));
                                 int duracao = reader.GetInt32(reader.GetOrdinal("duracao"));
                                 int? id_lanceAtual = reader.IsDBNull(reader.GetOrdinal("id_lanceAtual")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_lanceAtual"));
-                                int? id_lanceFinal = reader.IsDBNull(reader.GetOrdinal("id_lanceFinal")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_lanceFinal"));
 
-                                l = new Leilao(id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, id_lanceFinal, null, null, null);
+                                l = new Leilao(id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, null, null, null);
                             }
                         }
                     }
@@ -131,11 +130,11 @@ namespace app.Data
             string cmd;
             if (containsKey(key))
             {
-                cmd = "UPDATE dbo.Leilao SET id_Criador = @id_Criador, descricao = @descricao, precoReserva = @precoReserva, precoMinimo = @precoMinimo, dataHoraInicial = @dataHoraInicial, duracao = @duracao, id_lanceAtual = @id_lanceAtual, id_lanceFinal = @id_lanceFinal WHERE id = @Key";
+                cmd = "UPDATE dbo.Leilao SET id_Criador = @id_Criador, descricao = @descricao, precoReserva = @precoReserva, precoMinimo = @precoMinimo, dataHoraInicial = @dataHoraInicial, duracao = @duracao, id_lanceAtual = @id_lanceAtual WHERE id = @Key";
             }
             else
             {
-                cmd = "INSERT INTO dbo.Leilao (id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, id_lanceFinal) VALUES (@Key, @id_Criador, @descricao, @precoReserva, @precoMinimo, @dataHoraInicial, @duracao, @id_lanceAtual, @id_lanceFinal)";
+                cmd = "INSERT INTO dbo.Leilao (id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual) VALUES (@Key, @id_Criador, @descricao, @precoReserva, @precoMinimo, @dataHoraInicial, @duracao, @id_lanceAtual)";
             }
             try
             {
@@ -151,7 +150,6 @@ namespace app.Data
                         command.Parameters.AddWithValue("@dataHoraInicial", value.getDataHoraInicial());
                         command.Parameters.AddWithValue("@duracao", value.getDuracao());
                         command.Parameters.AddWithValue("@id_lanceAtual", (object)value.getIdLanceAtual() ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@id_lanceFinal", (object)value.getIdLanceFinal() ?? DBNull.Value);
 
                         con.Open();
                         command.ExecuteNonQuery();
@@ -238,10 +236,8 @@ namespace app.Data
                                 decimal precoMinimo = reader.GetDecimal(reader.GetOrdinal("precoMinimo"));
                                 DateTime dataHoraInicial = reader.GetDateTime(reader.GetOrdinal("dataHoraInicial"));
                                 int duracao = reader.GetInt32(reader.GetOrdinal("duracao"));
-                                int id_lanceAtual = reader.GetInt32(reader.GetOrdinal("id_lanceAtual"));
-                                int id_lanceFinal = reader.GetInt32(reader.GetOrdinal("id_lanceFinal"));
-                                /* TODO: DICIONÁRIOS (???) dataRowDictionary = Enumerable.Range(0, reader.FieldCount).ToDictionary(i => reader.GetName(i), i=> reader.GetValue(i).ToString());*/
-                                Leilao l = new Leilao(id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, id_lanceFinal, null, null, null);
+                                int? id_lanceAtual = reader.IsDBNull(reader.GetOrdinal("id_lanceAtual")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_lanceAtual"));
+                                Leilao l = new Leilao(id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, null, null, null);
                                 leiloes.Add(l);
                             }
                         }
@@ -279,8 +275,7 @@ namespace app.Data
                                 DateTime dataHoraInicial = reader.GetDateTime(reader.GetOrdinal("dataHoraInicial"));
                                 int duracao = reader.GetInt32(reader.GetOrdinal("duracao"));
                                 int? id_lanceAtual = reader.IsDBNull(reader.GetOrdinal("id_lanceAtual")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_lanceAtual"));
-                                int? id_lanceFinal = reader.IsDBNull(reader.GetOrdinal("id_lanceFinal")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_lanceFinal"));
-                                Leilao leilao = new Leilao(id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, id_lanceFinal, null, null, null);
+                                Leilao leilao = new Leilao(id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, null, null, null);
                                 leiloesNaoAcabados.Add(leilao);
                             }
                         }
@@ -314,13 +309,12 @@ namespace app.Data
                             {
                                 int id = reader.GetInt32(reader.GetOrdinal("id"));
                                 int id_leilao = reader.GetInt32(reader.GetOrdinal("id_leilao"));
-                                int? id_transacao = reader.IsDBNull(reader.GetOrdinal("id_transacao")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_transacao"));
                                 string nome = reader.GetString(reader.GetOrdinal("nome"));
                                 string condicao = reader.GetString(reader.GetOrdinal("condicao"));
                                 string raridade = reader.GetString(reader.GetOrdinal("raridade"));
                                 string caminhoImagem = reader.IsDBNull(reader.GetOrdinal("caminhoImagem")) ? (string?)null : reader.GetString(reader.GetOrdinal("caminhoImagem"));
                                 TipoArtigo tipo = (TipoArtigo)Enum.Parse(typeof(TipoArtigo), reader.GetString(reader.GetOrdinal("tipo")));
-                                Artigo artigo = new Artigo(id, id_leilao, id_transacao, nome, condicao, raridade, caminhoImagem, tipo);
+                                Artigo artigo = new Artigo(id, id_leilao, nome, condicao, raridade, caminhoImagem, tipo);
                                 artigos.Add(artigo);
                             }
                         }
@@ -335,7 +329,7 @@ namespace app.Data
             return artigos;
         }
 
-        public void update_id_lanceAtual(int id_leilao, int id_lance)
+        public void update_id_lanceAtual(int id_leilao, int? id_lance)
         {
             string cmd = "UPDATE dbo.Leilao SET id_lanceAtual = @id_lance WHERE id = @id_leilao";
             try
@@ -509,8 +503,7 @@ namespace app.Data
                                 DateTime dataHoraInicial = reader.GetDateTime(reader.GetOrdinal("dataHoraInicial"));
                                 int duracao = reader.GetInt32(reader.GetOrdinal("duracao"));
                                 int? id_lanceAtual = reader.IsDBNull(reader.GetOrdinal("id_lanceAtual")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_lanceAtual"));
-                                int? id_lanceFinal = reader.IsDBNull(reader.GetOrdinal("id_lanceFinal")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_lanceFinal"));
-                                Leilao leilao = new Leilao(id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, id_lanceFinal, null, null, null);
+                                Leilao leilao = new Leilao(id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, null, null, null);
                                 leiloes.Add(leilao);
                             }
                         }
@@ -530,7 +523,7 @@ namespace app.Data
         public List<Leilao> get_leiloes_vencidos(int id_utilizador) 
         {
             List<Leilao> leiloes = new List<Leilao>();
-            string cmd = "SELECT * FROM dbo.Leilao WHERE (DATEADD(MINUTE, duracao, dataHoraInicial) < GETDATE()) AND id_lanceAtual IS NOT NULL AND id_lanceAtual IN (SELECT id FROM dbo.Lance WHERE id_Criador = @id_utilizador)";
+            string cmd = "SELECT * FROM dbo.Leilao WHERE (DATEADD(MINUTE, duracao, dataHoraInicial) < GETDATE()) AND id_lanceAtual IS NOT NULL AND id_lanceAtual IN (SELECT id FROM dbo.Lance WHERE id_licitador = @id_utilizador)";
             try
             {
                 using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))
@@ -551,8 +544,7 @@ namespace app.Data
                                 DateTime dataHoraInicial = reader.GetDateTime(reader.GetOrdinal("dataHoraInicial"));
                                 int duracao = reader.GetInt32(reader.GetOrdinal("duracao"));
                                 int? id_lanceAtual = reader.IsDBNull(reader.GetOrdinal("id_lanceAtual")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_lanceAtual"));
-                                int? id_lanceFinal = reader.IsDBNull(reader.GetOrdinal("id_lanceFinal")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_lanceFinal"));
-                                Leilao leilao = new Leilao(id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, id_lanceFinal, null, null, null);
+                                Leilao leilao = new Leilao(id, id_Criador, descricao, precoReserva, precoMinimo, dataHoraInicial, duracao, id_lanceAtual, null, null, null);
                                 leiloes.Add(leilao);
                             }
                         }

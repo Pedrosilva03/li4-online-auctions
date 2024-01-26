@@ -202,7 +202,7 @@
                     string img = artigo.getImagem();
                     if (img == null) img = $"/imgs/default_items/{arma}.png";
 
-                    <Leilao_card id_leilao = "@id_leilao" weapon="@arma" skin_name="@skin" condition="@condicao" raridade = "@raridade" preco_maximo = "@preco_maximo" />
+                    <Leilao_card skin_img="@img" id_leilao = "@id_leilao" weapon="@arma" skin_name="@skin" condition="@condicao" raridade = "@raridade" preco_maximo = "@preco_maximo" />
                 }
             </div>
         }

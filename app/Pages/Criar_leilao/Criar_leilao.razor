@@ -41,7 +41,7 @@
         // Arranjar maneira de meter a imagem na db
 
         if (Enum.TryParse(tipo_item, out tipo_item_enum)) {
-            Artigo novo_artigo = new Artigo(id_artigo, id_leilao, null, nome_skin, condicao, raridade, null, tipo_item_enum);
+            Artigo novo_artigo = new Artigo(id_artigo, id_leilao, nome_skin, condicao, raridade, null, tipo_item_enum);
 
             artigos_leilao.Add(id_artigo, novo_artigo);
 
@@ -85,7 +85,7 @@
     void submeter_leilao() {
         CombineDateAndTime();
         id_criador = CurrentUser.user.getID();
-        Leilao leilao = new Leilao(id_leilao, id_criador, descricao, preco_reserva, preco_inicial, datetime_inicio, duracao, null, null, null, null, artigos_leilao);
+        Leilao leilao = new Leilao(id_leilao, id_criador, descricao, preco_reserva, preco_inicial, datetime_inicio, duracao, null, null, null, artigos_leilao);
         db.add_Leilao(leilao);
         mete_artigos_na_db();
         NavigationManager.NavigateTo("/Leiloes_recomendados");

@@ -4,7 +4,7 @@
 
 @code {
     
-    public decimal saldo_disponivel;
+    public decimal? saldo_disponivel;
     public decimal saldo_a_adicionar;
     private decimal saldo_a_retirar;
 
@@ -26,8 +26,8 @@
     {
         IDatabaseFacade db = new DatabaseFacade();
         Pessoa user = CurrentUser.user;
-        decimal saldo_atual = user.getSaldo();
-        decimal new_saldo = saldo_atual + saldo_a_adicionar;
+        decimal? saldo_atual = user.getSaldo();
+        decimal? new_saldo = saldo_atual + saldo_a_adicionar;
         CurrentUser.saldo = new_saldo;
         user.setSaldo(new_saldo);
         db.add_Pessoa(user);
@@ -38,10 +38,10 @@
     {
         IDatabaseFacade db = new DatabaseFacade();
         Pessoa user = CurrentUser.user;
-        decimal saldo_atual = user.getSaldo();
+        decimal? saldo_atual = user.getSaldo();
         if((saldo_atual - saldo_a_retirar) < 0) showErrorMessage = true;
         else{
-            decimal new_saldo = saldo_atual - saldo_a_retirar;
+            decimal? new_saldo = saldo_atual - saldo_a_retirar;
             CurrentUser.saldo = new_saldo;
             user.setSaldo(new_saldo);
             db.add_Pessoa(user);

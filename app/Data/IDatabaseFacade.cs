@@ -2,7 +2,6 @@ using app.Leiloeira.Artigos;
 using app.Leiloeira.Lances;
 using app.Leiloeira.Leiloes;
 using app.Leiloeira.Pessoas;
-using app.Leiloeira.Transacoes;
 
 namespace app.Data
 {
@@ -28,7 +27,7 @@ namespace app.Data
         public bool IdLicitador_existe(int idLance, int IdLicitador);
         public bool valorLance_existe(int idLance, decimal valor);
         public bool Art_existe(Lance l);
-        public Lance get_Lance(int idlance);
+        public Lance get_Lance(int? idlance);
         public void add_Lance(Lance l);
         public void remove_Lance(int idlance);
         public ICollection<Lance> get_Lances();
@@ -44,7 +43,6 @@ namespace app.Data
         public bool DataInicial_existe(int idLeilao, DateTime dataHoraInicial);
         public bool Duracao_existe(int idLeilao, int d);
         public bool IDLAtual_existe(int idLeilao, int l);
-        public bool IDLFinal_existe(int idLeilao, int l);
         public bool Leilao_existe(Leilao l);
         public Leilao get_Leilao(int idLeilao);
         public void add_Leilao(Leilao l);
@@ -76,8 +74,8 @@ namespace app.Data
         public bool TPessoa_existe(int idPessoa, TipoDePessoa t);
         public bool Email_existe(int idPessoa, string e);
         public bool Pass_existe(int idPessoa, string p);
-        public bool Saldo_existe(int idPessoa, decimal saldo);
-        public bool Telemovel_existe(int idPessoa, int t);
+        public bool Saldo_existe(int idPessoa, decimal? saldo);
+        public bool Telemovel_existe(int idPessoa, int? t);
         public bool Nickname_existe(int idPessoa, string nickname);
         public bool Pessoa_existe(Pessoa p);
         public Pessoa get_Pessoa(int idPessoa);
@@ -87,24 +85,8 @@ namespace app.Data
         public int get_num_Pessoas();
         public ICollection<int> get_IDsPessoas();
 
-        public void update_saldo(int idPessoa, decimal saldo);
+        public void update_saldo(int idPessoa, decimal? saldo);
 
         public void devolve_dinheiro_utilizador(int id_utilizador, decimal valor);
-    
-        //TRANSAÇÕES//
-
-        public bool IDTransação_existe(int idTransação);
-        public bool Idleilao_existe(int idTransação, int id);
-        public bool IdComprador_existe(int idTransação, int id);
-        public bool IdVendedor_existe(int idTransação, int id);
-        public bool Data_existe(int idTransação, DateTime d);
-        public bool valor_existe(int idTransação, decimal v);
-        public bool Taxa_existe(int idTransação, decimal t);
-        public bool Transacao_existe(Transacao t);
-        public Transacao get_Transacao(int idTransação);
-        public void add_Transacao(Transacao t);
-        public void remove_Transacao(int idTransação);
-        public ICollection<Transacao> get_Transacoes();
-        public ICollection<int> get_IDsTransacoes();
     }
 }

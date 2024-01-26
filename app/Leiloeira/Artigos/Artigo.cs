@@ -4,20 +4,18 @@ namespace app.Leiloeira.Artigos
     {
         private int id;
         private int id_leilão;
-        private int? id_transacao;
         private string nome;
         private string condicao;
         private string raridade;
-        private string? imagem;
+        private string imagem;
         private TipoArtigo tipo;
 
 
         //CONSTRUTORES//
 
-        public Artigo (int id, int id_leilão, int? id_transacao, string nome, string condicao, string raridade, string? imagem, TipoArtigo tipo){
+        public Artigo (int id, int id_leilão, string nome, string condicao, string raridade, string imagem, TipoArtigo tipo){
             this.id = id;
             this.id_leilão = id_leilão;
-            this.id_transacao = id_transacao;
             this.nome = nome;
             this.condicao = condicao;
             this.raridade = raridade;
@@ -45,16 +43,6 @@ namespace app.Leiloeira.Artigos
         public void setId_leilao(int id)
         {
             this.id_leilão = id;
-        }
-
-        public int? getId_Transacao()
-        {
-            return this.id_transacao;
-        }
-
-        public void setId_Transacao(int? id)
-        {
-            this.id_transacao = id;
         }
 
         public string getNome()

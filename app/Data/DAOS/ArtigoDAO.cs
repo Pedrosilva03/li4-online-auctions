@@ -70,16 +70,15 @@ namespace app.Data
                             {
                                 int id = reader.GetInt32(reader.GetOrdinal("id"));
                                 int id_leilao = reader.GetInt32(reader.GetOrdinal("id_leilao"));
-                                int id_transacao = reader.GetInt32(reader.GetOrdinal("id_transacao"));
                                 string nome = reader.GetString(reader.GetOrdinal("nome"));
                                 string condicao = reader.GetString(reader.GetOrdinal("condicao"));
                                 string raridade = reader.GetString(reader.GetOrdinal("raridade")); 
-                                string caminhoImagem = reader.GetString(reader.GetOrdinal("caminhoImagem"));
+                                string caminhoImagem = reader.IsDBNull(reader.GetOrdinal("caminhoImagem")) ? (string?)null : reader.GetString(reader.GetOrdinal("caminhoImagem"));
 
                                 TipoArtigo tipo = (TipoArtigo)Enum.Parse(typeof(TipoArtigo), reader.GetString(reader.GetOrdinal("tipo")));
 
 
-                                a = new Artigo(id, id_leilao, id_transacao, nome, condicao, raridade, caminhoImagem, tipo);
+                                a = new Artigo(id, id_leilao, nome, condicao, raridade, caminhoImagem, tipo);
                             }
                         }
                     }
@@ -131,11 +130,11 @@ namespace app.Data
             string cmd;
             if (containsKey(key))
             {
-                cmd = "UPDATE dbo.Artigo SET id_leilao = @id_leilao, id_transacao = @id_transacao, nome = @nome, condicao = @condicao, raridade = @raridade, caminhoImagem = CONVERT(VARBINARY(MAX), @caminhoImagem), tipo = @tipo WHERE id = @Key";
+                cmd = "UPDATE dbo.Artigo SET id_leilao = @id_leilao, nome = @nome, condicao = @condicao, raridade = @raridade, caminhoImagem = CONVERT(VARBINARY(MAX), @caminhoImagem), tipo = @tipo WHERE id = @Key";
             }
             else
             {
-                cmd = "INSERT INTO dbo.Artigo (id, id_leilao, id_transacao, nome, condicao, raridade, caminhoImagem, tipo) VALUES (@Key, @id_leilao, @id_transacao, @nome, @condicao, @raridade, CONVERT(VARBINARY(MAX), @caminhoImagem), @tipo)";
+                cmd = "INSERT INTO dbo.Artigo (id, id_leilao, nome, condicao, raridade, caminhoImagem, tipo) VALUES (@Key, @id_leilao, @nome, @condicao, @raridade, CONVERT(VARBINARY(MAX), @caminhoImagem), @tipo)";
             }
             try
             {
@@ -145,7 +144,6 @@ namespace app.Data
                     {
                         command.Parameters.AddWithValue("@Key", key);
                         command.Parameters.AddWithValue("@id_leilao", value.getId_leilao());
-                        command.Parameters.AddWithValue("@id_transacao", (object)value.getId_Transacao() ?? DBNull.Value);
                         command.Parameters.AddWithValue("@nome", value.getNome());
                         command.Parameters.AddWithValue("@condicao", value.getCondicao());
                         command.Parameters.AddWithValue("@raridade", value.getRaridade());
@@ -233,13 +231,12 @@ namespace app.Data
                             {
                                 int id = reader.GetInt32(reader.GetOrdinal("id"));
                                 int id_leilao = reader.GetInt32(reader.GetOrdinal("id_leilao"));
-                                int? id_transacao = reader.IsDBNull(reader.GetOrdinal("id_transacao")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("id_transacao"));
                                 string nome = reader.GetString(reader.GetOrdinal("nome"));
                                 string condicao = reader.GetString(reader.GetOrdinal("condicao"));
                                 string raridade = reader.GetString(reader.GetOrdinal("raridade"));
-                                string caminhoImagem = reader.GetString(reader.GetOrdinal("caminhoImagem"));
+                                string caminhoImagem = reader.IsDBNull(reader.GetOrdinal("caminhoImagem")) ? (string?)null : reader.GetString(reader.GetOrdinal("caminhoImagem"));
                                 TipoArtigo tipo = (TipoArtigo)Enum.Parse(typeof(TipoArtigo), reader.GetString(reader.GetOrdinal("tipo")));
-                                Artigo a = new Artigo(id,id_leilao, id_transacao, nome, condicao, raridade, caminhoImagem, tipo);
+                                Artigo a = new Artigo(id,id_leilao, nome, condicao, raridade, caminhoImagem, tipo);
                                 artigos.Add(a);
                             }
                         }

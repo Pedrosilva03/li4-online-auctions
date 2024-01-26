@@ -7,7 +7,7 @@ namespace app.CurrentSession
         public static Pessoa? user = null;
         public static bool isLogged = false;
         public static bool isAdmin = false;
-        public static decimal saldo = 0;
+        public static decimal? saldo = 0;
 
         public CurrentUser() { }
 

@@ -1,5 +1,4 @@
 using app.Leiloeira.Leiloes;
-using app.Leiloeira.Transacoes;
 
 namespace app.Leiloeira.Pessoas
 {
@@ -9,16 +8,15 @@ namespace app.Leiloeira.Pessoas
         private TipoDePessoa tipo;
         private string email;
         private string password;
-        private decimal saldo;
-        private int telemovel;
+        private decimal? saldo;
+        private int? telemovel;
         private string nickname;
         private Dictionary<int, Leilao> leiloesFavoritos;
-        private Dictionary<int, Transacao> transacoesFeitas;
-        private Estado estado;
+        private Estado? estado;
 
         //CONSTRUTORES//
 
-        public Pessoa(int id, decimal saldo, string email, string password, int telemovel, string nickname, TipoDePessoa tipo, Dictionary<int, Leilao> leiloesFavoritos, Dictionary<int, Transacao> transacoesFeitas, Estado estado)
+        public Pessoa(int id, decimal? saldo, string email, string password, int? telemovel, string nickname, TipoDePessoa tipo, Dictionary<int, Leilao> leiloesFavoritos, Estado? estado)
         {
             this.id = id;
             this.saldo = saldo;
@@ -28,7 +26,6 @@ namespace app.Leiloeira.Pessoas
             this.nickname = nickname;
             this.tipo = tipo;
             this.leiloesFavoritos = leiloesFavoritos;
-            this.transacoesFeitas = transacoesFeitas;
             this.estado = estado;
         }
 
@@ -44,12 +41,12 @@ namespace app.Leiloeira.Pessoas
             this.id = id;
         }
 
-        public decimal getSaldo()
+        public decimal? getSaldo()
         {
             return this.saldo;
         }
 
-        public void setSaldo(decimal novoSaldo)
+        public void setSaldo(decimal? novoSaldo)
         {
             this.saldo = novoSaldo;
         }
@@ -74,12 +71,12 @@ namespace app.Leiloeira.Pessoas
             this.password = novaPassword;
         }
 
-        public int getTelemovel()
+        public int? getTelemovel()
         {
             return this.telemovel;
         }
 
-        public void setTelemovel(int novoTelemovel)
+        public void setTelemovel(int? novoTelemovel)
         {
             this.telemovel = novoTelemovel;
         }
@@ -114,22 +111,12 @@ namespace app.Leiloeira.Pessoas
             this.leiloesFavoritos = l;
         }
 
-        public Dictionary<int, Transacao> getTransacoesFeitas()
-        {
-            return this.transacoesFeitas;
-        }
-
-        public void setTransacoesFeitas(Dictionary<int, Transacao> t)
-        {
-            this.transacoesFeitas = t;
-        }
-
-        public Estado getEstado()
+        public Estado? getEstado()
         {
             return this.estado;
         }
 
-        public void setEstado(Estado e)
+        public void setEstado(Estado? e)
         {
             this.estado = e;
         }

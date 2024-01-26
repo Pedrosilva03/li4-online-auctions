@@ -8,6 +8,10 @@
 
     public Leilao leilao;
 
+    public Pessoa vendedor;
+
+    public string nome_vendedor;
+
     public int id_criador;
 
     public List<Artigo> skins = new List<Artigo>();
@@ -21,6 +25,8 @@
     public decimal valor_licitacao_atual;
 
     public string nome_highest_bidder;
+
+    public int id_highest_bidder;
 
     public DateTime data_fim;
 
@@ -38,6 +44,8 @@
 
     public bool favorito;
 
+    public int taxa;
+
     IDatabaseFacade db = new DatabaseFacade();
 
     protected override void OnInitialized()
@@ -52,6 +60,8 @@
             leilao = db.get_Leilao(id_leilao);
 
             id_criador = leilao.getId_Criador();
+            vendedor = db.get_Pessoa(id_criador);
+            nome_vendedor = vendedor.getNickname();
 
             skins = db.get_artigos_leilao(id_leilao);
             descricao = leilao.getDescricao();
@@ -70,6 +80,7 @@
                 Lance lance = db.get_Lance((int)licitacao_atual);
                 valor_licitacao_atual = lance.getValor();
                 nome_highest_bidder = db.get_Pessoa(lance.getId_Licitador()).getNickname();
+                id_highest_bidder = lance.getId_Licitador();
             }
 
             if (terminado) {
@@ -82,7 +93,7 @@
     }
 
     void licitar() {
-        decimal saldo = CurrentUser.saldo;
+        decimal? saldo = CurrentUser.saldo;
         int id_licitador = CurrentUser.user.getID();
 
         if (id_licitador != id_criador) {
@@ -145,23 +156,26 @@
         <p class="leilao-descricao">@descricao</p>
 
         <div style="width: 80%; text-align: left;">
+            <p><span style="font-weight: bold;">Vendedor: </span> @nome_vendedor, ID: @id_criador</p>
             @if (!terminado) {
                 <p><span style="font-weight: bold;">Preço mínimo: </span> @preco_minimo €</p>
             }
 
             @if(terminado) {
-                <p><span style="font-weight: bold;">vendedor :</span> @nome_highest_bidder</p>
-                <p><span style="font-weight: bold;">valor final: </span> @valor_licitacao_atual €</p>
+
+                <p><span style="font-weight: bold;">Vencedor :</span> @nome_highest_bidder, ID: @id_highest_bidder</p>
+                <p><span style="font-weight: bold;">Valor final: </span> @valor_licitacao_atual €</p>
             }
 
             @if(!terminado && licitacao_atual != null) {
-                <p><span style="font-weight: bold;">Licitação atual: </span> @valor_licitacao_atual € feita por @nome_highest_bidder</p>
+                <p><span style="font-weight: bold;">Licitação atual: </span> @valor_licitacao_atual € feita por @nome_highest_bidder, ID: @id_highest_bidder</p>
             } else if(!terminado && licitacao_atual == null) {
                 <p><span style="font-weight: bold;">Sem licitações</span></p>
             }
         </div>
 
         <div class="leilao-interacao">
+            @if(!terminado){
             <div class="leilao-interacao-field">
                 @if (iniciado || terminado) {
                     <span style="font-weight: bold;">Tempo restante: </span> 
@@ -177,19 +191,22 @@
                     <span>@tempo_restante.Minutes m</span>
                 }
             </div>
+            }
 
+            @if(!terminado){
             <div class="leilao-interacao-field">
                 @if (iniciado) {
                     <input type="number" step="0.01" placeholder="valor" @bind="@input_licitacao" />
-                } else if (terminado) {
-                    <span style="font-weight: bold;">Leilão terminado</span>
                 } else {
                     <span style="font-weight: bold;">Leilão ainda não começou</span>
                 }
             </div>
+            }
 
+            @if(!terminado){
             <div class="licitar-button leilao-interacao-field" @onclick="licitar">Licitar</div>
-
+            }
+            @if(!terminado){
             <div>
                 @if (favorito) {
                     <img class="fav-button" src="/imgs/heart.png" @onclick="desfavoritar_leilao" >
@@ -197,6 +214,7 @@
                     <img class="fav-button" src="/imgs/heart_white.png" @onclick="favoritar_leilao" >
                 }
             </div>
+            }
         </div>
 
         @if (!licitacao_valida) {

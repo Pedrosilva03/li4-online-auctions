@@ -37,12 +37,11 @@
         }while(id_existe);
 
         Dictionary<int, Leilao> leiloesFavoritos = new Dictionary<int, Leilao>();
-        Dictionary<int, Transacao> transacoesFeitas = new Dictionary<int, Transacao>();
 
         TipoDePessoa tipo = TipoDePessoa.Utilizador;
         Estado estado = Estado.Desbloqueado;
 
-        Pessoa p = new Pessoa(id, 0, email, password, int.Parse(telemovel), nickname, tipo, leiloesFavoritos, transacoesFeitas, estado);  
+        Pessoa p = new Pessoa(id, 0, email, password, int.Parse(telemovel), nickname, tipo, leiloesFavoritos,  estado);  
 
         if (valida_campos()) {
             db.add_Pessoa(p); 

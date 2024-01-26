@@ -69,15 +69,25 @@ namespace app.Data
                             if (reader.Read())
                             {
                                 int id = reader.GetInt32(reader.GetOrdinal("id"));
-                                decimal saldo = reader.GetDecimal(reader.GetOrdinal("saldo"));
+                                decimal? saldo = reader.IsDBNull(reader.GetOrdinal("saldo")) ? (decimal?)null : reader.GetDecimal(reader.GetOrdinal("saldo"));
                                 string email = reader.GetString(reader.GetOrdinal("email"));
                                 string password = reader.GetString(reader.GetOrdinal("password"));
-                                int telemovel = reader.GetInt32(reader.GetOrdinal("telemovel"));
-                                string nickname = reader.GetString(reader.GetOrdinal("nickname"));
+                                int? telemovel = reader.IsDBNull(reader.GetOrdinal("telemovel")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("telemovel"));
+                                string nickname = reader.IsDBNull(reader.GetOrdinal("nickname")) ? (string?)null : reader.GetString(reader.GetOrdinal("nickname"));
                                 
                                 TipoDePessoa tipo = (TipoDePessoa)Enum.Parse(typeof(TipoDePessoa), reader.GetString(reader.GetOrdinal("tipo")));
-                                Estado estado = (Estado)Enum.Parse(typeof(Estado), reader.GetString(reader.GetOrdinal("estado")));
-                                p = new Pessoa(id, saldo, email, password, telemovel, nickname, tipo, null, null, estado);
+                                string state = reader.IsDBNull(reader.GetOrdinal("estado")) ? (string?)null : reader.GetString(reader.GetOrdinal("estado"));
+                                Estado? estado;
+                                if (!string.IsNullOrEmpty(state))
+                                {
+                                    estado = (Estado)Enum.Parse(typeof(Estado), state);
+    
+                                }
+                                else
+                                {
+                                    estado = null;
+                                }
+                                p = new Pessoa(id, saldo, email, password, telemovel, nickname, tipo, null, estado);
                             }
                         }
                     }
@@ -141,13 +151,13 @@ namespace app.Data
                     using (SqlCommand command = new SqlCommand(cmd, con))
                     {
                         command.Parameters.AddWithValue("@Key", key);
-                        command.Parameters.AddWithValue("@saldo", value.getSaldo());
+                        command.Parameters.AddWithValue("@saldo", (object)value.getSaldo() ?? DBNull.Value);
                         command.Parameters.AddWithValue("@email", value.getEmail());
                         command.Parameters.AddWithValue("@password", value.getPassword());
-                        command.Parameters.AddWithValue("@telemovel", value.getTelemovel());
-                        command.Parameters.AddWithValue("@nickname", value.getNickname());
+                        command.Parameters.AddWithValue("@telemovel", (object)value.getTelemovel() ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@nickname", (object)value.getNickname() ?? DBNull.Value);
                         command.Parameters.AddWithValue("@tipo", value.getTipo().ToString());
-                        command.Parameters.AddWithValue("@estado", value.getEstado().ToString());
+                        command.Parameters.AddWithValue("@estado", (object)value.getEstado().ToString() ?? DBNull.Value);
                         con.Open();
                         command.ExecuteNonQuery();
                     }
@@ -227,15 +237,25 @@ namespace app.Data
                             while (reader.Read())
                             {
                                 int id = reader.GetInt32(reader.GetOrdinal("id"));
-                                decimal saldo = reader.GetDecimal(reader.GetOrdinal("saldo"));
+                                decimal? saldo = reader.IsDBNull(reader.GetOrdinal("saldo")) ? (decimal?)null : reader.GetDecimal(reader.GetOrdinal("saldo"));
                                 string email = reader.GetString(reader.GetOrdinal("email"));
                                 string password = reader.GetString(reader.GetOrdinal("password"));
-                                int telemovel = reader.GetInt32(reader.GetOrdinal("telemovel"));
-                                string nickname = reader.GetString(reader.GetOrdinal("nickname"));
+                                int? telemovel = reader.IsDBNull(reader.GetOrdinal("telemovel")) ? (int?)null : reader.GetInt32(reader.GetOrdinal("telemovel"));
+                                string nickname = reader.IsDBNull(reader.GetOrdinal("nickname")) ? (string?)null : reader.GetString(reader.GetOrdinal("nickname"));
                                 
                                 TipoDePessoa tipo = (TipoDePessoa)Enum.Parse(typeof(TipoDePessoa), reader.GetString(reader.GetOrdinal("tipo")));
-                                Estado estado = (Estado)Enum.Parse(typeof(Estado), reader.GetString(reader.GetOrdinal("estado")));
-                                Pessoa p = new Pessoa(id, saldo, email, password, telemovel, nickname, tipo, null, null, estado);
+                                string state = reader.IsDBNull(reader.GetOrdinal("estado")) ? (string?)null : reader.GetString(reader.GetOrdinal("estado"));
+                                Estado? estado;
+                                if (!string.IsNullOrEmpty(state))
+                                {
+                                    estado = (Estado)Enum.Parse(typeof(Estado), state);
+    
+                                }
+                                else
+                                {
+                                    estado = null;
+                                }
+                                Pessoa p = new Pessoa(id, saldo, email, password, telemovel, nickname, tipo, null, estado);
                                 pessoas.Add(p);
                             }
                         }
@@ -252,7 +272,7 @@ namespace app.Data
         }
 
 
-        public void update_saldo(int idPessoa, decimal saldo)
+        public void update_saldo(int idPessoa, decimal? saldo)
         {
             string cmd = "UPDATE dbo.Pessoa SET saldo = @saldo WHERE id = @Key";
             try

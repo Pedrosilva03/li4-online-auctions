@@ -2,7 +2,6 @@ using app.Leiloeira.Artigos;
 using app.Leiloeira.Lances;
 using app.Leiloeira.Leiloes;
 using app.Leiloeira.Pessoas;
-using app.Leiloeira.Transacoes;
 
 namespace app.Data
 {
@@ -11,14 +10,12 @@ namespace app.Data
         private ArtigoDAO artigoDAO;
         private LanceDAO lanceDAO;
         private LeilaoDAO leilaoDAO;
-        private TransacaoDAO transacaoDAO;
         private PessoaDAO pessoaDAO;
 
         public DatabaseFacade() 
         { 
             this.artigoDAO = ArtigoDAO.getInstance();
             this.lanceDAO = LanceDAO.getInstance();
-            this.transacaoDAO = TransacaoDAO.getInstance();
             this.leilaoDAO = LeilaoDAO.getInstance();
             this.pessoaDAO = PessoaDAO.getInstance();
         }
@@ -94,7 +91,7 @@ namespace app.Data
             return this.lanceDAO.containsValue(l);
         }
 
-        public Lance get_Lance(int idlance)
+        public Lance get_Lance(int? idlance)
         {
             return this.lanceDAO.get(idlance);
         }
@@ -153,9 +150,6 @@ namespace app.Data
             return this.leilaoDAO.get(idLeilao).getIdLanceAtual() == l;
         }
 
-        public bool IDLFinal_existe(int idLeilao, int l){
-            return this.leilaoDAO.get(idLeilao).getIdLanceFinal() == l;
-        }
         public bool Leilao_existe(Leilao l)
         {
             return this.leilaoDAO.containsValue(l);
@@ -250,11 +244,11 @@ namespace app.Data
             return this.pessoaDAO.get(idPessoa).getPassword() == p;
         }
 
-        public bool Saldo_existe(int idPessoa, decimal saldo){
+        public bool Saldo_existe(int idPessoa, decimal? saldo){
             return this.pessoaDAO.get(idPessoa).getSaldo() == saldo;
         }
 
-        public bool Telemovel_existe(int idPessoa, int t){
+        public bool Telemovel_existe(int idPessoa, int? t){
             return this.pessoaDAO.get(idPessoa).getTelemovel() == t;
         }
 
@@ -297,7 +291,7 @@ namespace app.Data
             return this.pessoaDAO.keys();
         }
 
-        public void update_saldo(int idPessoa, decimal saldo)
+        public void update_saldo(int idPessoa, decimal? saldo)
         {
             this.pessoaDAO.update_saldo(idPessoa, saldo);
         }
@@ -307,64 +301,5 @@ namespace app.Data
             this.pessoaDAO.devolve_dinheiro_utilizador(id_utilizador, valor);
         }
     
-        //TRANSAÇÕES//
-
-        public bool IDTransação_existe(int idTransação){
-            return this.transacaoDAO.containsKey(idTransação);
-        }
-
-        public bool Idleilao_existe(int idTransação, int id){
-            return this.transacaoDAO.get(idTransação).getId_leilao() == id;
-        }
-
-        public bool IdComprador_existe(int idTransação, int id){
-            return this.transacaoDAO.get(idTransação).getComprador() == id;
-        }
-
-        public bool IdVendedor_existe(int idTransação, int id){
-            return this.transacaoDAO.get(idTransação).getVendedor() == id;
-        }
-
-        public bool Data_existe(int idTransação, DateTime d){
-            return this.transacaoDAO.get(idTransação).getData().Equals(d);
-        }
-
-        public bool valor_existe(int idTransação, decimal v){
-            return this.transacaoDAO.get(idTransação).getValor() == v;
-        }
-
-        public bool Taxa_existe(int idTransação, decimal t){
-            return this.transacaoDAO.get(idTransação).getTaxa() == t;
-        }
-
-        public bool Transacao_existe(Transacao t)
-        {
-            return this.transacaoDAO.containsValue(t);
-        }
-
-        public Transacao get_Transacao(int idTransação)
-        {
-            return this.transacaoDAO.get(idTransação);
-        }
-
-        public void add_Transacao(Transacao t)
-        {
-            this.transacaoDAO.put(t.getID(), t);
-        }
-
-        public void remove_Transacao(int idTransação)
-        {
-            this.transacaoDAO.remove(idTransação);
-        }
-
-        public ICollection<Transacao> get_Transacoes()
-        {
-            return this.transacaoDAO.values();
-        }
-
-        public ICollection<int> get_IDsTransacoes()
-        {
-            return this.transacaoDAO.keys();
-        }
     }
 }

@@ -111,10 +111,16 @@
 
 <div class="profile-container">
     <div class="profile-info-box">
-        @if(!alterar_dados) {
+        @if(!alterar_dados && !CurrentUser.isAdmin) {
             <p class="profile-info">Nickname: @nickname</p>
             <p class="profile-info">E-mail: @email</p>
             <p class="profile-info">Telemóvel: @telemovel</p>
+        }
+
+        @if(!alterar_dados && CurrentUser.isAdmin)
+        {
+            <p class="profile-info">Nickname: Admin</p>
+            <p class="profile-info">E-mail: @email</p>
         }
 
         @if(alterar_dados) {
@@ -157,7 +163,7 @@
             </div>
         }
 
-        @if(!alterar_dados) {
+        @if(!alterar_dados && !CurrentUser.isAdmin) {
             <div class="edit-profile" @onclick="@alterar_dados_conta">
                 <a>Alterar dados da conta</a>
             </div>

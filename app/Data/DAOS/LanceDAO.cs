@@ -52,7 +52,7 @@ namespace app.Data
             return containsKey(value.getID());
         }
         
-        public Lance get(int key)
+        public Lance get(int? key)
         {
             Lance? l = null;
             string cmd1 = $"SELECT * FROM dbo.Lance where id = @Key";
