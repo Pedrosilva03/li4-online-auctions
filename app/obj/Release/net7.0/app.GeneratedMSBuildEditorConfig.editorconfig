@@ -10,6 +10,8 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = app
 build_property.RootNamespace = app
 build_property.ProjectDir = C:\Users\Admin\li4-online-auctions\app\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
@@ -56,10 +58,6 @@ build_metadata.AdditionalFiles.CssScope = b-sqycdtmhw4
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGVpbG9lc19yZWNvbWVuZGFkb3NcTGVpbG9lc19yZWNvbWVuZGFkb3MucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-5zz3vq4ghc
 
-[C:/Users/Admin/li4-online-auctions/app/Pages/Login/Login.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5cTG9naW4ucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-j76pyj42g1
-
 [C:/Users/Admin/li4-online-auctions/app/Pages/Pagina_leilao/Pagina_leilao.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnaW5hX2xlaWxhb1xQYWdpbmFfbGVpbGFvLnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-o5cqflxz6u
@@ -71,6 +69,10 @@ build_metadata.AdditionalFiles.CssScope = b-mmu2nohosn
 [C:/Users/Admin/li4-online-auctions/app/Pages/Pagina_saldo/Pagina_saldo.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnaW5hX3NhbGRvXFBhZ2luYV9zYWxkby5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-jbcd7og63e
+
+[C:/Users/Admin/li4-online-auctions/app/Pages/Pagina_transacoes/Pagina_transacoes.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFnaW5hX3RyYW5zYWNvZXNcUGFnaW5hX3RyYW5zYWNvZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-bk0l8mz4lj
 
 [C:/Users/Admin/li4-online-auctions/app/Pages/Perfil/Perfil.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGVyZmlsXFBlcmZpbC5yYXpvcg==

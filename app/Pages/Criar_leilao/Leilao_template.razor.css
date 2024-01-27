@@ -40,7 +40,5 @@
 }
 
 @media (max-width: 768px) {
-    .template-row-right {
-        flex-direction: column;
-    }
+    
 }

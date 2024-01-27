@@ -75,3 +75,19 @@
 .fav-button:hover {
     transform: scale(1.05);
 }
+
+@media (max-width: 768px) {
+    .leilao-interacao {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .leilao-interacao-field {
+        width: 100%;
+        text-align: center;
+    }
+
+    .leilao-info-container {
+        width: 100%;
+    }
+}

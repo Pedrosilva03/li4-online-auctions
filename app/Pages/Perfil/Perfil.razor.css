@@ -82,3 +82,20 @@
     font-weight: bold;
     font-size: larger;
 }
+
+@media (max-width: 768px) {
+    .profile-info-box {
+        width: 100%;
+    }
+
+    .profile-info {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .edit-profile {
+        margin-left: 0;
+    }
+}
