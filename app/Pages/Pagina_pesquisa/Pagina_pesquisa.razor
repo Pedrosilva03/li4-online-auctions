@@ -11,7 +11,6 @@
     public bool pesquisado = false;
     public bool showErrorMessage = false;
 
-    public ICollection<Leilao> leiloes = new List<Leilao>();
     public ICollection<Artigo> artigos = new List<Artigo>();
     List<Artigo> artigosList;
 
@@ -37,9 +36,37 @@
         return attributes;
     }
 
+    bool finished(int id)
+    {
+        Leilao leilao = db.get_Leilao(id);
+
+        DateTime dataHoraInicial = leilao.getDataHoraInicial();
+        int duracao = leilao.getDuracao();
+
+        DateTime current = DateTime.Now;
+
+        DateTime end = dataHoraInicial.AddMinutes(duracao);
+
+        return current > end;
+    }
+
+    decimal preco (int id)
+    {
+        Leilao leilao = db.get_Leilao(id);
+
+        if(leilao.getIdLanceAtual() == null)
+        {
+            return leilao.getPrecoMinimo();
+        }
+        else
+        {
+            Lance lance = db.get_Lance(leilao.getIdLanceAtual());
+            return lance.getValor();
+        }
+    }
+
     void pesquisar(){
-        leiloes = db.get_leiloes_nao_acabados();
-        if(id!= 0 && db.IDLeilao_existe(id))
+        if(id!= 0 && db.IDLeilao_existe(id) && !finished(id)) // verifica se leilão acabou
         {
             showErrorMessage = false;
             if(artigosList != null) artigosList.Clear();
@@ -62,12 +89,12 @@
             List<Artigo> filteredArtigos = new List<Artigo>();
             foreach(Artigo artigo in artigosList)
             {
-                Leilao leilao = db.get_Leilao(artigo.getId_leilao());
                 if ((string.IsNullOrEmpty(arma) || artigo.getTipo().ToString() == arma) &&
                 (string.IsNullOrEmpty(skin) || artigo.getNome() == skin) &&
                 (string.IsNullOrEmpty(raridade) || artigo.getRaridade() == raridade) &&
                 (string.IsNullOrEmpty(condicao) || artigo.getCondicao() == condicao) &&
-                (preco_maximo == 0 || leilao.getPrecoMinimo() <= preco_maximo))
+                (preco_maximo == 0 || preco(artigo.getId_leilao()) <= preco_maximo) &&
+                !finished(artigo.getId_leilao()))
                 {
                     filteredArtigos.Add(artigo);
                 }
@@ -191,13 +218,12 @@
 
             <div class="search-results">
                 @foreach (var artigo in artigosList) {
-                    Leilao leilao = db.get_Leilao(artigo.getId_leilao());
                     int id_leilao = artigo.getId_leilao();
                     string arma = artigo.getTipo().ToString();
                     string skin = artigo.getNome();
                     string raridade = artigo.getRaridade();
                     string condicao = artigo.getCondicao();
-                    decimal preco_maximo = leilao.getPrecoMinimo();
+                    decimal preco_maximo = preco(artigo.getId_leilao());
 
                     string img = artigo.getImagem();
                     if (img == null) img = $"/imgs/default_items/{arma}.png";

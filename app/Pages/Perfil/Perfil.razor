@@ -25,6 +25,20 @@
         base.OnInitialized();
     }
 
+    bool confirmationPopupVisible = false;
+
+    // Function to show the confirmation pop-up
+    void showConfirmationPopup()
+    {
+        confirmationPopupVisible = true;
+    }
+
+    // Function to hide the confirmation pop-up
+    void hideConfirmationPopup()
+    {
+        confirmationPopupVisible = false;
+    }
+
     void put_values(){
         Pessoa utilizador = CurrentUser.user;
 
@@ -101,12 +115,21 @@
 <div class="title-container">
     <h1 class="profile-page-title">Perfil</h1>
     @if(!CurrentUser.isAdmin && !alterar_dados) {
-        <div class="delete-profile" @onclick="@eliminar">
+        <div class="delete-profile" @onclick="() => showConfirmationPopup()">
             <a>
                 <p>Eliminar perfil</p>
             </a>
         </div>
     }
+</div>
+
+<div class="confirmation-popup" id="confirmation-popup" style="@($"display: {(confirmationPopupVisible ? "block" : "none")};")">
+    <div class="popup-content">
+        <p>Tem a certeza de que deseja eliminar este perfil?</p>
+        <p>@nickname vai ser perdido para sempre! (Muito tempo!)</p>
+        <button @onclick="() => { eliminar(); hideConfirmationPopup(); }">Apagar</button>
+        <button @onclick="() => hideConfirmationPopup()">Cancelar</button>
+    </div>
 </div>
 
 <div class="profile-container">
