@@ -104,5 +104,7 @@ USE leiloes;
 
 INSERT INTO dbo.Pessoa (id, tipo, email, password, saldo, telemovel, nickname, estado) VALUES (0, 'Administrador', 'admin@gmail.com', 'admin123', null, null, null, null);
 
-INSERT INTO dbo.Pessoa (id, tipo, email, password, saldo, telemovel, nickname, estado) VALUES (1, 'Utilizador', 'yeet@gmail.com', 'yeet', 0, 968780666, 'Yeet', 'Desbloqueado');
+INSERT INTO dbo.Pessoa (id, tipo, email, password, saldo, telemovel, nickname, estado) VALUES (1, 'Utilizador', 'yeet@gmail.com', 'yeet', 500, 968780666, 'Yeet', 'Desbloqueado');
+
+INSERT INTO dbo.Pessoa (id, tipo, email, password, saldo, telemovel, nickname, estado) VALUES (69, 'Utilizador', 'tone@gmail.com', 'tone', 500, 912345678, 'Tone', 'Desbloqueado');
 

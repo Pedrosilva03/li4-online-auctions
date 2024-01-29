@@ -20,6 +20,8 @@
 
     public decimal preco_minimo;
 
+    public decimal preco_reserva;
+
     public int? licitacao_atual;  // id do lance mais alto
 
     public decimal valor_licitacao_atual;
@@ -46,6 +48,8 @@
 
     public bool favorito;
 
+    public bool reserva = false;
+
     public int taxa;
 
     IDatabaseFacade db = new DatabaseFacade();
@@ -68,6 +72,7 @@
             skins = db.get_artigos_leilao(id_leilao);
             descricao = leilao.getDescricao();
             preco_minimo = leilao.getPrecoMinimo();
+            preco_reserva = leilao.getPrecoReserva();
 
             DateTime data_inicio = leilao.getDataHoraInicial();
             int duracao = leilao.getDuracao();
@@ -89,6 +94,21 @@
             if (terminado) {
                 tempo_restante = new TimeSpan(0, 0, 0);
                 iniciado = false;
+                if(licitacao_atual != null){
+                Lance lance = db.get_Lance((int)licitacao_atual);
+                valor_licitacao_atual = lance.getValor();
+                    if(preco_reserva > valor_licitacao_atual)
+                    {
+                        db.devolve_dinheiro_utilizador(lance.getId_Licitador(), valor_licitacao_atual);
+                        reserva = true;
+                    }
+                    else
+                    {
+                        decimal saldo_vendedor = db.get_saldo(id_criador);
+                        db.update_saldo(id_criador, saldo_vendedor + valor_licitacao_atual);
+                    }
+                }
+
             }
 
             favorito = db.e_favorito(id_leilao, CurrentUser.user.getID());
@@ -101,6 +121,7 @@
 
         if (id_licitador != id_criador) {
             if (iniciado && saldo >= input_licitacao && input_licitacao > valor_licitacao_atual) {
+                favoritar_leilao();
                 int id_lance;
                 bool id_existe;
                 do {
@@ -108,7 +129,6 @@
                     id_existe = db.IDLance_existe(id_lance);
                 } while(id_existe);
 
-                decimal saldo_vendedor = db.get_saldo(id_criador);
 
                 if (licitacao_atual != null) {
                     Lance lance_anterior = db.get_Lance((int)licitacao_atual);
@@ -116,9 +136,6 @@
                     decimal valor_anterior = lance_anterior.getValor();
                     db.devolve_dinheiro_utilizador(id_licitador_anterior, valor_anterior);
                     CurrentUser.saldo += valor_anterior;
-
-                    db.update_saldo(id_criador, saldo_vendedor - valor_anterior);
-                    saldo_vendedor -= valor_anterior;
                 }
 
                 Lance lance = new Lance(id_lance, id_leilao, id_licitador, input_licitacao);
@@ -127,7 +144,6 @@
 
                 CurrentUser.saldo -= input_licitacao;
                 db.update_saldo(id_licitador, CurrentUser.saldo);
-                db.update_saldo(id_criador, saldo_vendedor + input_licitacao);
 
                 OnInitialized();
             } else {
@@ -136,6 +152,7 @@
         } else {
             licitar_no_proprio_leilao = true;
         }
+
     }
 
     void favoritar_leilao() {
@@ -193,23 +210,24 @@
                     <span style="font-weight: bold;">Tempo até início: </span> 
                 }
 
-                @if (tempo_restante.Days > 0) {
-                    <span>@tempo_restante.Days dias</span>
-                } else if (tempo_restante.Hours > 0) {
-                    <span>@tempo_restante.Hours h:@tempo_restante.Minutes m</span>
-                } else if (tempo_restante.Minutes > 0){
-                    <span>@tempo_restante.Minutes m</span>
-                }
-
-                else {
-                    if (tempo_ate_inicio.Days > 0) {
-                        <span>@tempo_ate_inicio.Days dias</span>
+                @if (tempo_ate_inicio.Days > 0) {
+                        <span>@tempo_ate_inicio.Days dias </span>
                     } else if (tempo_ate_inicio.Hours > 0) {
-                        <span>@tempo_ate_inicio.Hours h:@tempo_ate_inicio.Minutes m</span>
-                    } else {
+                        <span>@tempo_ate_inicio.Hours h:@tempo_ate_inicio.Minutes m </span>
+                    } else if (tempo_ate_inicio.Minutes > 0) {
                         <span>@tempo_ate_inicio.Minutes m</span>
+                    } else if(tempo_ate_inicio.Seconds > 0) { 
+                        <span>@tempo_ate_inicio.Seconds s</span>
+                    }else if (tempo_restante.Days > 0) {
+                        <span>@tempo_restante.Days dias</span>
+                    } else if (tempo_restante.Hours > 0) {
+                        <span>@tempo_restante.Hours h:@tempo_restante.Minutes m</span>
+                    } else if (tempo_restante.Minutes > 0){
+                        <span>@tempo_restante.Minutes m</span>
+                    } else if (tempo_restante.Seconds > 0){
+                        <span>@tempo_restante.Seconds s</span>
                     }
-                }
+                
             </div>
             }
 
@@ -226,7 +244,7 @@
             @if(!terminado){
             <div class="licitar-button leilao-interacao-field" @onclick="licitar">Licitar</div>
             }
-            @if(!terminado){
+            
             <div>
                 @if (favorito) {
                     <img class="fav-button" src="/imgs/heart.png" @onclick="desfavoritar_leilao" >
@@ -234,8 +252,12 @@
                     <img class="fav-button" src="/imgs/heart_white.png" @onclick="favoritar_leilao" >
                 }
             </div>
-            }
+            
         </div>
+
+        @if(reserva){
+             <p style="margin-top: 20px; font-weight: bold">Preço de reserva não foi ultrapassado</p>
+        }
 
         @if (!licitacao_valida) {
             <p style="margin-top: 20px; font-weight: bold">Valor da licitação tem de ser superior ao valor atual</p>

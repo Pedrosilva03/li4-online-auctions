@@ -339,7 +339,7 @@ namespace app.Data
                     using (SqlCommand command = new SqlCommand(cmd, con))
                     {   
                         command.Parameters.AddWithValue("@id_leilao", id_leilao);
-                        command.Parameters.AddWithValue("@id_lance", id_lance);
+                        command.Parameters.AddWithValue("@id_lance", (object)id_lance ?? DBNull.Value);
                         con.Open();
                         command.ExecuteNonQuery();
                     }

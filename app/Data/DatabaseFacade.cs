@@ -190,7 +190,7 @@ namespace app.Data
             return this.leilaoDAO.artigos_leilao(idLeilao);
         }
 
-        public void update_id_lanceAtual(int id_leilao, int id_lance)
+        public void update_id_lanceAtual(int id_leilao, int? id_lance)
         {
             this.leilaoDAO.update_id_lanceAtual(id_leilao, id_lance);
         }

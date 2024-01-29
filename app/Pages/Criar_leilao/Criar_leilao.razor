@@ -95,6 +95,7 @@
         Leilao leilao = new Leilao(id_leilao, id_criador, descricao, preco_reserva, preco_inicial, datetime_inicio, duracao, null, null, null, artigos_leilao);
         db.add_Leilao(leilao);
         mete_artigos_na_db();
+        db.favoritar_leilao(id_leilao, id_criador);
         NavigationManager.NavigateTo("/Leiloes_recomendados");
     }
  }
