@@ -339,7 +339,7 @@ namespace app.Data
                     using (SqlCommand command = new SqlCommand(cmd, con))
                     {   
                         command.Parameters.AddWithValue("@id_leilao", id_leilao);
-                        command.Parameters.AddWithValue("@id_lance", id_lance);
+                        command.Parameters.AddWithValue("@id_lance", (object)id_lance ?? DBNull.Value);
                         con.Open();
                         command.ExecuteNonQuery();
                     }
@@ -523,7 +523,7 @@ namespace app.Data
         public List<Leilao> get_leiloes_vencidos(int id_utilizador) 
         {
             List<Leilao> leiloes = new List<Leilao>();
-            string cmd = "SELECT * FROM dbo.Leilao WHERE (DATEADD(MINUTE, duracao, dataHoraInicial) < GETDATE()) AND id_lanceAtual IS NOT NULL AND id_lanceAtual IN (SELECT id FROM dbo.Lance WHERE id_licitador = @id_utilizador)";
+            string cmd = "SELECT * FROM dbo.Leilao WHERE (DATEADD(MINUTE, duracao, dataHoraInicial) < GETDATE()) AND id_lanceAtual IS NOT NULL AND id_lanceAtual IN (SELECT id FROM dbo.Lance WHERE id_licitador = @id_utilizador) AND id_lanceAtual IN (SELECT id FROM dbo.Lance WHERE valor > (SELECT MAX(precoReserva) FROM dbo.Leilao WHERE id = Leilao.id))";
             try
             {
                 using (SqlConnection con = new SqlConnection(DAOconfig.GetConnectionString()))

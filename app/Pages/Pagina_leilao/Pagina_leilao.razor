@@ -1,6 +1,7 @@
 @page "/Pagina_leilao"
 
 @inject NavigationManager NavigationManager
+@inject app.Terminado.AppStateService AppStateService
 
 @code {
     [Parameter]
@@ -19,6 +20,8 @@
     public string descricao;
 
     public decimal preco_minimo;
+
+    public decimal preco_reserva;
 
     public int? licitacao_atual;  // id do lance mais alto
 
@@ -46,9 +49,13 @@
 
     public bool favorito;
 
+    public bool reserva = false;
+
     public int taxa;
 
     IDatabaseFacade db = new DatabaseFacade();
+
+    public bool TerminadoHandled => AppStateService.TerminadoHandledMap.ContainsKey(id_leilao) && AppStateService.TerminadoHandledMap[id_leilao];
 
     protected override void OnInitialized()
     {
@@ -68,6 +75,7 @@
             skins = db.get_artigos_leilao(id_leilao);
             descricao = leilao.getDescricao();
             preco_minimo = leilao.getPrecoMinimo();
+            preco_reserva = leilao.getPrecoReserva();
 
             DateTime data_inicio = leilao.getDataHoraInicial();
             int duracao = leilao.getDuracao();
@@ -85,13 +93,47 @@
                 nome_highest_bidder = db.get_Pessoa(lance.getId_Licitador()).getNickname();
                 id_highest_bidder = lance.getId_Licitador();
             }
-
-            if (terminado) {
+            if(terminado && preco_reserva > valor_licitacao_atual)
+            {
+                reserva = true;
+            }
+            if (terminado && !TerminadoHandled) {
+                AppStateService.TerminadoHandledMap[id_leilao] = true;
+                AppStateService.SaveState();
                 tempo_restante = new TimeSpan(0, 0, 0);
                 iniciado = false;
+                if(licitacao_atual != null){
+                Lance lance = db.get_Lance((int)licitacao_atual);
+                valor_licitacao_atual = lance.getValor();
+                    if(preco_reserva > valor_licitacao_atual)
+                    {
+                        db.devolve_dinheiro_utilizador(lance.getId_Licitador(), valor_licitacao_atual);
+                    }
+                    else
+                    {
+                        decimal saldo_vendedor = db.get_saldo(id_criador);
+                        db.update_saldo(id_criador, saldo_vendedor + valor_licitacao_atual);
+                    }
+                }
+
             }
 
             favorito = db.e_favorito(id_leilao, CurrentUser.user.getID());
+        }
+    }
+
+    decimal preco (int id)
+    {
+        Leilao leilao = db.get_Leilao(id);
+
+        if(leilao.getIdLanceAtual() == null)
+        {
+            return leilao.getPrecoMinimo();
+        }
+        else
+        {
+            Lance lance = db.get_Lance(leilao.getIdLanceAtual());
+            return lance.getValor();
         }
     }
 
@@ -101,6 +143,7 @@
 
         if (id_licitador != id_criador) {
             if (iniciado && saldo >= input_licitacao && input_licitacao > valor_licitacao_atual) {
+                favoritar_leilao();
                 int id_lance;
                 bool id_existe;
                 do {
@@ -108,7 +151,6 @@
                     id_existe = db.IDLance_existe(id_lance);
                 } while(id_existe);
 
-                decimal saldo_vendedor = db.get_saldo(id_criador);
 
                 if (licitacao_atual != null) {
                     Lance lance_anterior = db.get_Lance((int)licitacao_atual);
@@ -116,9 +158,6 @@
                     decimal valor_anterior = lance_anterior.getValor();
                     db.devolve_dinheiro_utilizador(id_licitador_anterior, valor_anterior);
                     CurrentUser.saldo += valor_anterior;
-
-                    db.update_saldo(id_criador, saldo_vendedor - valor_anterior);
-                    saldo_vendedor -= valor_anterior;
                 }
 
                 Lance lance = new Lance(id_lance, id_leilao, id_licitador, input_licitacao);
@@ -127,7 +166,6 @@
 
                 CurrentUser.saldo -= input_licitacao;
                 db.update_saldo(id_licitador, CurrentUser.saldo);
-                db.update_saldo(id_criador, saldo_vendedor + input_licitacao);
 
                 OnInitialized();
             } else {
@@ -136,6 +174,7 @@
         } else {
             licitar_no_proprio_leilao = true;
         }
+
     }
 
     void favoritar_leilao() {
@@ -172,9 +211,15 @@
             }
 
             @if(terminado) {
-
+                if(preco_reserva > valor_licitacao_atual){
+                }
+                else if(nome_highest_bidder != null){
                 <p><span style="font-weight: bold;">Vencedor :</span> @nome_highest_bidder, ID: @id_highest_bidder</p>
                 <p><span style="font-weight: bold;">Valor final: </span> @valor_licitacao_atual €</p>
+                }
+                else{
+                    <p><span style="font-weight: bold;">Ninguém licitou</span></p>
+                }
             }
 
             @if(!terminado && licitacao_atual != null) {
@@ -193,23 +238,24 @@
                     <span style="font-weight: bold;">Tempo até início: </span> 
                 }
 
-                @if (tempo_restante.Days > 0) {
-                    <span>@tempo_restante.Days dias</span>
-                } else if (tempo_restante.Hours > 0) {
-                    <span>@tempo_restante.Hours h:@tempo_restante.Minutes m</span>
-                } else if (tempo_restante.Minutes > 0){
-                    <span>@tempo_restante.Minutes m</span>
-                }
-
-                else {
-                    if (tempo_ate_inicio.Days > 0) {
-                        <span>@tempo_ate_inicio.Days dias</span>
+                @if (tempo_ate_inicio.Days > 0) {
+                        <span>@tempo_ate_inicio.Days dias </span>
                     } else if (tempo_ate_inicio.Hours > 0) {
-                        <span>@tempo_ate_inicio.Hours h:@tempo_ate_inicio.Minutes m</span>
-                    } else {
+                        <span>@tempo_ate_inicio.Hours h:@tempo_ate_inicio.Minutes m </span>
+                    } else if (tempo_ate_inicio.Minutes > 0) {
                         <span>@tempo_ate_inicio.Minutes m</span>
+                    } else if(tempo_ate_inicio.Seconds > 0) { 
+                        <span>@tempo_ate_inicio.Seconds s</span>
+                    }else if (tempo_restante.Days > 0) {
+                        <span>@tempo_restante.Days dias</span>
+                    } else if (tempo_restante.Hours > 0) {
+                        <span>@tempo_restante.Hours h:@tempo_restante.Minutes m</span>
+                    } else if (tempo_restante.Minutes > 0){
+                        <span>@tempo_restante.Minutes m</span>
+                    } else if (tempo_restante.Seconds > 0){
+                        <span>@tempo_restante.Seconds s</span>
                     }
-                }
+                
             </div>
             }
 
@@ -226,7 +272,7 @@
             @if(!terminado){
             <div class="licitar-button leilao-interacao-field" @onclick="licitar">Licitar</div>
             }
-            @if(!terminado){
+            
             <div>
                 @if (favorito) {
                     <img class="fav-button" src="/imgs/heart.png" @onclick="desfavoritar_leilao" >
@@ -234,8 +280,12 @@
                     <img class="fav-button" src="/imgs/heart_white.png" @onclick="favoritar_leilao" >
                 }
             </div>
-            }
+            
         </div>
+
+        @if(reserva){
+             <p style="margin-top: 20px; font-weight: bold">Preço de reserva não foi ultrapassado, dinheiro devolvido ao último licitador: @nome_highest_bidder, ID: @id_highest_bidder</p>
+        }
 
         @if (!licitacao_valida) {
             <p style="margin-top: 20px; font-weight: bold">Valor da licitação tem de ser superior ao valor atual</p>
@@ -252,11 +302,12 @@
             string nome_skin = skin.getNome();
             string condicao = skin.getCondicao();
             string raridade = skin.getRaridade().ToString();
+            decimal preco_maximo = preco(skin.getId_leilao());
 
             string img = skin.getImagem();
             if (img == null) img = $"/imgs/default_items/{arma}.png";
 
-            <Leilao_card skin_img="@img" id_leilao="@id_leilao" weapon="@arma" skin_name="@nome_skin" condition="@condicao" raridade = "@raridade" preco_maximo="@valor_licitacao_atual" />
+            <Leilao_card skin_img="@img" id_leilao="@id_leilao" weapon="@arma" skin_name="@nome_skin" condition="@condicao" raridade = "@raridade" preco_maximo="@preco_maximo" />
         }
     </div>
 </div>

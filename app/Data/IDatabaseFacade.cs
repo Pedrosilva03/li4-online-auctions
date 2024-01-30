@@ -54,7 +54,7 @@ namespace app.Data
 
         public List<Artigo> get_artigos_leilao(int idLeilao);
 
-        public void update_id_lanceAtual(int id_leilao, int id_lance);
+        public void update_id_lanceAtual(int id_leilao, int? id_lance);
 
         public void favoritar_leilao(int id_leilao, int id_utilizador);
 

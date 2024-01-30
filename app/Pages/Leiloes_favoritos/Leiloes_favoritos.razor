@@ -18,6 +18,21 @@
             }
         }
     }
+
+    decimal preco (int id)
+    {
+        Leilao leilao = db.get_Leilao(id);
+
+        if(leilao.getIdLanceAtual() == null)
+        {
+            return leilao.getPrecoMinimo();
+        }
+        else
+        {
+            Lance lance = db.get_Lance(leilao.getIdLanceAtual());
+            return lance.getValor();
+        }
+    }
 }
 
 <PageTitle>Leilões favoritos</PageTitle>
@@ -38,7 +53,7 @@
                 string skin = artigo.getNome();
                 string condicao = artigo.getCondicao();
                 string raridade = artigo.getRaridade();
-                decimal preco_maximo = leilao.getPrecoMinimo();
+                decimal preco_maximo = preco(artigo.getId_leilao());
 
                 string img = artigo.getImagem();
                 if (img == null) img = $"/imgs/default_items/{arma}.png";
