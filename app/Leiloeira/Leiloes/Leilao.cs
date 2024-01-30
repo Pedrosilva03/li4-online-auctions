@@ -1,3 +1,4 @@
+using app.Terminado;
 using app.Leiloeira.Artigos;
 using app.Leiloeira.Lances;
 using app.Leiloeira.Pessoas;
@@ -33,6 +34,12 @@ namespace app.Leiloeira.Leiloes
             this.participantes = participantes;
             this.lancesFeitos = lancesFeitos;
             this.artigos = artigos;
+
+            var appStateService = AppStateService.GetInstance();
+            if (!appStateService.TerminadoHandledMap.ContainsKey(id))
+            {
+                appStateService.TerminadoHandledMap[id] = false;
+            }
         }
 
         //MÉTODOS DE ACESSO AOS ATRIBUTOS//
