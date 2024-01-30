@@ -29,15 +29,6 @@ CREATE TABLE Pessoa (
 	estado VARCHAR(50)
 );
 
-CREATE TABLE Lance (
-    id INT PRIMARY KEY NOT NULL,
-    id_leilao INT NOT NULL,
-    id_licitador INT NOT NULL,
-    valor DECIMAL(9, 2) NOT NULL,
-	FOREIGN KEY (id_leilao) REFERENCES Leilao(id),
-    FOREIGN KEY (id_licitador) REFERENCES Pessoa(id)
-);
-
 CREATE TABLE Leilao (
     id INT PRIMARY KEY NOT NULL,
     id_Criador INT NOT NULL,
@@ -49,6 +40,16 @@ CREATE TABLE Leilao (
     id_lanceAtual INT,
 	FOREIGN KEY (id_Criador) REFERENCES Pessoa(id),
 );
+
+CREATE TABLE Lance (
+    id INT PRIMARY KEY NOT NULL,
+    id_leilao INT NOT NULL,
+    id_licitador INT NOT NULL,
+    valor DECIMAL(9, 2) NOT NULL,
+	FOREIGN KEY (id_leilao) REFERENCES Leilao(id),
+    FOREIGN KEY (id_licitador) REFERENCES Pessoa(id)
+);
+
 
 ALTER TABLE Leilao
 ADD FOREIGN KEY (id_lanceAtual) REFERENCES Lance(id);
