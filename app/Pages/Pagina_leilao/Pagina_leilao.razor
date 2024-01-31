@@ -157,7 +157,6 @@
                     int id_licitador_anterior = lance_anterior.getId_Licitador();
                     decimal valor_anterior = lance_anterior.getValor();
                     db.devolve_dinheiro_utilizador(id_licitador_anterior, valor_anterior);
-                    CurrentUser.saldo += valor_anterior;
                 }
 
                 Lance lance = new Lance(id_lance, id_leilao, id_licitador, input_licitacao);

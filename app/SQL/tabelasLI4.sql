@@ -109,3 +109,5 @@ INSERT INTO dbo.Pessoa (id, tipo, email, password, saldo, telemovel, nickname, e
 
 INSERT INTO dbo.Pessoa (id, tipo, email, password, saldo, telemovel, nickname, estado) VALUES (69, 'Utilizador', 'tone@gmail.com', 'tone', 500, 912345678, 'Tone', 'Desbloqueado');
 
+INSERT INTO dbo.Pessoa (id, tipo, email, password, saldo, telemovel, nickname, estado) VALUES (420, 'Utilizador', 'liro@gmail.com', 'liro', 500, 987654321, 'Liro', 'Desbloqueado');
+
