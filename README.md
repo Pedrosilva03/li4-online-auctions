@@ -20,12 +20,16 @@ Nesta aplicação é possível:
 - Participar em leilões efetuando um número ilimitado de lances até ao fim do leilão
 
 ## Observações importantes
-Este sistema funciona sobre uma camada de dados isto é, contém uma base de dados relacional onde estão guardados os dados da aplicação.
+- Este sistema funciona sobre uma camada de dados isto é, contém uma base de dados relacional onde estão guardados os dados da aplicação.
+- Esta base de dados pode ser manipulada usando SSMS (SQL Server Managemenet Studio).
+- Aqui deve ser criada a base de dados, as tabelas e deve ser feito o povoamento.
 
 ## Execução da aplicação
-Devido ao programa funcionar sobre uma camada de dados, é necessário executar e povoar a base de dados antes de executar o programa. Os scripts necessários para a base de dados encontram-se também neste repositório.
-Este programa é executado em browser. Para iniciar a sua execução basta, na pasta app deste repositório, executar o comando ```dotnet watch```.
-O programa irá ser compilado e executado automaticamente.
+- Devido ao programa funcionar sobre uma camada de dados, é necessário executar e povoar a base de dados antes de executar o programa. Os scripts necessários para a base de dados encontram-se [aqui](https://github.com/Pedrosilva03/li4-online-auctions/tree/8d358ede026ce57b5f1f7e9896a12498a051531d/app/SQL)
+- Deve também ser alterado o nome da máquina no campo MACHINE [aqui](https://github.com/Pedrosilva03/li4-online-auctions/blob/8d358ede026ce57b5f1f7e9896a12498a051531d/app/Data/DAOS/DAOconfig.cs)
+- Este nome pode ser encontrado na janela de conexão ao abrir o SSMS (campo ```Server name```) e colado no campo especificado anteriormente.
+- Este programa é executado em browser. Para iniciar a sua execução basta, na pasta app, executar o comando ```dotnet watch```.
+- O programa irá ser compilado e executado automaticamente.
 
 ## Conclusão
 Trabalho realizado por Pedro Silva, António Silva, Diogo Barros e Duarte Leitão.
